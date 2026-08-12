@@ -1,0 +1,55 @@
+import Reveal from "./Reveal";
+
+const CANOPY_IMG = "canopy.webp";
+
+const STORY = [
+  "In Kerala, the coconut tree is not a plant — it is a pulse. It shades our homes, feeds our children, and holds the memory of generations. To grow up beneath its canopy is to learn, very early, that the finest things in life are quiet, patient, and entirely natural.",
+  "OURA began as a simple question: what if the purity we grew up with — the untouched, the raw, the real — could be shared with the world without losing a single drop of its soul? No shortcuts. No synthetic disguise. Just the coconut, honored completely.",
+  "So we return to the source. We cold-press, we reclaim, we hand-finish — turning every part of the coconut into something useful and beautiful, with zero waste. From a glass of living water to a bowl on your table, OURA is Kerala's heritage, carried whole, from our home to yours."
+];
+
+export default function Genesis() {
+  return (
+    <section id="genesis" className="relative bg-ivory text-palm grain">
+      <div className="mx-auto max-w-[1440px] px-6 lg:px-12 py-16 lg:py-24">
+        <Reveal>
+          <p className="text-center text-gold text-[11px] font-sans-ui tracking-luxe uppercase">Founder's Vision</p>
+          <h2 className="mt-4 text-center font-display font-semibold leading-tight" style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}>
+            The Genesis of Oura
+            <span className="block italic text-palm/80 font-normal">A Love Affair with the Coconut Tree</span>
+          </h2>
+        </Reveal>
+
+        <div className="mt-12 lg:mt-16 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          <div className="lg:col-span-5 lg:sticky lg:top-24">
+            <Reveal>
+              <div className="relative overflow-hidden rounded-sm">
+                <img src={CANOPY_IMG} alt="Misty Kerala coconut palm canopy at dawn" className="w-full h-64 lg:h-80 fill" />
+              </div>
+            </Reveal>
+          </div>
+          <div className="lg:col-span-7">
+            <Reveal>
+              <div>
+                {STORY.map((p, i) => (
+                  <p key={i} className={`mb-4 leading-relaxed ${i === 0 ? "text-xl font-display text-palm font-medium" : "text-base text-palm/85"}`}>
+                    {p}
+                  </p>
+                ))}
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="mt-6 flex items-center gap-4">
+                <span className="block h-px w-12 bg-gold" />
+                <div>
+                  <p className="font-display text-lg font-semibold text-palm">Sreejith Murali</p>
+                  <p className="text-[10px] font-sans-ui tracking-luxe text-palm/65 uppercase">Founder &amp; CEO</p>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 160 45% 16%;
+    --card: 0 0% 100%;
+    --card-foreground: 160 45% 16%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 160 45% 16%;
+    --primary: 160 45% 16%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 150 25% 95%;
+    --secondary-foreground: 160 45% 16%;
+    --muted: 150 25% 95%;
+    --muted-foreground: 160 30% 35%;
+    --accent: 116 45% 29%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 150 20% 90%;
+    --input: 150 20% 90%;
+    --ring: 116 45% 29%;
+    --radius: 0.25rem;
+    --font-heading: "Cormorant Garamond", Georgia, serif;
+    --font-body: "Lora", Georgia, serif;
+    --font-display: "Cormorant Garamond", Georgia, serif;
+    --font-sans: "Inter", system-ui, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+
+  ::selection {
+    background: hsl(var(--accent));
+    color: #ffffff;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  [role="slider"]:focus-visible,
+  [role="tab"]:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+  .font-sans-ui {
+    font-family: var(--font-sans);
+  }
+  .pulse-line {
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, #2d6a28 20%, #163a2e 80%, transparent);
+  }
+  .glass {
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+  }
+  .glass-dark {
+    background: rgba(22, 58, 46, 0.6);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+  }
+  .tracking-luxe {
+    letter-spacing: 0.42em;
+  }
+  .grain {
+    background-image: radial-gradient(rgba(22, 58, 46, 0.04) 1px, transparent 1px);
+    background-size: 4px 4px;
+  }
+}
+
+@keyframes pulse-down {
+  0% { transform: scaleY(0); transform-origin: top; opacity: 0; }
+  40% { opacity: 1; }
+  100% { transform: scaleY(1); transform-origin: top; opacity: 0; }
+}
+.animate-pulse-down {
+  animation: pulse-down 2.4s ease-in-out infinite;
+}
+
+/* Range slider — Impact Console */
+.oura-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 2px;
+  background: rgba(45, 106, 40, 0.3);
+  outline: none;
+}
+.oura-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: #2d6a28;
+  border: 3px solid #163a2e;
+  cursor: pointer;
+}
+.oura-range::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: #2d6a28;
+  border: 3px solid #163a2e;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-pulse-down { animation: none; }
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
