@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Droplet, EyeOffIcon, Sparkles, Utensils, type LucideIcon } from 'lucide-react';
 
-const CULINARY_IMG = 'culinary.png';
-const SHELLS_IMG = 'shells_p.png';
-const VITA_IMG = 'oura_vita.jpg';
-const CARE_IMG = 'oura_care.jpg';
+const CULINARY_IMG = 'culinary_square.png';
+const SHELLS_IMG = 'shells_p_square.png';
+const VITA_IMG = 'oura_vita_square.jpg';
+const CARE_IMG = 'oura_care_square.jpg';
 
 type Product = {
     id: string
@@ -123,86 +123,81 @@ export default function Spectrum() {
         </motion.div>
 
         {/* Kinetic carousel shards */}
-        <div className="flex flex-col md:flex-row gap-4 md:gap-2 h-auto md:h-[600px]">
+        <div className="flex flex-col md:flex-row gap-4 md:gap-2 h-auto md:h-[650px]">
           {PRODUCTS.map((product, i) => (
             <motion.div
-              key={product.id}
-              onHoverStart={() => handleOnClick(product, i)}
-              onClick={() => handleOnClick(product, i)}
-              animate={{ flex: active === i ? 2 : 1 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className={`relative overflow-hidden group min-h-[400px] md:min-h-0 ${
-                product.available ? 'cursor-pointer' : 'cursor-default'
-              }`}
-            >
+            key={product.id}
+            onHoverStart={() => handleOnClick(product, i)}
+            onClick={() => handleOnClick(product, i)}
+            animate={{ flex: active === i ? 2 : 1 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className={`flex flex-col overflow-hidden group min-h-[400px] md:min-h-0 borde rounded ${
+              product.available ? 'cursor-pointer' : 'cursor-default'
+            }`}
+          >
+            {/* Image — top */}
+            <div className="relative h-[320px] md:h-[560px] overflow-hidden">
               <img
                 src={product.img}
                 alt={product.name}
-                className={`absolute inset-0 w-full h-full object-cover transition-[transform,filter] duration-700 ${
+                className={`w-full h-full object-cover transition-transform duration-700 ${
                   product.available
                     ? 'group-hover:scale-105'
-                    : 'scale-100 blur-sm brightness-[0.45] saturate-50'
+                    : 'blur-sm brightness-[0.45] saturate-50'
                 }`}
               />
-              <div
-                className={`absolute inset-0 ${
-                  product.available
-                    ? 'bg-gradient-to-t from-obsidian via-obsidian/40 to-obsidian/10'
-                    : 'bg-obsidian/05'
-                }`}
-              />
-
+          
               {!product.available && (
-                <div className="absolute inset-0 z-10 flex flex-col gap-3 items-center justify-center p-4 pointer-events-none">
-                    <EyeOffIcon color='white' />
-                    <div className="relative px-3 py-2 md:px-4 md:py-3 border border-palm/20 bg-white/85 backdrop-blur-sm">
-                        <p className="font-sans-ui text-[10px] md:text-xs uppercase tracking-[0.45em] text-palm/90 text-center">
-                        Coming Soon
-                        </p>
-                    </div>
+                <div className="absolute inset-0 z-10 flex flex-col gap-3 items-center justify-center p-4 pointer-events-none bg-obsidian/20">
+                  <EyeOffIcon color="white" />
+                  <div className="relative px-3 py-2 md:px-4 md:py-3 border border-palm/20 bg-white/85 backdrop-blur-sm">
+                    <p className="font-sans-ui text-[10px] md:text-xs uppercase tracking-[0.45em] text-palm/90 text-center">
+                      Coming Soon
+                    </p>
+                  </div>
                 </div>
               )}
-
-              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
-                <div className={`flex items-center gap-3 mb-3 ${product.available ? '' : 'opacity-80'}`}>
-                  <product.icon className="w-5 h-5 text-husk" strokeWidth={1.5} />
-                  <span className="text-husk text-xs uppercase tracking-[0.2em]">{product.tag}</span>
-                </div>
-                <h3
-                  className={`font-display font-bold text-parchment mb-2 ${
-                    product.available ? 'text-3xl md:text-5xl' : 'text-2xl md:text-3xl opacity-90'
-                  }`}
-                >
-                  {product.name}
-                </h3>
-
-                <motion.div
-                  animate={{ height: active === i ? 'auto' : 0, opacity: active === i ? 1 : 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="overflow-hidden"
-                >
-                  <p className="text-parchment/85 text-sm md:text-base leading-relaxed mb-6 mt-4 max-w-md">
-                    {product.desc}
-                  </p>
-                  <div className="grid grid-cols-3 gap-4 pt-4 border-t border-parchment/10">
-                    {product.specs.map((spec) => (
-                      <div key={spec.label}>
-                        <p className="text-husk text-[10px] uppercase tracking-widest mb-1">{spec.label}</p>
-                        <p className="text-parchment text-sm font-medium">{spec.value}</p>
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
-
-                {active !== i && (
-                  <p className="text-parchment/70 text-xs uppercase tracking-[0.2em] mt-2">
-                    {product.available
-                      ? `${product.purity} — Hover to expand`
-                      : ''}
-                  </p>
-                )}
+            </div>
+          
+            {/* Content — white background */}
+            <div className="bg-ivory p-4 md:p-6">
+              <div className={`flex items-center gap-3 mb-3 ${product.available ? '' : 'opacity-80'}`}>
+                <product.icon className="w-5 h-5 text-husk" strokeWidth={1.5} />
+                <span className="text-husk text-xs uppercase tracking-[0.2em]">{product.tag}</span>
               </div>
-            </motion.div>
+              <h3
+                className={`font-display font-bold text-obsidian ${
+                  product.available ? 'text-3xl md:text-4xl' : 'text-2xl md:text-3xl opacity-90'
+                }`}
+              >
+                {product.name}
+              </h3>
+          
+              <motion.div
+                animate={{ height: active === i ? 'auto' : 0, opacity: active === i ? 1 : 0 }}
+                transition={{ duration: 0.5 }}
+                className="overflow-hidden"
+              >
+                <p className="text-obsidian/75 text-sm md:text-base leading-relaxed mb-6 mt-4 max-w-md">
+                  {product.desc}
+                </p>
+                <div className="grid grid-cols-3 gap-4 pt-4 border-t border-obsidian/10">
+                  {product.specs.map((spec) => (
+                    <div key={spec.label}>
+                      <p className="text-husk text-[10px] uppercase tracking-widest mb-1">{spec.label}</p>
+                      <p className="text-obsidian text-sm font-medium">{spec.value}</p>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+          
+              {active !== i && (
+                <p className="text-obsidian/60 text-xs uppercase tracking-[0.2em] mt-2">
+                  {product.available ? `${product.purity} — Hover to expand` : ''}
+                </p>
+              )}
+            </div>
+          </motion.div>
           ))}
         </div>
 
