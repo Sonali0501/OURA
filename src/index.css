@@ -92,6 +92,30 @@
     background-image: radial-gradient(rgba(22, 58, 46, 0.04) 1px, transparent 1px);
     background-size: 4px 4px;
   }
+  /* Swipeable tracks that steer with their own arrow buttons */
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Continuously sliding track; fades out at both edges */
+  .marquee {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  }
+  .marquee-track {
+    animation: marquee 45s linear infinite;
+  }
+}
+
+/* The track holds two identical runs, so -50% lands on a seamless repeat */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 @keyframes pulse-down {
@@ -133,5 +157,10 @@
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .animate-pulse-down { animation: none; }
+  /* Stop the slide outright (the blanket rule below would only speed it up)
+     and let the track be scrolled by hand instead. */
+  .marquee-track { animation: none; }
+  .marquee { overflow-x: auto; scrollbar-width: none; }
+  .marquee::-webkit-scrollbar { display: none; }
   * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }

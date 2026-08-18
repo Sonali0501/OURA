@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import CartButton from "../cart/CartButton";
 
 type LinkObj = { label: string; to?: string; href?: string }
 
+// Root-absolute hashes so the links also resolve from /founder and /products/:id
 const LINKS = [
-//   { label: "The Complete Story", href: "#top" },
-  { label: "Genesis", href: "#genesis" },
+//   { label: "The Complete Story", href: "/#top" },
+  { label: "Genesis", href: "/#genesis" },
   { label: "Foundation", to: "/founder" },
-  { label: "Spectrum", href: "#spectrum" },
-  { label: "Soil to Sip", href: "#soil-to-sip" },
-  { label: "Roadmap", href: "#b2b" }
+  { label: "Spectrum", href: "/#spectrum" },
+  { label: "Soil to Sip", href: "/#soil-to-sip" },
+  { label: "Roadmap", href: "/#b2b" }
 ];
 
-export default function OuraNav() {
+export default function OuraNav({ solid = false }: { solid?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -25,7 +27,7 @@ export default function OuraNav() {
   }, []);
 
   // Ivory on dark hero; palm on light glass after scroll or when mobile menu is open
-  const lightChrome = scrolled || open;
+  const lightChrome = solid || scrolled || open;
   const linkColor = lightChrome ? "text-palm/80 hover:text-palm" : "text-ivory/90 hover:text-ivory";
   const logoColor = lightChrome ? "text-palm" : "text-ivory";
 
@@ -51,7 +53,8 @@ export default function OuraNav() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <a href="#b2b" className="hidden sm:inline-flex items-center h-10 px-5 bg-gold text-ivory text-[11px] font-sans-ui tracking-luxe uppercase hover:brightness-110 transition">Partner With Us</a>
+          <a href="/#b2b" className="hidden sm:inline-flex items-center h-10 px-5 bg-gold text-ivory text-[11px] font-sans-ui tracking-luxe uppercase hover:brightness-110 transition">Partner With Us</a>
+          <CartButton light={lightChrome} />
           <button onClick={() => setOpen((v) => !v)} className={`lg:hidden inline-flex items-center justify-center w-11 h-11 ${lightChrome ? "text-palm" : "text-ivory"}`} aria-label="Toggle menu">
             <span className="text-xl">{open ? "✕" : "☰"}</span>
           </button>
@@ -64,7 +67,7 @@ export default function OuraNav() {
             {LINKS.map((l) => (
               <div key={l.label} className="py-3">{renderItem(l, true)}</div>
             ))}
-            <a href="#b2b" onClick={() => setOpen(false)} className="mt-2 inline-flex items-center h-11 px-6 bg-gold text-ivory text-[11px] font-sans-ui tracking-luxe uppercase">Partner With Us</a>
+            <a href="/#b2b" onClick={() => setOpen(false)} className="mt-2 inline-flex items-center h-11 px-6 bg-gold text-ivory text-[11px] font-sans-ui tracking-luxe uppercase">Partner With Us</a>
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,44 +1,6 @@
 import { Star, Quote } from "lucide-react";
 import Reveal from "./Reveal";
-
-const reviews = [
-  {
-    name: "Aravind Krishnan",
-    city: "Kochi, Kerala",
-    text: "The cold-pressed oil has become a staple in my mother's kitchen. It tastes exactly like the oil she remembers from her childhood — pure, fragrant, and honest.",
-    initials: "AK",
-  },
-  {
-    name: "Meera Nair",
-    city: "Borivali, Mumbai",
-    text: "I brought a bottle back to Mumbai and it completely changed how I cook. You can tell the difference the moment you open it. Real Kerala heritage in a bottle.",
-    initials: "MN",
-  },
-  {
-    name: "Vishnu Pillai",
-    city: "Indiranagar, Bangalore",
-    text: "As someone who grew up around coconut palms, OURA is the first brand that actually honors the source. No shortcuts, no pretense — just purity.",
-    initials: "VP",
-  },
-  {
-    name: "Divya Menon",
-    city: "Saket, Delhi",
-    text: "Living in Delhi, I had almost forgotten what real coconut oil smelled like. OURA brought Kerala back into my home. The quality is institutional-grade.",
-    initials: "DM",
-  },
-  {
-    name: "Sreelekshmi Warrier",
-    city: "Thiruvananthapuram, Kerala",
-    text: "It's rare to come across a brand that stays true to Kerala's traditions. OURA feels like a genuine sign of purity in a market full of compromises.",
-    initials: "SW",
-  },
-  {
-    name: "Anand Sharma",
-    city: "Mayur Vihar, Delhi",
-    text: "Finding a brand you can trust isn't easy anymore. OURA stands out as a refreshing reminder that purity, honesty, and quality still exist.",
-    initials: "AS",
-  },
-];
+import { REVIEWS } from "../../data/reviews";
 
 export default function Testimonials() {
   return (
@@ -63,7 +25,7 @@ export default function Testimonials() {
         </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {reviews.map((r, i) => (
+          {REVIEWS.map((r, i) => (
             <Reveal key={r.name} delay={0.05 * (i % 3)}>
               <div
                 className="border border-palm/15 p-6 md:p-8 bg-ivory hover:border-gold/40 transition-colors flex flex-col h-full"

@@ -1,10 +1,11 @@
 import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 
+// Root-absolute hashes so the links also resolve from /founder and /products/:id
 const LINKS = [
-  { label: "Genesis", href: "#genesis" },
-  { label: "Spectrum", href: "#spectrum" },
-  { label: "Soil to Sip", href: "#soil-to-sip" },
-  { label: "Partner With Us", href: "#b2b" }
+  { label: "Genesis", href: "/#genesis" },
+  { label: "Spectrum", href: "/#spectrum" },
+  { label: "Soil to Sip", href: "/#soil-to-sip" },
+  { label: "Partner With Us", href: "/#b2b" }
 ];
 
 const SOCIALS = [

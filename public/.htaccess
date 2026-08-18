@@ -1,0 +1,68 @@
+# OURA — Apache/LiteSpeed config for the built SPA (Hostinger).
+# Lives in public/ so `yarn build` copies it into dist/ automatically.
+# Upload alongside index.html at the web root.
+
+Options -Indexes
+
+# ---------------------------------------------------------------------
+# Never serve dotfiles. Nothing in dist/ needs to be readable this way,
+# and if a .env is ever uploaded by accident it would otherwise be
+# downloadable as plain text. Guarded so it is a no-op on Apache 2.2.
+# ---------------------------------------------------------------------
+<IfModule mod_authz_core.c>
+  <FilesMatch "^\.">
+    Require all denied
+  </FilesMatch>
+</IfModule>
+
+# ---------------------------------------------------------------------
+# SPA routing
+#
+# React Router owns /founder, /products/:id etc. Those paths have no file
+# on disk, so without this the server 404s on a refresh or a shared link.
+# Anything that isn't a real file or directory falls through to index.html
+# and the router takes over.
+# ---------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Leave real files and directories alone
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# ---------------------------------------------------------------------
+# Caching
+# ---------------------------------------------------------------------
+<IfModule mod_headers.c>
+  # index.html must never be cached — it points at the hashed bundles,
+  # so a stale copy would keep serving a previous deploy.
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+
+  # Vite's hashed build output (index-DwqEffiS.js). The hash changes on
+  # every content change, so these are safe to cache forever.
+  <FilesMatch "-[A-Za-z0-9_-]{8,}\.(js|css)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Files from public/ keep their names across deploys, so cache them for
+  # a month rather than a year — replacing an image still lands reasonably.
+  <FilesMatch "\.(png|jpe?g|webp|svg|ico|mp4|woff2?)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+</IfModule>
+
+# ---------------------------------------------------------------------
+# Compression
+# ---------------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
