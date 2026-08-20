@@ -75,7 +75,7 @@ export default function B2BPortal() {
       `Company: ${form.company}`,
       `Email: ${form.email}`,
       form.phone ? `Phone: ${form.phone}` : null,
-      `Projected annual units: ${fmt(units)}`,
+      `Units per year: ${fmt(units)}`,
       "",
       form.message,
     ]
@@ -83,7 +83,7 @@ export default function B2BPortal() {
       .join("\n");
 
     const mailto = `mailto:contact@ouracoconut.com?subject=${encodeURIComponent(
-      "B2B Partnership Inquiry — OURA"
+      "Bulk Order Enquiry — OURA"
     )}&body=${encodeURIComponent(body)}`;
 
     window.location.href = mailto;
@@ -98,17 +98,17 @@ export default function B2BPortal() {
           <div className="lg:col-span-7">
             <Reveal>
               <p className="text-husk text-[11px] font-sans-ui tracking-luxe uppercase">
-                B2B &amp; Corporate Portal
+                Bulk &amp; Business Orders
               </p>
               <h2
                 className="mt-4 font-display font-semibold leading-tight"
                 style={{ fontSize: "clamp(2rem, 4.5vw, 3.4rem)" }}
               >
-                Scaling Purity
+                Buy More, Waste Less
               </h2>
               <p className="mt-4 max-w-lg text-ivory/80">
-                Measure your environmental offset in real time. Slide to project the impact of your
-                commitment across plastic saved, carbon reduced, and artisan communities supported.
+                Move the slider to see what your yearly order adds up to: plastic kept out of
+                landfill, carbon saved, and artisan families supported.
               </p>
             </Reveal>
 
@@ -116,7 +116,7 @@ export default function B2BPortal() {
               <div className="mt-10">
                 <div className="flex items-end justify-between mb-4">
                   <span className="text-[10px] font-sans-ui tracking-luxe uppercase text-ivory/70">
-                    Annual Units
+                    Units Per Year
                   </span>
                   <span className="font-display text-3xl font-semibold text-husk">
                     {fmt(units)}
@@ -129,7 +129,7 @@ export default function B2BPortal() {
                   step={500}
                   value={units}
                   onChange={(e) => setUnits(Number(e.target.value))}
-                  aria-label="Annual units"
+                  aria-label="Units per year"
                   className="w-full oura-range"
                 />
                 <div className="flex justify-between mt-2 text-[10px] font-sans-ui tracking-luxe uppercase text-ivory/55">
@@ -142,15 +142,15 @@ export default function B2BPortal() {
             <Reveal delay={0.15}>
               <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <StatCard label="Plastic Saved" value={fmt(plastic)} unit="kg" pct={pct(plastic, 7500)} />
-                <StatCard label="Carbon Offset" value={fmt(carbon)} unit="kg" pct={pct(carbon, 21000)} />
-                <StatCard label="Artisan Families" value={fmt(families)} unit="" pct={pct(families, 200)} />
+                <StatCard label="Carbon Saved" value={fmt(carbon)} unit="kg" pct={pct(carbon, 21000)} />
+                <StatCard label="Families Supported" value={fmt(families)} unit="" pct={pct(families, 200)} />
               </div>
             </Reveal>
 
             <Reveal delay={0.2}>
               <div className="mt-6 flex items-center gap-3 text-ivory/75 text-sm">
                 <span className="block h-px w-8 bg-husk/70" />
-                Direct support delivered to local artisan communities across Kerala.
+                Every order goes straight to artisan families in Kerala.
               </div>
             </Reveal>
           </div>
@@ -163,21 +163,21 @@ export default function B2BPortal() {
                   className="mt-3 font-display font-semibold leading-tight"
                   style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)" }}
                 >
-                  Partner With Us
+                  Talk To Us
                 </h3>
                 <p className="mt-3 text-sm text-ivory/75 leading-relaxed">
-                  Share your requirements and our team will reach out with tailored supply,
-                  sustainability reporting, and partnership options.
+                  Tell us what you need. We&apos;ll reply with pricing, delivery timelines, and a
+                  report on the impact of your order.
                 </p>
 
                 {submitted ? (
                   <div className="mt-8 border border-ivory/15 p-6">
                     <p className="text-husk text-[10px] font-sans-ui tracking-luxe uppercase">
-                      Inquiry prepared
+                      Your message is ready
                     </p>
                     <p className="mt-3 text-sm text-ivory/85 leading-relaxed">
-                      Your message is ready to send. If your mail client did not open, email us
-                      directly at{" "}
+                      We&apos;ve opened your email app with the details filled in. If nothing
+                      opened, just write to us at{" "}
                       <a
                         href="mailto:contact@ouracoconut.com"
                         className="text-husk hover:underline"
@@ -194,7 +194,7 @@ export default function B2BPortal() {
                       }}
                       className="mt-6 text-[10px] font-sans-ui tracking-luxe uppercase text-ivory/70 hover:text-husk transition"
                     >
-                      Send another inquiry
+                      Write another message
                     </button>
                   </div>
                 ) : (
@@ -220,7 +220,7 @@ export default function B2BPortal() {
                           required
                           value={form.company}
                           onChange={(e) => updateField("company", e.target.value)}
-                          placeholder="Organisation"
+                          placeholder="Company name"
                           className={inputClass}
                         />
                       </div>
@@ -262,7 +262,7 @@ export default function B2BPortal() {
                         rows={4}
                         value={form.message}
                         onChange={(e) => updateField("message", e.target.value)}
-                        placeholder="Tell us about your volume, timeline, and product needs…"
+                        placeholder="How many units do you need, by when, and which products?"
                         className={`${inputClass} resize-y min-h-[120px]`}
                       />
                     </div>
@@ -271,7 +271,7 @@ export default function B2BPortal() {
                       type="submit"
                       className="inline-flex items-center gap-3 h-12 px-7 bg-gold text-ivory text-[11px] font-sans-ui tracking-luxe uppercase hover:brightness-110 transition"
                     >
-                      Send inquiry <span aria-hidden="true">→</span>
+                      Send message <span aria-hidden="true">→</span>
                     </button>
                   </form>
                 )}
