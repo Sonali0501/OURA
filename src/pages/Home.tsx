@@ -1,5 +1,6 @@
 import B2BPortal from "../components/Home/B2BPortal";
 import DeepDiveLink from "../components/Home/DeepDiveLink";
+import FarmerBanner from "../components/Home/FarmerBanner";
 import Genesis from "../components/Home/Genesis";
 import Hero from "../components/Home/Hero";
 import SoilToSip from "../components/Home/SoilToSip";
@@ -15,6 +16,7 @@ export default function Home() {
       <DeepDiveLink />
       <Spectrum />
       <SoilToSip />
+      <FarmerBanner />
       <Testimonials />
       <B2BPortal />
     </OuraLayout>

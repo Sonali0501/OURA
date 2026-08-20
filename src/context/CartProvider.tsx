@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { CartContext, type CartLine } from "./cartContext";
+import { CartContext, type CartLine, type CartSelection } from "./cartContext";
 import type { Product } from "../data/products";
 import { isShopifyConfigured } from "../lib/shopify";
 import {
@@ -147,23 +147,28 @@ export default function CartProvider({ children }: { children: React.ReactNode }
   }, []);
 
   const addItem = useCallback(
-    async (product: Product, qty = 1) => {
-      if (product.price === undefined) return;
+    async (product: Product, qty = 1, selection?: CartSelection) => {
+      const price = selection?.price ?? product.price;
+      if (price === undefined) return;
 
-      // Local fallback: no Shopify, or this product isn't mapped to a variant.
-      if (!isShopifyConfigured || !product.shopifyVariantId) {
+      const merchandiseId = selection?.shopifyVariantId ?? product.shopifyVariantId;
+
+      // Local fallback: no Shopify, or this size isn't mapped to a variant.
+      if (!isShopifyConfigured || !merchandiseId) {
+        // One line per size, so 1 L and 500 ml never collapse into each other.
+        const lineId = selection ? `${product.id}:${selection.variantId}` : product.id;
         setLines((prev) => {
-          const existing = prev.find((l) => l.id === product.id);
+          const existing = prev.find((l) => l.id === lineId);
           if (existing) {
-            return prev.map((l) => (l.id === product.id ? { ...l, qty: l.qty + qty } : l));
+            return prev.map((l) => (l.id === lineId ? { ...l, qty: l.qty + qty } : l));
           }
           return [
             ...prev,
             {
-              id: product.id,
-              name: product.name,
-              img: product.img,
-              price: product.price as number,
+              id: lineId,
+              name: selection?.title ?? product.name,
+              img: selection?.img ?? product.img,
+              price,
               qty,
             },
           ];
@@ -171,7 +176,7 @@ export default function CartProvider({ children }: { children: React.ReactNode }
         return;
       }
 
-      const variantId = product.shopifyVariantId;
+      const variantId = merchandiseId;
       await run(async () => {
         const line = { variantId, qty };
         // Adding to a stale cart id fails; fall back to a fresh cart.
@@ -238,12 +243,12 @@ export default function CartProvider({ children }: { children: React.ReactNode }
 
   /** A separate cart so Buy Now doesn't disturb what's already in the drawer. */
   const buyNow = useCallback(
-    async (product: Product, qty = 1) => {
-      if (!isShopifyConfigured || !product.shopifyVariantId) {
+    async (product: Product, qty = 1, selection?: CartSelection) => {
+      const variantId = selection?.shopifyVariantId ?? product.shopifyVariantId;
+      if (!isShopifyConfigured || !variantId) {
         setError("Checkout isn't connected yet.");
         return;
       }
-      const variantId = product.shopifyVariantId;
       await run(async () => {
         const cart = await createCart([{ variantId, qty }]);
         window.location.href = cart.checkoutUrl;

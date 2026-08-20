@@ -43,8 +43,14 @@ export type Product = {
    */
   shopifyVariantId?: string;
   highlights: string[];
+  /** Heading of the dark highlights band. Generic line when absent. */
+  highlightsTitle?: string;
   story: string[];
   boxContents: { label: string; value: string }[];
+  /** Declared nutrition. Same for every size — one oil, one press. */
+  nutrition?: { label: string; value: string }[];
+  /** Basis line under the nutrition heading, e.g. the serving it refers to. */
+  nutritionNote?: string;
   details: { title: string; body: string }[];
   care: string[];
   /** Shown when the product is not on sale yet (coming soon). */
@@ -69,7 +75,7 @@ export const PRODUCTS: Product[] = [
     icon: Sparkles,
     pct: '92%',
     purity: '100% Purity',
-    desc: 'Pure coconut oil, cold-pressed to hold every nutrient, scent and ritual of the source — for cooking that honors the harvest.',
+    desc: 'Double-filtered Coconut Oil prepared from premium quality copra. This pure and crystal-clear coconut oil preserves the delicate flavors of your food and brings wholesome health to your family.',
     specs: [
       { label: 'Process', value: 'Cold pressed' },
       { label: 'Additives', value: 'Zero' },
@@ -86,11 +92,11 @@ export const PRODUCTS: Product[] = [
     compareAt: 749,
     shopify_product_id: 'gid://shopify/Product/8710327795885',
     shopifyVariantId: 'gid://shopify/ProductVariant/47250512740525',
+    highlightsTitle: 'Why Choose Oura Culinary?',
     highlights: [
-      'Cold-pressed below 45°C — nutrients, aroma and enzymes stay intact',
-      'Zero additives, zero bleaching, zero deodorising',
-      'Sourced direct from Kerala agrarian families, no middlemen',
-      'Edible grade — equally at home in the kitchen and on skin',
+      '100% Pure & Edible Grade: Crafted exclusively from premium quality copra with zero compromises on quality.',
+      'Nutrient-Dense: Crystal-clear oil that locks in natural goodness, bringing authentic flavor to your everyday cooking.',
+      'Rooted in Heritage: Sourced directly from the lush agrarian landscapes of Aluva, Kerala.',
     ],
     story: [
       'Oura Culinary begins where every honest oil should — at the tree. Mature coconuts are hand-picked from Kerala smallholdings, sun-dried in open air, and pressed the same week so nothing has time to go stale.',
@@ -98,17 +104,36 @@ export const PRODUCTS: Product[] = [
       'What reaches your kitchen is unrefined and unapologetic: cloudy when cool, clear when warm, and unmistakably Kerala on the first spoon.',
     ],
     boxContents: [
-      { label: 'Contents', value: 'Cold-pressed virgin coconut oil' },
-      { label: 'Net volume', value: '1 litre' },
+      { label: 'Net volume & weight', value: '1L (910g) and 500 ml (455g) at 30°C' },
       { label: 'Packaging', value: 'Amber glass bottle, tamper seal' },
-      { label: 'Shelf life', value: '18 months from press date' },
-      { label: 'Origin', value: 'Aluva, Kerala, India' },
+      {
+        label: 'Shelf life',
+        value:
+          'Best before six months from the date of manufacturing (18 months from press date)',
+      },
+      {
+        label: 'Manufacturer & marketer',
+        value:
+          'SISIRAM PRIVATE LIMITED, Pallath Aikkarakudy, Malikampeedika, Aluva, Ernakulam, Kerala - 683511',
+      },
+      { label: 'FSSAI Lic. No.', value: '21326182001009' },
+      { label: 'Consumer care / feedback', value: 'contact@ouracoconut.com' },
+    ],
+    nutritionNote: 'Value per 100g of oil, approximate',
+    nutrition: [
+      { label: 'Energy / Calories', value: '900 kcal' },
+      { label: 'Saturated Fat', value: '95.6% by wt.' },
+      { label: 'Mono Unsaturated Fatty Acid', value: '3.4% by wt.' },
+      { label: 'Poly Unsaturated Fatty Acid', value: '01.0% by wt.' },
+      { label: 'Cholesterol', value: '0 g' },
+      { label: 'Protein', value: '0 g' },
+      { label: 'Carbohydrate', value: '0 g' },
     ],
     details: [
-      {
-        title: 'Description',
-        body: 'A single-ingredient virgin coconut oil, cold-pressed from fresh Kerala copra and filtered only through cloth. Nothing is added and nothing is taken away — no refining, no bleaching, no deodorising. Expect a soft coconut aroma, a clean finish, and a texture that turns solid below 24°C, which is exactly how pure oil should behave.',
-      },
+      // {
+      //   title: 'Description',
+      //   body: 'A single-ingredient virgin coconut oil, cold-pressed from fresh Kerala copra and filtered only through cloth. Nothing is added and nothing is taken away — no refining, no bleaching, no deodorising. Expect a soft coconut aroma, a clean finish, and a texture that turns solid below 24°C, which is exactly how pure oil should behave.',
+      // },
       {
         title: 'How to use',
         body: 'Cook with it at everyday stove temperatures, finish a thoran or curry with a spoonful, stir it into coffee, or warm a little between your palms for hair and skin. It has a smoke point around 175°C, so it is suited to sautéing and shallow frying rather than aggressive deep frying.',
@@ -123,9 +148,9 @@ export const PRODUCTS: Product[] = [
       },
     ],
     care: [
-      'Store in a cool, dark place away from direct sunlight',
-      'Solidifying below 24°C is natural — warm the bottle to liquefy',
-      'Use a dry spoon; moisture shortens the life of any unrefined oil',
+      'Storage: Store in a cool, dry place away from direct sunlight.',
+      'Natural Solidification: Solidifying below 24°C is natural — warm the bottle to liquefy.',
+      'Best Practice: Use a dry spoon; moisture shortens the life of any unrefined oil.',
     ],
   },
   {

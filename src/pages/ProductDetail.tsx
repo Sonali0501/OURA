@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
+  Activity,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
@@ -26,7 +27,11 @@ import {
 } from "../data/products";
 import { getReviewsByProductTags, type Review } from "../data/reviews";
 import { useCart } from "../context/cartContext";
-import { useProductPricing } from "../hooks/useProductPricing";
+import {
+  useProductVariants,
+  type DisplayVariant,
+  type VariantsState,
+} from "../hooks/useProductVariants";
 
 const WHATSAPP_NUMBER = "918138014300";
 
@@ -34,6 +39,26 @@ const waLink = (text: string) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 
 const eyebrow = "text-gold text-[11px] font-sans-ui tracking-luxe uppercase";
+
+/**
+ * Splits "Lead-in: rest" so the lead-in can be set in bold. Only a short
+ * prefix counts, so a colon mid-sentence is left alone.
+ */
+function splitLead(text: string): { lead: string | null; rest: string } {
+  const at = text.indexOf(": ");
+  if (at < 0 || at > 34) return { lead: null, rest: text };
+  return { lead: text.slice(0, at), rest: text.slice(at + 2) };
+}
+
+function LeadText({ text, className }: { text: string; className?: string }) {
+  const { lead, rest } = splitLead(text);
+  return (
+    <span className={className}>
+      {lead && <span className="font-medium">{lead}: </span>}
+      {rest}
+    </span>
+  );
+}
 
 /* ------------------------------------------------------------------ */
 /* Unknown id                                                          */
@@ -143,9 +168,8 @@ function Accordion({ items }: { items: { title: string; body: string }[] }) {
   );
 }
 
-function Gallery({ product }: { product: Product }) {
+function Gallery({ images, alt }: { images: string[]; alt: string }) {
   const [active, setActive] = useState(0);
-  const images = product.gallery.length ? product.gallery : [product.img];
   const current = images[Math.min(active, images.length - 1)];
 
   // Wrap around at both ends so the arrows never dead-end.
@@ -167,7 +191,7 @@ function Gallery({ product }: { product: Product }) {
               key={`${src}-${i}`}
               type="button"
               onClick={() => setActive(i)}
-              aria-label={`View image ${i + 1} of ${product.name}`}
+              aria-label={`View image ${i + 1} of ${alt}`}
               aria-current={i === active}
               className={`shrink-0 w-16 h-16 lg:w-20 lg:h-20 overflow-hidden border transition-colors ${
                 i === active ? "border-gold" : "border-palm/15 hover:border-palm/40"
@@ -184,12 +208,12 @@ function Gallery({ product }: { product: Product }) {
           <motion.img
             key={`${current}-${active}`}
             src={current}
-            alt={product.name}
+            alt={alt}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
-            className="w-full aspect-[4/5] object-cover"
+            className="w-full aspect-[4/5] max-h-[80vh] object-cover"
           />
         </AnimatePresence>
 
@@ -296,20 +320,107 @@ function ReviewsMarquee({ reviews }: { reviews: Review[] }) {
 /* Buy panel                                                           */
 /* ------------------------------------------------------------------ */
 
-function BuyPanel({ product }: { product: Product }) {
+/** Cart and enquiry label — the size only earns a mention if there is a choice. */
+const lineTitle = (product: Product, variant: DisplayVariant, hasChoice: boolean) =>
+  hasChoice ? `${product.name} — ${variant.label}` : product.name;
+
+function VariantSelector({
+  state,
+  selected,
+  onSelect,
+}: {
+  state: VariantsState;
+  selected: DisplayVariant;
+  onSelect: (variant: DisplayVariant) => void;
+}) {
+  // Sizes aren't known until Shopify answers — hold the space, don't guess.
+  if (state.loading) {
+    return (
+      <div className="mt-8" aria-hidden="true">
+        <div className="h-3 w-12 bg-palm/10 animate-pulse" />
+        <div className="mt-3 inline-flex gap-1 p-1 rounded-lg border border-palm/15 bg-parchment">
+          <div className="h-10 w-[6.5rem] rounded-md bg-palm/10 animate-pulse" />
+          <div className="h-10 w-[6.5rem] rounded-md bg-palm/5 animate-pulse" />
+        </div>
+      </div>
+    );
+  }
+
+  if (!state.hasChoice) return null;
+
+  return (
+    <fieldset className="mt-8">
+      <legend className="text-[10px] font-sans-ui tracking-luxe uppercase text-palm/55">
+        {state.optionName}
+      </legend>
+
+      {/* Segmented toggle — the whole track is one control, the choice slides across it */}
+      <div
+        role="radiogroup"
+        aria-label={state.optionName}
+        className="mt-3 inline-flex flex-wrap items-center gap-1 p-1 rounded-lg border border-palm/20 bg-gold/10"
+      >
+        {state.variants.map((variant) => {
+          const isSelected = variant.id === selected.id;
+          const soldOut = !variant.availableForSale;
+
+          return (
+            <button
+              key={variant.id}
+              type="button"
+              onClick={() => onSelect(variant)}
+              disabled={soldOut}
+              role="radio"
+              aria-checked={isSelected}
+              title={soldOut ? "Sold out" : undefined}
+              className={`h-10 px-6 rounded-md text-[11px] font-sans-ui tracking-luxe uppercase whitespace-nowrap transition-colors ${
+                isSelected
+                  ? "bg-moss text-ivory"
+                  : "text-palm/70 hover:text-palm hover:bg-palm/5"
+              } ${soldOut ? "opacity-40 cursor-not-allowed hover:bg-transparent hover:text-palm/70 line-through" : ""}`}
+            >
+              {variant.label}
+            </button>
+          );
+        })}
+      </div>
+    </fieldset>
+  );
+}
+
+function BuyPanel({
+  product,
+  variant,
+  state,
+  onSelectVariant,
+}: {
+  product: Product;
+  variant: DisplayVariant;
+  state: VariantsState;
+  onSelectVariant: (variant: DisplayVariant) => void;
+}) {
   const [qty, setQty] = useState(1);
   const { addItem, buyNow, openCart, isSyncing } = useCart();
 
+  const title = lineTitle(product, variant, state.hasChoice);
+  const { price, compareAt, currency } = variant;
+
+  /** What the cart needs to know about the chosen size. */
+  const selection = {
+    variantId: variant.id,
+    title,
+    img: variant.images[0] ?? product.img,
+    price,
+    shopifyVariantId: variant.shopifyVariantId,
+  };
+
   const handleAddToCart = async () => {
-    await addItem(product, qty);
+    await addItem(product, qty, selection);
     openCart();
   };
 
-  // Live from Shopify, falling back to the price in data/products.ts
-  const { price, currency, loading: priceLoading } = useProductPricing(product);
-
   const enquiry = product.available
-    ? `Hello OURA, I'd like to order ${qty} × ${product.name}.`
+    ? `Hello OURA, I'd like to order ${qty} × ${title}.`
     : `Hello OURA, please let me know when ${product.name} becomes available.`;
 
   if (!product.available) {
@@ -345,31 +456,33 @@ function BuyPanel({ product }: { product: Product }) {
     );
   }
 
+  const soldOut = !state.loading && !variant.availableForSale;
+
   return (
     <div className="mt-8">
       {/* Price — a placeholder while loading, never a number we may replace */}
-      {priceLoading ? (
+      {state.loading ? (
         <div className="h-10 w-32 bg-palm/10 animate-pulse" aria-label="Loading price" />
       ) : (
         price !== undefined && (
-        <div className="flex flex-wrap items-baseline gap-3">
-          <span className="font-display text-4xl font-semibold text-palm">
-            {formatMoney(price, currency)}
-          </span>
-          {/* {compareAt && (
-            <span className="text-lg text-palm/45 line-through">{formatINR(compareAt)}</span>
-          )}
-          {discount > 0 && (
-            <span className="px-2 py-1 bg-gold/10 text-gold text-[10px] font-sans-ui tracking-luxe uppercase">
-              {discount}% off
+          <div className="flex flex-wrap items-baseline gap-3">
+            <span className="font-display text-4xl font-semibold text-palm">
+              {formatMoney(price, currency)}
             </span>
-          )} */}
-        </div>
+            {compareAt && (
+              <span className="text-lg text-palm/45 line-through">
+                {formatMoney(compareAt, currency)}
+              </span>
+            )}
+          </div>
         )
       )}
       <p className="mt-2 text-[11px] font-sans-ui tracking-luxe uppercase text-palm/50">
         Inclusive of all taxes
       </p>
+
+      {/* Size — whatever options Shopify carries for this product */}
+      <VariantSelector state={state} selected={variant} onSelect={onSelectVariant} />
 
       {/* Quantity */}
       <div className="mt-8">
@@ -396,20 +509,20 @@ function BuyPanel({ product }: { product: Product }) {
       </div>
 
       {/* CTAs — Add to Cart syncs the Shopify cart, Buy Now skips to checkout */}
-      <div className="mt-8 w-full flex flex-col sm:flex-row gap-3">
+      <div className="mt-6 w-full flex flex-col sm:flex-row gap-3">
         <button
           type="button"
           onClick={handleAddToCart}
-          disabled={isSyncing}
+          disabled={isSyncing || soldOut}
           className="w-full inline-flex items-center justify-center gap-2 h-14 px-8 border border-palm text-palm text-[11px] font-sans-ui tracking-luxe uppercase hover:bg-palm hover:text-ivory transition disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-palm"
         >
           {isSyncing && <Loader2 className="w-4 h-4 animate-spin" strokeWidth={2} />}
-          Add to Cart
+          {soldOut ? "Sold out" : "Add to Cart"}
         </button>
         <button
           type="button"
-          onClick={() => buyNow(product, qty)}
-          disabled={isSyncing}
+          onClick={() => buyNow(product, qty, selection)}
+          disabled={isSyncing || soldOut}
           className="w-full inline-flex items-center justify-center gap-3 h-14 px-8 bg-gold text-ivory text-[11px] font-sans-ui tracking-luxe uppercase hover:brightness-110 transition disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:brightness-100"
         >
           Buy Now <span aria-hidden="true">→</span>
@@ -440,7 +553,6 @@ function BuyPanel({ product }: { product: Product }) {
 export default function ProductDetail() {
   const { id } = useParams<{ id: string }>();
   const product = getProductById(id);
-  const reviews = product ? getReviewsByProductTags(product.product_tags) : [];
 
   if (!product) {
     return (
@@ -449,6 +561,67 @@ export default function ProductDetail() {
       </OuraLayout>
     );
   }
+
+  // key: a different product starts clean — fresh variant fetch, fresh gallery.
+  return <ProductView key={product.id} product={product} />;
+}
+
+/** Declared nutrition — one press, so it reads the same at every size. */
+function NutritionCard({ product }: { product: Product }) {
+  const rows = product.nutrition ?? [];
+
+  return (
+    <div className="h-full bg-ivory border border-palm/12 p-7 lg:p-9">
+      <div className="flex items-center gap-3">
+        <span className="w-9 h-9 flex items-center justify-center bg-gold/10 shrink-0">
+          <Activity className="w-4 h-4 text-gold" strokeWidth={1.5} />
+        </span>
+        <h3 className="font-display text-2xl font-semibold text-palm">Nutrition</h3>
+      </div>
+      {product.nutritionNote && (
+        <p className="mt-2 text-[10px] font-sans-ui tracking-luxe uppercase text-palm/50">
+          {product.nutritionNote}
+        </p>
+      )}
+
+      <dl className="mt-6">
+        {rows.map((n) => (
+          <div
+            key={n.label}
+            className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-3 border-b border-palm/10 last:border-0 last:pb-0"
+          >
+            <dt className="text-[10px] font-sans-ui tracking-[0.2em] uppercase text-palm/50">
+              {n.label}
+            </dt>
+            <dd className="font-display text-lg text-palm">{n.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  );
+}
+
+function ProductView({ product }: { product: Product }) {
+  // The chosen size lives in the URL, so a link shares the exact bottle.
+  const [searchParams, setSearchParams] = useSearchParams();
+  // Sizes, prices and images all come from Shopify — see hooks/useProductVariants.
+  const state = useProductVariants(product);
+  const reviews = getReviewsByProductTags(product.product_tags);
+
+  // An unknown or absent ?size= falls back to the first variant Shopify lists.
+  const variant =
+    state.variants.find((v) => v.id === searchParams.get("size")) ?? state.variants[0];
+
+  // All copy is authored once on the product — see data/products.ts. Only the
+  // sizes, prices and images vary, and those come from Shopify.
+  const hasNutrition = Boolean(product.nutrition?.length);
+
+  const selectVariant = (next: DisplayVariant) => {
+    const params = new URLSearchParams(searchParams);
+    params.set("size", next.id);
+    // replace, so switching sizes doesn't stack up the back button
+    setSearchParams(params, { replace: true });
+  };
 
   return (
     <OuraLayout solidNav>
@@ -476,8 +649,12 @@ export default function ProductDetail() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           <div className="lg:col-span-7">
             <Reveal>
-              {/* key: reset gallery/panel state when navigating between products */}
-              <Gallery key={product.id} product={product} />
+              {/* key: restart at the first image when the product or size changes */}
+              <Gallery
+                key={`${product.id}-${variant.id}`}
+                images={variant.images}
+                alt={lineTitle(product, variant, state.hasChoice)}
+              />
             </Reveal>
           </div>
 
@@ -497,11 +674,13 @@ export default function ProductDetail() {
 
               <h1
                 className="mt-4 font-display font-semibold text-palm leading-[1.05]"
-                style={{ fontSize: "clamp(2.2rem, 4.5vw, 3.4rem)" }}
+                style={{ fontSize: "clamp(2rem, 4.5vw, 3.4rem)" }}
               >
                 {product.name}
               </h1>
-              <p className="mt-3 font-display italic text-xl text-palm/70">{product.tagline}</p>
+              {/* <p className="mt-3 font-display italic text-xl text-palm/70">
+                {product.tagline}
+              </p> */}
 
               {reviews.length > 0 && (
                 <div className="mt-4 flex items-center gap-2">
@@ -519,9 +698,16 @@ export default function ProductDetail() {
                 </div>
               )}
 
-              <p className="mt-5 text-base text-palm/80 leading-relaxed">{product.desc}</p>
+              <p className="mt-5 text-base text-palm/80 leading-relaxed">
+                {product.desc}
+              </p>
 
-              <BuyPanel key={product.id} product={product} />
+              <BuyPanel
+                product={product}
+                variant={variant}
+                state={state}
+                onSelectVariant={selectVariant}
+              />
             </Reveal>
           </div>
         </div>
@@ -532,15 +718,22 @@ export default function ProductDetail() {
         <div className="mx-auto max-w-[1440px] px-6 lg:px-12 py-16 lg:py-20">
           <Reveal>
             <p className="text-husk text-[11px] font-sans-ui tracking-luxe uppercase">
-              Why it is different
+              {product.highlightsTitle ?? "Why it is different"}
             </p>
           </Reveal>
-          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div
+            className={`mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6 ${
+              product.highlights.length % 3 === 0 ? "lg:grid-cols-3" : "lg:grid-cols-4"
+            }`}
+          >
             {product.highlights.map((h, i) => (
               <Reveal key={h} delay={i * 0.06}>
                 <div className="border border-ivory/15 p-6 h-full">
                   <Leaf className="w-5 h-5 text-husk" strokeWidth={1.5} />
-                  <p className="mt-4 text-sm text-ivory/85 leading-relaxed">{h}</p>
+                  <LeadText
+                    text={h}
+                    className="mt-4 block text-sm text-ivory/85 leading-relaxed"
+                  />
                 </div>
               </Reveal>
             ))}
@@ -577,7 +770,7 @@ export default function ProductDetail() {
                       {s.label}
                     </p>
                     <p className="text-sm text-palm font-medium">{s.value}</p>
-                  </div>
+                  </div> 
                 ))}
               </div>
             </Reveal>
@@ -591,7 +784,7 @@ export default function ProductDetail() {
         </div>
       </section>
 
-      {/* In the box + care */}
+      {/* In the box + nutrition + care */}
       <section className="bg-parchment grain">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-12 py-16 lg:py-24">
           <Reveal>
@@ -604,9 +797,14 @@ export default function ProductDetail() {
             </h2>
           </Reveal>
 
-          {/* 3/2 split mirrors the content weight — more spec rows than care notes */}
-          <div className="mt-10 grid grid-cols-1 lg:grid-cols-5 gap-6">
-            <Reveal className="lg:col-span-3">
+          {/* Three across once there is nutrition to declare, two without it —
+              the spec card never has to stretch the full width on its own. */}
+          <div
+            className={`mt-10 grid grid-cols-1 gap-6 ${
+              hasNutrition ? "lg:grid-cols-3" : "lg:grid-cols-2"
+            }`}
+          >
+            <Reveal>
               <div className="h-full bg-ivory border border-palm/12 p-7 lg:p-9">
                 <div className="flex items-center gap-3">
                   <span className="w-9 h-9 flex items-center justify-center bg-gold/10 shrink-0">
@@ -615,29 +813,41 @@ export default function ProductDetail() {
                   <h3 className="font-display text-2xl font-semibold text-palm">In the Box</h3>
                 </div>
 
+                {/* Label over value — an address or an email is far too long
+                    to sit opposite its label without breaking the row. */}
                 <dl className="mt-7">
                   {product.boxContents.map((b) => (
                     <div
                       key={b.label}
-                      className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-4 border-b border-palm/10 last:border-0 last:pb-0"
+                      className="py-4 border-b border-palm/10 last:border-0 last:pb-0"
                     >
                       <dt className="text-[10px] font-sans-ui tracking-[0.2em] uppercase text-palm/50">
                         {b.label}
                       </dt>
-                      <dd className="font-display text-lg text-palm">{b.value}</dd>
+                      <dd className="mt-1.5 font-display text-lg text-palm leading-snug break-words">
+                        {b.value}
+                      </dd>
                     </div>
                   ))}
                 </dl>
               </div>
             </Reveal>
 
-            <Reveal delay={0.1} className="lg:col-span-2">
+            {hasNutrition && (
+              <Reveal delay={0.08}>
+                <NutritionCard product={product} />
+              </Reveal>
+            )}
+
+            <Reveal delay={0.16}>
               <div className="h-full bg-ivory border border-palm/12 p-7 lg:p-9">
                 <div className="flex items-center gap-3">
                   <span className="w-9 h-9 flex items-center justify-center bg-gold/10 shrink-0">
                     <Heart className="w-4 h-4 text-gold" strokeWidth={1.5} />
                   </span>
-                  <h3 className="font-display text-2xl font-semibold text-palm">Care &amp; Storage</h3>
+                  <h3 className="font-display text-2xl font-semibold text-palm">
+                    Care &amp; Storage
+                  </h3>
                 </div>
 
                 <ol className="mt-7 space-y-6">
@@ -649,7 +859,7 @@ export default function ProductDetail() {
                       >
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <span className="text-sm text-palm/80 leading-relaxed">{c}</span>
+                      <LeadText text={c} className="text-sm text-palm/80 leading-relaxed" />
                     </li>
                   ))}
                 </ol>
