@@ -62,10 +62,10 @@ export type Product = {
  * against the current URL, so it would 404 on nested routes like
  * /products/culinary (→ /products/culinary_square.png).
  */
-const CULINARY_IMG = '/culinary_landscape.png';
-const SHELLS_IMG = '/shells_p_landscape.png';
-const VITA_IMG = '/oura_vita_landscape.jpg';
-const CARE_IMG = '/oura_care_landscape.jpg';
+const CULINARY_IMG = '/products/oura_culinary.jpg';
+const SHELLS_IMG = '/products/oura_shells.jpg';
+const VITA_IMG = '/products/oura_vita.jpg';
+const CARE_IMG = '/products/oura_care.jpg';
 
 export const PRODUCTS: Product[] = [
   {
@@ -172,7 +172,7 @@ export const PRODUCTS: Product[] = [
     product_tags: ['water'],
 
     tagline: 'Tender coconut water, drawn and sealed at the source.',
-    gallery: [VITA_IMG, '/oura_vita.jpg', '/soli_to_sip_1.png'],
+    gallery: [VITA_IMG],
     highlights: [
       'Drawn from tender coconuts and sealed within hours of harvest',
       'No sugar, no concentrate, no reconstitution',
@@ -220,7 +220,7 @@ export const PRODUCTS: Product[] = [
     product_tags: ['care', 'oil'],
 
     tagline: 'The same pure press, formulated for hair and skin.',
-    gallery: [CARE_IMG, '/oura_care.jpg', '/soli_to_sip_3.png'],
+    gallery: [CARE_IMG],
     highlights: [
       'Same cold-pressed base as Oura Culinary — edible grade throughout',
       'Formulated for scalp, hair length and body',
@@ -267,7 +267,7 @@ export const PRODUCTS: Product[] = [
     product_tags: ['shells'],
 
     tagline: 'What the press leaves behind, the artisan finishes by hand.',
-    gallery: [SHELLS_IMG, '/shells_p.png'],
+    gallery: [SHELLS_IMG],
     highlights: [
       'Made from shells left over by our own oil press — nothing bought, nothing wasted',
       'Hand-finished by Kerala artisans, polished with coconut oil',

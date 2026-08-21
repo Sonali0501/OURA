@@ -42,7 +42,7 @@ function ProductCard({ product }: { product: Product }) {
           {product.name}
         </h3>
 
-        <p className="mt-2 text-obsidian/70 text-sm leading-relaxed">{product.desc}</p>
+        <p className="mt-2 mb-2 text-obsidian/70 text-sm leading-relaxed">{product.desc}</p>
 
         {/* Specs are for products you can actually buy */}
         {product.available && (
