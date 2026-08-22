@@ -143,6 +143,10 @@ export const PRODUCTS: Product[] = [
         body: '100% cold-pressed virgin coconut oil (Cocos nucifera). That is the entire list. No preservatives, no fragrance, no carrier oils.',
       },
       {
+        title: 'Care & Storage',
+        body: 'Store in a cool, dry place away from direct sunlight. Solidification below 24°C is natural — warm the bottle to liquefy. Use a dry spoon; moisture shortens the life of any unrefined oil.',
+      },
+      {
         title: 'Shipping',
         body: 'Dispatched from Kochi within 2 business days. Delivery typically 3–6 business days across India. If a bottle arrives damaged, send us a photo and we will replace it, no questions asked.',
       },
@@ -160,7 +164,7 @@ export const PRODUCTS: Product[] = [
     icon: Droplet,
     pct: '100%',
     purity: '100% Purity',
-    desc: 'Cold-pressed at source from tender Kerala coconuts. Untouched, unfiltered, nutritionally complete.',
+    desc: 'Drawn at source from tender Kerala coconuts. Untouched, unfiltered, nutritionally complete.',
     specs: [
       { label: 'pH Level', value: '5.5–6.5' },
       { label: 'Temperature', value: '< 45°C' },

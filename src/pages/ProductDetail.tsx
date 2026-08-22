@@ -255,15 +255,18 @@ function Gallery({ images, alt }: { images: string[]; alt: string }) {
 function ReviewCard({ review }: { review: Review }) {
   return (
     <div className="shrink-0 w-[min(85vw,400px)]">
-      <div className="border border-palm/15 p-6 md:p-8 h-full flex flex-col hover:border-gold/40 transition-colors">
-        <div className="flex items-center gap-1 mb-4">
-          {Array.from({ length: 5 }).map((_, j) => (
-            <Star key={j} className="w-3.5 h-3.5 fill-gold text-gold" strokeWidth={1.5} />
-          ))}
+      <div className="border border-palm/10 p-6 md:p-8 bg-ivory/95 h-full flex flex-col hover:border-gold/60 transition-colors rounded-md">
+        <div className="flex gap-4 items-start justify-between w-full">
+          <div className="flex items-center gap-1 mb-4">
+            {Array.from({ length: 5 }).map((_, j) => (
+              <Star key={j} className="w-4 h-4 fill-gold text-gold" strokeWidth={1.5} />
+            ))}
+          </div>
+          <img src="/google-logo.svg" alt="Google" className="-mt-2 -mr-2 h-6 w-6" />
         </div>
         <p className="text-base text-palm/80 leading-relaxed flex-1">{review.text}</p>
         <div className="mt-6 pt-4 border-t border-palm/10 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-palm flex items-center justify-center text-ivory font-sans-ui text-xs shrink-0">
+          <div className="w-9 h-9 rounded-full bg-palm flex items-center justify-center text-ivory font-sans-ui text-xs shrink-0">
             {review.initials}
           </div>
           <div>
@@ -286,12 +289,12 @@ function ReviewsMarquee({ reviews }: { reviews: Review[] }) {
   while (base.length < 4) base.push(...reviews);
 
   return (
-    <section id="reviews" className="py-16 lg:py-24 overflow-hidden">
+    <section id="reviews" className="bg-palm text-ivory grain py-16 lg:py-24 overflow-hidden">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12">
         <Reveal>
-          <p className={eyebrow}>Voices</p>
+          <p className="text-husk text-[11px] font-sans-ui tracking-luxe uppercase">Voices</p>
           <h2
-            className="mt-4 font-display font-semibold text-palm leading-tight"
+            className="mt-4 font-display font-semibold text-ivory leading-tight"
             style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}
           >
             What Families Say
@@ -785,7 +788,7 @@ function ProductView({ product }: { product: Product }) {
       </section>
 
       {/* In the box + nutrition + care */}
-      <section className="bg-parchment grain">
+      {/* <section className="bg-parchment grain">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-12 py-16 lg:py-24">
           <Reveal>
             <p className={eyebrow}>Specification</p>
@@ -797,11 +800,9 @@ function ProductView({ product }: { product: Product }) {
             </h2>
           </Reveal>
 
-          {/* Three across once there is nutrition to declare, two without it —
-              the spec card never has to stretch the full width on its own. */}
           <div
-            className={`mt-10 grid grid-cols-1 gap-6 ${
-              hasNutrition ? "lg:grid-cols-3" : "lg:grid-cols-2"
+            className={`mt-10 grid grid-cols-1 gap-12 ${
+              hasNutrition ? "lg:grid-cols-2" : "lg:grid-cols-2"
             }`}
           >
             <Reveal>
@@ -813,8 +814,6 @@ function ProductView({ product }: { product: Product }) {
                   <h3 className="font-display text-2xl font-semibold text-palm">In the Box</h3>
                 </div>
 
-                {/* Label over value — an address or an email is far too long
-                    to sit opposite its label without breaking the row. */}
                 <dl className="mt-7">
                   {product.boxContents.map((b) => (
                     <div
@@ -867,7 +866,7 @@ function ProductView({ product }: { product: Product }) {
             </Reveal>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Reviews */}
       {reviews.length > 0 && <ReviewsMarquee reviews={reviews} />}
