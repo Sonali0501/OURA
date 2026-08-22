@@ -1,22 +1,92 @@
+import { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion"
 
-const HERO_VIDEO = "coconut_no_thumbnail.mp4";
-const HERO_POSTER = "hero_poster.png";
+const HERO_VIDEO = "/coconut_no_thumbnail.mp4";
+const HERO_POSTER = "/hero_poster.png";
+
+/* Older iOS and the Android WeChat/X5 engines only honour their own vendor
+   spellings of playsinline; they aren't in React's prop types. */
+const inlineAttrs = {
+  "webkit-playsinline": "true",
+  "x5-playsinline": "true",
+} as Record<string, string>;
 
 export default function Hero() {
   const reduce = useReducedMotion();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // React sets `muted` as a DOM property after the element exists, so the
+  // attribute can be missing at the moment the browser first decides whether
+  // autoplay is allowed — Safari and some Chromium builds then refuse and put
+  // a play button over the poster. Force it muted ourselves, ask to play, and
+  // if the browser still says no (iOS Low Power Mode is the usual culprit),
+  // retry the next time the tab is shown or the visitor touches the page.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = true;
+    video.defaultMuted = true;
+    video.setAttribute("muted", "");
+
+    let settled = false;
+
+    const attempt = () => {
+      if (settled) return;
+      const started = video.play();
+      if (started === undefined) return;
+      started
+        .then(() => {
+          settled = true;
+          cleanup();
+        })
+        .catch(() => {
+          /* Blocked for now — the listeners below will try again. */
+        });
+    };
+
+    const onVisibility = () => {
+      if (document.visibilityState === "visible") attempt();
+    };
+
+    const gestures = ["pointerdown", "touchstart", "keydown", "scroll"] as const;
+
+    const cleanup = () => {
+      video.removeEventListener("loadeddata", attempt);
+      video.removeEventListener("canplay", attempt);
+      document.removeEventListener("visibilitychange", onVisibility);
+      gestures.forEach((type) => window.removeEventListener(type, attempt));
+    };
+
+    video.addEventListener("loadeddata", attempt);
+    video.addEventListener("canplay", attempt);
+    document.addEventListener("visibilitychange", onVisibility);
+    gestures.forEach((type) =>
+      window.addEventListener(type, attempt, { passive: true })
+    );
+
+    attempt();
+    return cleanup;
+  }, []);
 
   return (
     <section id="top" className="relative min-h-screen w-full overflow-hidden bg-palm">
       <div className="absolute inset-0 overflow-hidden flex justify-center">
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
+          {...inlineAttrs}
+          controls={false}
+          disablePictureInPicture
+          disableRemotePlayback
+          controlsList="nodownload noplaybackrate noremoteplayback nofullscreen"
+          tabIndex={-1}
           preload="auto"
           poster={HERO_POSTER}
-          className="h-full w-auto lg:w-full max-w-none object-cover"
+          className="bg-video h-full w-auto lg:w-full max-w-none object-cover"
           aria-hidden
         >
           <source src={HERO_VIDEO} type="video/mp4" />

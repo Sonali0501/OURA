@@ -164,3 +164,22 @@
   .marquee::-webkit-scrollbar { display: none; }
   * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
+/* Decorative background video — never chrome, never interactive.
+   Safari/iOS paint a start-playback button over the poster whenever autoplay
+   is refused (low power mode, data saver), and some Chromium builds keep the
+   PiP / download affordances around even without `controls`. Strip the lot. */
+.bg-video {
+  pointer-events: none;
+}
+.bg-video::-webkit-media-controls,
+.bg-video::-webkit-media-controls-enclosure,
+.bg-video::-webkit-media-controls-panel,
+.bg-video::-webkit-media-controls-panel-container,
+.bg-video::-webkit-media-controls-start-playback-button,
+.bg-video::-webkit-media-controls-overlay-play-button,
+.bg-video::-webkit-media-controls-play-button {
+  display: none !important;
+  opacity: 0 !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
