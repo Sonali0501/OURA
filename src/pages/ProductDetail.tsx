@@ -2,15 +2,12 @@ import { useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Activity,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
-  Heart,
   Leaf,
   Loader2,
   Minus,
-  Package,
   Plus,
   ShieldCheck,
   Star,
@@ -570,39 +567,39 @@ export default function ProductDetail() {
 }
 
 /** Declared nutrition — one press, so it reads the same at every size. */
-function NutritionCard({ product }: { product: Product }) {
-  const rows = product.nutrition ?? [];
+// function NutritionCard({ product }: { product: Product }) {
+//   const rows = product.nutrition ?? [];
 
-  return (
-    <div className="h-full bg-ivory border border-palm/12 p-7 lg:p-9">
-      <div className="flex items-center gap-3">
-        <span className="w-9 h-9 flex items-center justify-center bg-gold/10 shrink-0">
-          <Activity className="w-4 h-4 text-gold" strokeWidth={1.5} />
-        </span>
-        <h3 className="font-display text-2xl font-semibold text-palm">Nutrition</h3>
-      </div>
-      {product.nutritionNote && (
-        <p className="mt-2 text-[10px] font-sans-ui tracking-luxe uppercase text-palm/50">
-          {product.nutritionNote}
-        </p>
-      )}
+//   return (
+//     <div className="h-full bg-ivory border border-palm/12 p-7 lg:p-9">
+//       <div className="flex items-center gap-3">
+//         <span className="w-9 h-9 flex items-center justify-center bg-gold/10 shrink-0">
+//           <Activity className="w-4 h-4 text-gold" strokeWidth={1.5} />
+//         </span>
+//         <h3 className="font-display text-2xl font-semibold text-palm">Nutrition</h3>
+//       </div>
+//       {product.nutritionNote && (
+//         <p className="mt-2 text-[10px] font-sans-ui tracking-luxe uppercase text-palm/50">
+//           {product.nutritionNote}
+//         </p>
+//       )}
 
-      <dl className="mt-6">
-        {rows.map((n) => (
-          <div
-            key={n.label}
-            className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-3 border-b border-palm/10 last:border-0 last:pb-0"
-          >
-            <dt className="text-[10px] font-sans-ui tracking-[0.2em] uppercase text-palm/50">
-              {n.label}
-            </dt>
-            <dd className="font-display text-lg text-palm">{n.value}</dd>
-          </div>
-        ))}
-      </dl>
-    </div>
-  );
-}
+//       <dl className="mt-6">
+//         {rows.map((n) => (
+//           <div
+//             key={n.label}
+//             className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-3 border-b border-palm/10 last:border-0 last:pb-0"
+//           >
+//             <dt className="text-[10px] font-sans-ui tracking-[0.2em] uppercase text-palm/50">
+//               {n.label}
+//             </dt>
+//             <dd className="font-display text-lg text-palm">{n.value}</dd>
+//           </div>
+//         ))}
+//       </dl>
+//     </div>
+//   );
+// }
 
 function ProductView({ product }: { product: Product }) {
   // The chosen size lives in the URL, so a link shares the exact bottle.
@@ -617,7 +614,7 @@ function ProductView({ product }: { product: Product }) {
 
   // All copy is authored once on the product — see data/products.ts. Only the
   // sizes, prices and images vary, and those come from Shopify.
-  const hasNutrition = Boolean(product.nutrition?.length);
+  // const hasNutrition = Boolean(product.nutrition?.length);
 
   const selectVariant = (next: DisplayVariant) => {
     const params = new URLSearchParams(searchParams);
