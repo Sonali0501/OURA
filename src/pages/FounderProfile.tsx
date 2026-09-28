@@ -7,10 +7,10 @@ const PORTRAIT = "sreejith.jpg";
 const CANOPY = "canopy.webp";
 
 const ABOUT_SISIRAM =
-  "Sisiram Private Limited is headquartered in Kochi, Kerala, with our manufacturing unit in Aluva. We are a Kerala-based house of nature-led brands, crafting nature's finest goodness — sourcing directly from agrarian communities, processing without chemical interference, and finishing by hand. Every output is a quiet act of respect: for the soil, the artisan, and the family that will finally hold it.";
+  "Sisiram Group is headquartered in Kochi, Kerala, with our manufacturing unit. We are a Kerala-based house of nature-led brands, crafting nature's finest goodness — sourcing directly from agrarian communities, processing without chemical interference, and finishing by hand. Every output is a quiet act of respect: for the soil, the artisan, and the family that will finally hold it.";
 
 const VISIONARY =
-  "OURA is Sisiram Private Limited's first visionary brand — born to institutionalize the purity of the coconut. Not merely a product line, but a promise: to carry Kerala's raw, untouched goodness from the tree to the global table, with zero waste and absolute integrity.";
+  "OURA is Sisiram Group's first visionary brand — born to institutionalize the purity of the coconut. Not merely a product line, but a promise: to carry Kerala's raw, untouched goodness from the tree to the global table, with zero waste and absolute integrity.";
 
 const CEO_BRIEF =
   "Sreejith Murali is the founder and CEO of OURA. Over a decade he directed a $3.25M VC-backed portfolio across high-growth AI, SaaS and technology ventures, scaling businesses from scratch across the GCC, EMEA and North America, and holds specializations from the University of Oxford and Harvard Business School.";
@@ -49,7 +49,7 @@ export default function FounderProfile() {
           <Reveal>
             <p className="text-husk text-[11px] font-sans-ui tracking-luxe uppercase">The House Behind OURA</p>
             <h1 className="mt-6 font-display font-bold leading-[0.92]" style={{ fontSize: "clamp(2.4rem, 6vw, 5rem)" }}>
-              Sisiram Private Limited
+              Sisiram Group
             </h1>
             <p className="mt-5 font-display italic text-ivory/85 text-xl lg:text-2xl">Crafting Nature's Finest Goodness</p>
             <p className="mt-4 text-[11px] font-sans-ui tracking-luxe text-ivory/70 uppercase">Kochi, Kerala, India</p>
@@ -65,8 +65,8 @@ export default function FounderProfile() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           <Reveal className="lg:col-span-4">
             <p className="text-gold text-[11px] font-sans-ui tracking-luxe uppercase">About Sisiram</p>
-            <h2 className="mt-4 font-display text-2xl font-semibold text-palm leading-tight">
-              Headquartered in Kochi,<br />Crafted in Aluva
+            <h2 className="mt-4 font-display text-3xl font-semibold text-palm leading-tight">
+              Headquartered and <br />Crafted in Kochi
             </h2>
           </Reveal>
           <Reveal delay={0.1} className="lg:col-span-8">

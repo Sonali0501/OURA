@@ -77,7 +77,7 @@ export default function OuraFooter() {
             <p className="text-[10px] font-sans-ui tracking-luxe uppercase text-palm/55 mb-4">
               Contact
             </p>
-            <p className="text-sm text-palm/70">Sisiram Private Limited</p>
+            <p className="text-sm text-palm/70">Sisiram Group</p>
             <p className="text-sm text-palm/70">Kochi, Kerala, India</p>
             <a href="mailto:ontact@ouracoconut.com" className="block mt-3 text-sm text-gold hover:underline">
               contact@ouracoconut.com
@@ -90,7 +90,7 @@ export default function OuraFooter() {
 
         <div className="mt-14 pt-6 border-t border-palm/10 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-[10px] font-sans-ui tracking-luxe uppercase text-palm/55">
-            © {new Date().getFullYear()} Sisiram Private Limited
+            © {new Date().getFullYear()} Sisiram Group
           </p>
         </div>
       </div>

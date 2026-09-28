@@ -147,7 +147,7 @@ export default function Hero() {
       <div className="absolute bottom-0 inset-x-0 z-10">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-12 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 border-t border-ivory/15">
           <p className="text-[10px] font-sans-ui tracking-luxe text-ivory/55 uppercase text-center">
-            Sisiram Private Limited <span className="opacity-40">.</span> Kochi, India
+            Sisiram Group <span className="opacity-40">.</span> Kochi, India
           </p>
           <p className="text-[10px] font-sans-ui tracking-luxe text-ivory/55 uppercase">
             A Promise of Pure Heritage

@@ -96,7 +96,7 @@ export const PRODUCTS: Product[] = [
     highlights: [
       '100% Pure & Edible Grade: Crafted exclusively from premium quality copra with zero compromises on quality.',
       'Nutrient-Dense: Crystal-clear oil that locks in natural goodness, bringing authentic flavor to your everyday cooking.',
-      'Rooted in Heritage: Sourced directly from the lush agrarian landscapes of Aluva, Kerala.',
+      'Rooted in Heritage: Sourced directly from the lush agrarian landscapes of Kochi, Kerala.',
     ],
     story: [
       'Oura Culinary begins where every honest oil should — at the tree. Mature coconuts are hand-picked from Kerala smallholdings, sun-dried in open air, and pressed the same week so nothing has time to go stale.',
@@ -114,7 +114,7 @@ export const PRODUCTS: Product[] = [
       {
         label: 'Manufacturer & marketer',
         value:
-          'SISIRAM PRIVATE LIMITED, Pallath Aikkarakudy, Malikampeedika, Aluva, Ernakulam, Kerala - 683511',
+          'SISIRAM GROUP, Pallath Aikkarakudy, Malikampeedika, Aluva, Ernakulam, Kerala - 683511',
       },
       { label: 'FSSAI Lic. No.', value: '21326182001009' },
       { label: 'Consumer care / feedback', value: 'contact@ouracoconut.com' },
@@ -237,7 +237,7 @@ export const PRODUCTS: Product[] = [
     boxContents: [
       { label: 'Contents', value: 'Cold-pressed coconut oil, care format' },
       { label: 'Packaging', value: 'Under development' },
-      { label: 'Origin', value: 'Aluva, Kerala, India' },
+      { label: 'Origin', value: 'Kochi, Kerala, India' },
     ],
     details: [
       {
