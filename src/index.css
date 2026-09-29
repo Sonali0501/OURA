@@ -39,6 +39,8 @@
 
   html {
     scroll-behavior: smooth;
+    /* Nav links land a section below the fixed announcement bar + nav */
+    scroll-padding-top: 6rem;
   }
 
   body {

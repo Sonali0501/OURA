@@ -31,7 +31,6 @@ export default {
   			obsidian: '#2A6711',
   			parchment: '#F0F7ED',
   			husk: '#FFFFFF',
-  			golden: '#D4A373',
   			moss: '#499F1D'
   		},
   		fontFamily: {

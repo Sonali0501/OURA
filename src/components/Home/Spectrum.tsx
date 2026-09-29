@@ -18,11 +18,16 @@ function ProductCard({ product }: { product: Product }) {
 
         {/* Category badge */}
         <div className="absolute top-4 left-4 z-20 flex items-center gap-2 pl-2.5 pr-3.5 py-1.5 rounded-full bg-ivory/90 backdrop-blur-sm border border-palm/10">
-          <product.icon className="w-3.5 h-3.5 text-golden shrink-0" strokeWidth={1.5} />
-          <span className="text-golden text-[10px] uppercase tracking-[0.2em] leading-none">
+          <product.icon className="w-3.5 h-3.5 text-gold shrink-0" strokeWidth={1.5} />
+          <span className="text-gold text-[10px] uppercase tracking-[0.2em] leading-none">
             {product.tag}
           </span>
         </div>
+
+        {/* Light wash so unavailable products read as not-yet-on-sale */}
+        {!product.available && (
+          <div className="absolute inset-0 z-[5] bg-gold/25 pointer-events-none" aria-hidden="true" />
+        )}
 
         {!product.available && (
           <div className="absolute inset-x-0 bottom-0 z-10 py-2 bg-palm pointer-events-none">
@@ -74,11 +79,11 @@ export default function Spectrum() {
           className="mb-16 md:mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6"
         >
           <div>
-            <p className="text-golden text-xs uppercase tracking-[0.3em] mb-4">Core product suite</p>
+            <p className="text-gold text-xs uppercase tracking-[0.3em] mb-4">Core product suite</p>
             <h2 className="font-display text-5xl md:text-8xl font-bold text-gold leading-[1.1] md:leading-[1.1]">
               The Spectrum
               <br />
-              of <span className="italic text-golden">Utility</span>
+              of <span className="italic text-gold">Utility</span>
             </h2>
           </div>
           <p className="text-gold/70 text-base md:text-lg max-w-md leading-relaxed">

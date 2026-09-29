@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import CartButton from "../cart/CartButton";
+import AnnouncementBar from "./AnnouncementBar";
 
 type LinkObj = { label: string; to?: string; href?: string }
 
@@ -45,6 +46,7 @@ export default function OuraNav({ solid = false }: { solid?: boolean }) {
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${lightChrome ? "glass border-b border-palm/10" : "bg-transparent"}`}
     >
+      <AnnouncementBar />
       <nav className="mx-auto max-w-[1440px] px-6 lg:px-12 h-16 flex items-center justify-between">
         <Link to="/" className={`font-display text-2xl font-bold leading-none transition-colors ${logoColor}`}>OURA</Link>
 

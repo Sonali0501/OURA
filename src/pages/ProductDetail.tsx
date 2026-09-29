@@ -63,7 +63,7 @@ function LeadText({ text, className }: { text: string; className?: string }) {
 
 function ProductNotFound({ id }: { id?: string }) {
   return (
-    <section className="mx-auto max-w-[900px] px-6 lg:px-12 pt-32 pb-24 text-center">
+    <section className="mx-auto max-w-[900px] px-6 lg:px-12 pt-40 pb-24 text-center">
       <p className={eyebrow}>Not found</p>
       <h1
         className="mt-5 font-display font-semibold leading-tight text-gold"
@@ -626,7 +626,7 @@ function ProductView({ product }: { product: Product }) {
   return (
     <OuraLayout solidNav>
       {/* Breadcrumb */}
-      <div className="mx-auto max-w-[1440px] px-6 lg:px-12 pt-24 lg:pt-28">
+      <div className="mx-auto max-w-[1440px] px-6 lg:px-12 pt-32 lg:pt-36">
         <nav aria-label="Breadcrumb" className="text-[10px] font-sans-ui tracking-luxe uppercase text-gold/50">
           <Link to="/" className="hover:text-gold transition-colors">
             Home
