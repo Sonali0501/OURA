@@ -1,6 +1,7 @@
 import Reveal from "./Reveal";
 
-const CANOPY_IMG = "canopy.webp";
+const BRAND_VIDEO = "/brand_video.mp4";
+const BRAND_POSTER = "/canopy.webp";
 
 const STORY = [
   "In Kerala, the coconut tree is not a plant — it is a pulse. It shades our homes, feeds our children, and holds the memory of generations. To grow up beneath its canopy is to learn, very early, that the finest things in life are quiet, patient, and entirely natural.",
@@ -21,14 +22,27 @@ export default function Genesis() {
         </Reveal>
 
         <div className="mt-12 lg:mt-16 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          <div className="lg:col-span-5 lg:sticky lg:top-24">
+          <div className="lg:col-span-6 lg:sticky lg:top-24">
             <Reveal>
               <div className="relative overflow-hidden rounded-sm">
-                <img src={CANOPY_IMG} alt="Misty Kerala coconut palm canopy at dawn" className="w-full h-64 lg:h-80 fill" />
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  poster={BRAND_POSTER}
+                  controls={false}
+                  disablePictureInPicture
+                  className="bg-video w-full aspect-[3/2] object-cover"
+                  aria-label="OURA brand film"
+                >
+                  <source src={BRAND_VIDEO} type="video/mp4" />
+                </video>
               </div>
             </Reveal>
           </div>
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-6">
             <Reveal>
               <div>
                 {STORY.map((p, i) => (
