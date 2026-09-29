@@ -70,7 +70,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="top" className="relative min-h-screen w-full overflow-hidden bg-palm">
+    <section id="top" className="relative min-h-screen w-full overflow-hidden bg-theme-gradient">
       <div className="absolute inset-0 overflow-hidden flex justify-center">
         <video
           ref={videoRef}
@@ -126,7 +126,7 @@ export default function Hero() {
           The Complete Coconut Story
         </motion.p>
 
-        <motion.a
+        {/* <motion.a
           href="#genesis"
           initial={reduce ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -137,7 +137,7 @@ export default function Hero() {
           <span className="relative block h-16 w-px bg-ivory/25 overflow-hidden">
             <span className="absolute inset-x-0 top-0 h-8 bg-husk animate-pulse-down" />
           </span>
-        </motion.a>
+        </motion.a> */}
       </div>
 
       <span className="hidden lg:block absolute right-3 top-1/2 -translate-y-1/2 rotate-90 origin-center text-[10px] font-sans-ui tracking-luxe text-ivory/45 uppercase z-10">

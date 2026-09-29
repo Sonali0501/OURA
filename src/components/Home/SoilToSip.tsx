@@ -38,7 +38,7 @@ export default function SoilToSip() {
   const liquidFill = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
 
   return (
-    <section id="soil-to-sip" ref={ref} className="relative bg-palm text-ivory py-16 md:py-24 px-6 md:px-12 overflow-hidden">
+    <section id="soil-to-sip" ref={ref} className="relative bg-theme-gradient text-ivory py-16 md:py-24 px-6 md:px-12 overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}

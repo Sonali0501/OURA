@@ -10,13 +10,13 @@ const STORY = [
 
 export default function Genesis() {
   return (
-    <section id="genesis" className="relative bg-ivory text-palm grain">
+    <section id="genesis" className="relative bg-ivory text-gold grain">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12 py-16 lg:py-24">
         <Reveal>
           <p className="text-center text-gold text-[11px] font-sans-ui tracking-luxe uppercase">Founder's Vision</p>
           <h2 className="mt-4 text-center font-display font-semibold leading-tight" style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}>
             The Genesis of Oura
-            <span className="block italic text-palm/80 font-normal">A Love Affair with the Coconut Tree</span>
+            <span className="block italic text-gold/80 font-normal">A Love Affair with the Coconut Tree</span>
           </h2>
         </Reveal>
 
@@ -32,7 +32,7 @@ export default function Genesis() {
             <Reveal>
               <div>
                 {STORY.map((p, i) => (
-                  <p key={i} className={`mb-4 leading-relaxed ${i === 0 ? "text-xl font-display text-palm font-medium" : "text-base text-palm/85"}`}>
+                  <p key={i} className={`mb-4 leading-relaxed ${i === 0 ? "text-xl font-display text-gold font-medium" : "text-base text-gold/85"}`}>
                     {p}
                   </p>
                 ))}
@@ -40,10 +40,10 @@ export default function Genesis() {
             </Reveal>
             <Reveal delay={0.1}>
               <div className="mt-6 flex items-center gap-4">
-                <span className="block h-px w-12 bg-gold" />
+                <span className="block h-px w-12 bg-theme-gradient" />
                 <div>
-                  <p className="font-display text-lg font-semibold text-palm">Sreejith Murali</p>
-                  <p className="text-[10px] font-sans-ui tracking-luxe text-palm/65 uppercase">Founder &amp; CEO</p>
+                  <p className="font-display text-lg font-semibold text-gold">Sreejith Murali</p>
+                  <p className="text-[10px] font-sans-ui tracking-luxe text-gold/65 uppercase">Founder &amp; CEO</p>
                 </div>
               </div>
             </Reveal>

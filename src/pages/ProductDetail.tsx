@@ -66,12 +66,12 @@ function ProductNotFound({ id }: { id?: string }) {
     <section className="mx-auto max-w-[900px] px-6 lg:px-12 pt-32 pb-24 text-center">
       <p className={eyebrow}>Not found</p>
       <h1
-        className="mt-5 font-display font-semibold leading-tight text-palm"
+        className="mt-5 font-display font-semibold leading-tight text-gold"
         style={{ fontSize: "clamp(2rem, 5vw, 3.4rem)" }}
       >
         We couldn't find that product
       </h1>
-      <p className="mt-4 text-palm/75">
+      <p className="mt-4 text-gold/75">
         {id ? (
           <>
             Nothing in the OURA suite matches <span className="italic">“{id}”</span>.
@@ -110,10 +110,10 @@ function ProductMiniCard({ product }: { product: Product }) {
         />
       </div>
       <div className="p-5">
-        <p className="text-[10px] font-sans-ui tracking-luxe uppercase text-palm/55">
+        <p className="text-[10px] font-sans-ui tracking-luxe uppercase text-gold/55">
           {product.tag}
         </p>
-        <p className="mt-2 font-display text-xl font-semibold text-palm">{product.name}</p>
+        <p className="mt-2 font-display text-xl font-semibold text-gold">{product.name}</p>
         <p className="mt-2 text-[10px] font-sans-ui tracking-luxe uppercase text-gold">
           {product.available ? "Available now" : "Coming soon"}
         </p>
@@ -137,9 +137,9 @@ function Accordion({ items }: { items: { title: string; body: string }[] }) {
               aria-expanded={isOpen}
               className="w-full flex items-center justify-between gap-4 py-5 text-left"
             >
-              <span className="font-display text-xl font-semibold text-palm">{item.title}</span>
+              <span className="font-display text-xl font-semibold text-gold">{item.title}</span>
               <ChevronDown
-                className={`w-5 h-5 shrink-0 text-palm/50 transition-transform duration-300 ${
+                className={`w-5 h-5 shrink-0 text-gold/50 transition-transform duration-300 ${
                   isOpen ? "rotate-180" : ""
                 }`}
                 strokeWidth={1.5}
@@ -154,7 +154,7 @@ function Accordion({ items }: { items: { title: string; body: string }[] }) {
                   transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                   className="overflow-hidden"
                 >
-                  <p className="pb-6 pr-8 text-base text-palm/80 leading-relaxed">{item.body}</p>
+                  <p className="pb-6 pr-8 text-base text-gold/80 leading-relaxed">{item.body}</p>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -175,7 +175,7 @@ function Gallery({ images, alt }: { images: string[]; alt: string }) {
 
   const arrowClass =
     "absolute top-1/2 -translate-y-1/2 z-10 w-11 h-11 flex items-center justify-center " +
-    "bg-ivory/85 backdrop-blur-sm border border-palm/10 text-palm " +
+    "bg-ivory/85 backdrop-blur-sm border border-palm/10 text-gold " +
     "hover:bg-ivory transition opacity-0 group-hover:opacity-100 focus-visible:opacity-100 " +
     "max-lg:opacity-100";
 
@@ -234,7 +234,7 @@ function Gallery({ images, alt }: { images: string[]; alt: string }) {
             </button>
 
             <div className="absolute bottom-4 right-4 px-3 py-1.5 bg-ivory/85 backdrop-blur-sm border border-palm/10">
-              <span className="text-[10px] font-sans-ui tracking-luxe uppercase text-palm/70">
+              <span className="text-[10px] font-sans-ui tracking-luxe uppercase text-gold/70">
                 {Math.min(active, images.length - 1) + 1} / {images.length}
               </span>
             </div>
@@ -261,14 +261,14 @@ function ReviewCard({ review }: { review: Review }) {
           </div>
           <img src="/google-logo.svg" alt="Google" className="-mt-2 -mr-2 h-6 w-6" />
         </div>
-        <p className="text-base text-palm/80 leading-relaxed flex-1">{review.text}</p>
+        <p className="text-base text-gold/80 leading-relaxed flex-1">{review.text}</p>
         <div className="mt-6 pt-4 border-t border-palm/10 flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-palm flex items-center justify-center text-ivory font-sans-ui text-xs shrink-0">
+          <div className="w-9 h-9 rounded-full bg-theme-gradient flex items-center justify-center text-ivory font-sans-ui text-xs shrink-0">
             {review.initials}
           </div>
           <div>
-            <p className="font-display font-medium text-palm">{review.name}</p>
-            <p className="font-sans-ui text-[10px] tracking-luxe uppercase text-palm/55">
+            <p className="font-display font-medium text-gold">{review.name}</p>
+            <p className="font-sans-ui text-[10px] tracking-luxe uppercase text-gold/55">
               {review.city}
             </p>
           </div>
@@ -286,7 +286,7 @@ function ReviewsMarquee({ reviews }: { reviews: Review[] }) {
   while (base.length < 4) base.push(...reviews);
 
   return (
-    <section id="reviews" className="bg-palm text-ivory grain py-16 lg:py-24 overflow-hidden">
+    <section id="reviews" className="bg-theme-gradient text-ivory grain py-16 lg:py-24 overflow-hidden">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12">
         <Reveal>
           <p className="text-husk text-[11px] font-sans-ui tracking-luxe uppercase">Voices</p>
@@ -350,7 +350,7 @@ function VariantSelector({
 
   return (
     <fieldset className="mt-8">
-      <legend className="text-[10px] font-sans-ui tracking-luxe uppercase text-palm/55">
+      <legend className="text-[10px] font-sans-ui tracking-luxe uppercase text-gold/55">
         {state.optionName}
       </legend>
 
@@ -373,11 +373,11 @@ function VariantSelector({
               role="radio"
               aria-checked={isSelected}
               title={soldOut ? "Sold out" : undefined}
-              className={`h-10 px-6 rounded-md text-[11px] font-sans-ui tracking-luxe uppercase whitespace-nowrap transition-colors ${
+              className={`h-10 px-6 rounded-md text-[11px] font-sans-ui tracking-[0.18em] uppercase whitespace-nowrap transition-colors ${
                 isSelected
-                  ? "bg-moss text-ivory"
-                  : "text-palm/70 hover:text-palm hover:bg-palm/5"
-              } ${soldOut ? "opacity-40 cursor-not-allowed hover:bg-transparent hover:text-palm/70 line-through" : ""}`}
+                  ? "bg-palm text-ivory"
+                  : "text-gold/70 hover:text-gold hover:bg-palm/5"
+              } ${soldOut ? "opacity-40 cursor-not-allowed hover:bg-transparent hover:text-gold/70 line-through" : ""}`}
             >
               {variant.label}
             </button>
@@ -427,10 +427,10 @@ function BuyPanel({
     return (
       <div className="mt-8">
         <div className="border border-palm/15 bg-parchment p-6">
-          <p className="text-[10px] font-sans-ui tracking-luxe uppercase text-palm/55">
+          <p className="text-[10px] font-sans-ui tracking-luxe uppercase text-gold/55">
             Coming soon
           </p>
-          <p className="mt-3 text-sm text-palm/80 leading-relaxed">
+          <p className="mt-3 text-sm text-gold/80 leading-relaxed">
             {product.launchNote ??
               "This line is still in development. Register your interest and we will write to you the day it opens."}
           </p>
@@ -441,13 +441,13 @@ function BuyPanel({
             href={waLink(enquiry)}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center justify-center gap-3 h-12 px-7 bg-gold text-ivory text-[11px] font-sans-ui tracking-luxe uppercase hover:brightness-110 transition"
+            className="inline-flex items-center justify-center gap-3 h-12 px-7 bg-[#FAF6EC] text-gold border-2 border-palm font-semibold text-[11px] font-sans-ui tracking-[0.18em] uppercase hover:bg-[#F2EBDA] transition"
           >
             Notify me <span aria-hidden="true">→</span>
           </a>
           <a
             href="/#b2b"
-            className="inline-flex items-center justify-center h-12 px-7 border border-palm/30 text-palm text-[11px] font-sans-ui tracking-luxe uppercase hover:bg-palm hover:text-ivory transition"
+            className="inline-flex items-center justify-center h-12 px-7 border border-palm/30 text-gold text-[11px] font-sans-ui tracking-[0.18em] uppercase hover:bg-palm hover:text-ivory transition"
           >
             Bulk enquiry
           </a>
@@ -466,18 +466,18 @@ function BuyPanel({
       ) : (
         price !== undefined && (
           <div className="flex flex-wrap items-baseline gap-3">
-            <span className="font-display text-4xl font-semibold text-palm">
+            <span className="font-display text-4xl font-semibold text-gold">
               {formatMoney(price, currency)}
             </span>
             {compareAt && (
-              <span className="text-lg text-palm/45 line-through">
+              <span className="text-lg text-gold/45 line-through">
                 {formatMoney(compareAt, currency)}
               </span>
             )}
           </div>
         )
       )}
-      <p className="mt-2 text-[11px] font-sans-ui tracking-luxe uppercase text-palm/50">
+      <p className="mt-2 text-[11px] font-sans-ui tracking-luxe uppercase text-gold/50">
         Inclusive of all taxes
       </p>
 
@@ -486,22 +486,22 @@ function BuyPanel({
 
       {/* Quantity */}
       <div className="mt-8">
-        <p className="text-[10px] font-sans-ui tracking-luxe uppercase text-palm/55">Quantity</p>
+        <p className="text-[10px] font-sans-ui tracking-luxe uppercase text-gold/55">Quantity</p>
         <div className="mt-3 inline-flex items-center border border-palm/25">
           <button
             type="button"
             onClick={() => setQty((q) => Math.max(1, q - 1))}
             aria-label="Decrease quantity"
-            className="w-12 h-12 flex items-center justify-center text-palm hover:bg-parchment transition"
+            className="w-12 h-12 flex items-center justify-center text-gold hover:bg-parchment transition"
           >
             <Minus className="w-4 h-4" strokeWidth={1.5} />
           </button>
-          <span className="w-12 text-center font-sans-ui text-sm text-palm">{qty}</span>
+          <span className="w-12 text-center font-sans-ui text-sm text-gold">{qty}</span>
           <button
             type="button"
             onClick={() => setQty((q) => Math.min(20, q + 1))}
             aria-label="Increase quantity"
-            className="w-12 h-12 flex items-center justify-center text-palm hover:bg-parchment transition"
+            className="w-12 h-12 flex items-center justify-center text-gold hover:bg-parchment transition"
           >
             <Plus className="w-4 h-4" strokeWidth={1.5} />
           </button>
@@ -514,7 +514,7 @@ function BuyPanel({
           type="button"
           onClick={handleAddToCart}
           disabled={isSyncing || soldOut}
-          className="w-full inline-flex items-center justify-center gap-2 h-14 px-8 border border-palm text-palm text-[11px] font-sans-ui tracking-luxe uppercase hover:bg-palm hover:text-ivory transition disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-palm"
+          className="w-full inline-flex items-center justify-center gap-2 h-14 px-8 border border-palm text-gold text-[11px] font-sans-ui tracking-[0.18em] uppercase hover:bg-palm hover:text-ivory transition disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-gold"
         >
           {isSyncing && <Loader2 className="w-4 h-4 animate-spin" strokeWidth={2} />}
           {soldOut ? "Sold out" : "Add to Cart"}
@@ -523,7 +523,7 @@ function BuyPanel({
           type="button"
           onClick={() => buyNow(product, qty, selection)}
           disabled={isSyncing || soldOut}
-          className="w-full inline-flex items-center justify-center gap-3 h-14 px-8 bg-gold text-ivory text-[11px] font-sans-ui tracking-luxe uppercase hover:brightness-110 transition disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:brightness-100"
+          className="w-full inline-flex items-center justify-center gap-3 h-14 px-8 bg-palm text-ivory border-2 border-palm font-semibold text-[11px] font-sans-ui tracking-[0.18em] uppercase hover:bg-gold hover:border-gold transition disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-palm disabled:hover:border-palm"
         >
           Buy Now <span aria-hidden="true">→</span>
         </button>
@@ -538,7 +538,7 @@ function BuyPanel({
         ].map(({ icon: Icon, label }) => (
           <div key={label} className="flex items-start gap-3">
             <Icon className="w-4 h-4 mt-0.5 text-gold shrink-0" strokeWidth={1.5} />
-            <span className="text-xs text-palm/70 leading-relaxed">{label}</span>
+            <span className="text-xs text-gold/70 leading-relaxed">{label}</span>
           </div>
         ))}
       </div>
@@ -576,10 +576,10 @@ export default function ProductDetail() {
 //         <span className="w-9 h-9 flex items-center justify-center bg-gold/10 shrink-0">
 //           <Activity className="w-4 h-4 text-gold" strokeWidth={1.5} />
 //         </span>
-//         <h3 className="font-display text-2xl font-semibold text-palm">Nutrition</h3>
+//         <h3 className="font-display text-2xl font-semibold text-gold">Nutrition</h3>
 //       </div>
 //       {product.nutritionNote && (
-//         <p className="mt-2 text-[10px] font-sans-ui tracking-luxe uppercase text-palm/50">
+//         <p className="mt-2 text-[10px] font-sans-ui tracking-luxe uppercase text-gold/50">
 //           {product.nutritionNote}
 //         </p>
 //       )}
@@ -590,10 +590,10 @@ export default function ProductDetail() {
 //             key={n.label}
 //             className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-3 border-b border-palm/10 last:border-0 last:pb-0"
 //           >
-//             <dt className="text-[10px] font-sans-ui tracking-[0.2em] uppercase text-palm/50">
+//             <dt className="text-[10px] font-sans-ui tracking-[0.2em] uppercase text-gold/50">
 //               {n.label}
 //             </dt>
-//             <dd className="font-display text-lg text-palm">{n.value}</dd>
+//             <dd className="font-display text-lg text-gold">{n.value}</dd>
 //           </div>
 //         ))}
 //       </dl>
@@ -627,7 +627,7 @@ function ProductView({ product }: { product: Product }) {
     <OuraLayout solidNav>
       {/* Breadcrumb */}
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12 pt-24 lg:pt-28">
-        <nav aria-label="Breadcrumb" className="text-[10px] font-sans-ui tracking-luxe uppercase text-palm/50">
+        <nav aria-label="Breadcrumb" className="text-[10px] font-sans-ui tracking-luxe uppercase text-gold/50">
           <Link to="/" className="hover:text-gold transition-colors">
             Home
           </Link>
@@ -640,7 +640,7 @@ function ProductView({ product }: { product: Product }) {
           <span className="mx-2" aria-hidden="true">
             /
           </span>
-          <span className="text-palm/80">{product.name}</span>
+          <span className="text-gold/80">{product.name}</span>
         </nav>
       </div>
 
@@ -662,23 +662,23 @@ function ProductView({ product }: { product: Product }) {
             <Reveal delay={0.08}>
               <div className="flex items-center gap-3">
                 <product.icon className="w-5 h-5 text-gold" strokeWidth={1.5} />
-                <span className="text-[10px] font-sans-ui tracking-luxe uppercase text-palm/55">
+                <span className="text-[10px] font-sans-ui tracking-luxe uppercase text-gold/55">
                   {product.tag}
                 </span>
                 {!product.available && (
-                  <span className="px-2 py-1 border border-palm/20 text-[9px] font-sans-ui tracking-luxe uppercase text-palm/60">
+                  <span className="px-2 py-1 border border-palm/20 text-[9px] font-sans-ui tracking-luxe uppercase text-gold/60">
                     Coming soon
                   </span>
                 )}
               </div>
 
               <h1
-                className="mt-4 font-display font-semibold text-palm leading-[1.05]"
+                className="mt-4 font-display font-semibold text-gold leading-[1.05]"
                 style={{ fontSize: "clamp(2rem, 4.5vw, 3.4rem)" }}
               >
                 {product.name}
               </h1>
-              {/* <p className="mt-3 font-display italic text-xl text-palm/70">
+              {/* <p className="mt-3 font-display italic text-xl text-gold/70">
                 {product.tagline}
               </p> */}
 
@@ -691,14 +691,14 @@ function ProductView({ product }: { product: Product }) {
                   </span>
                   <a
                     href="#reviews"
-                    className="text-[10px] font-sans-ui tracking-luxe uppercase text-palm/55 hover:text-gold transition-colors"
+                    className="text-[10px] font-sans-ui tracking-luxe uppercase text-gold/55 hover:text-gold transition-colors"
                   >
                     {reviews.length} {reviews.length === 1 ? "review" : "reviews"}
                   </a>
                 </div>
               )}
 
-              <p className="mt-5 text-base text-palm/80 leading-relaxed">
+              <p className="mt-5 text-base text-gold/80 leading-relaxed">
                 {product.desc}
               </p>
 
@@ -714,12 +714,15 @@ function ProductView({ product }: { product: Product }) {
       </section>
 
       {/* Highlights */}
-      <section className="bg-palm text-ivory">
+      <section className="bg-theme-gradient text-ivory">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-12 py-16 lg:py-20">
           <Reveal>
-            <p className="text-husk text-[11px] font-sans-ui tracking-luxe uppercase">
+            <h2
+              className="font-display font-semibold text-ivory leading-tight"
+              style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", textShadow: "0 2px 12px rgba(42,103,17,0.45)" }}
+            >
               {product.highlightsTitle ?? "Why it is different"}
-            </p>
+            </h2>
           </Reveal>
           <div
             className={`mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6 ${
@@ -728,11 +731,11 @@ function ProductView({ product }: { product: Product }) {
           >
             {product.highlights.map((h, i) => (
               <Reveal key={h} delay={i * 0.06}>
-                <div className="border border-ivory/15 p-6 h-full">
-                  <Leaf className="w-5 h-5 text-husk" strokeWidth={1.5} />
+                <div className="border border-ivory/25 p-6 h-full">
+                  <Leaf className="w-6 h-6 text-ivory" strokeWidth={1.75} />
                   <LeadText
                     text={h}
-                    className="mt-4 block text-sm text-ivory/85 leading-relaxed"
+                    className="mt-4 block text-base text-ivory leading-relaxed"
                   />
                 </div>
               </Reveal>
@@ -748,7 +751,7 @@ function ProductView({ product }: { product: Product }) {
             <Reveal>
               <p className={eyebrow}>The Making</p>
               <h2
-                className="mt-4 font-display font-semibold text-palm leading-tight"
+                className="mt-4 font-display font-semibold text-gold leading-tight"
                 style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}
               >
                 From Kerala, Without Compromise
@@ -757,7 +760,7 @@ function ProductView({ product }: { product: Product }) {
             <div className="mt-6 space-y-4">
               {product.story.map((p, i) => (
                 <Reveal key={i} delay={i * 0.07}>
-                  <p className="text-base text-palm/80 leading-relaxed">{p}</p>
+                  <p className="text-base text-gold/80 leading-relaxed">{p}</p>
                 </Reveal>
               ))}
             </div>
@@ -766,10 +769,10 @@ function ProductView({ product }: { product: Product }) {
               <div className="mt-10 grid grid-cols-3 gap-6 border-t border-palm/10 pt-6">
                 {product.specs.map((s) => (
                   <div key={s.label}>
-                    <p className="text-[10px] font-sans-ui tracking-luxe uppercase text-palm/50 mb-1">
+                    <p className="text-[10px] font-sans-ui tracking-luxe uppercase text-gold/50 mb-1">
                       {s.label}
                     </p>
-                    <p className="text-sm text-palm font-medium">{s.value}</p>
+                    <p className="text-sm text-gold font-medium">{s.value}</p>
                   </div> 
                 ))}
               </div>
@@ -790,7 +793,7 @@ function ProductView({ product }: { product: Product }) {
           <Reveal>
             <p className={eyebrow}>Specification</p>
             <h2
-              className="mt-4 font-display font-semibold text-palm leading-tight"
+              className="mt-4 font-display font-semibold text-gold leading-tight"
               style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}
             >
               What Arrives, and How to Keep It
@@ -808,7 +811,7 @@ function ProductView({ product }: { product: Product }) {
                   <span className="w-9 h-9 flex items-center justify-center bg-gold/10 shrink-0">
                     <Package className="w-4 h-4 text-gold" strokeWidth={1.5} />
                   </span>
-                  <h3 className="font-display text-2xl font-semibold text-palm">In the Box</h3>
+                  <h3 className="font-display text-2xl font-semibold text-gold">In the Box</h3>
                 </div>
 
                 <dl className="mt-7">
@@ -817,10 +820,10 @@ function ProductView({ product }: { product: Product }) {
                       key={b.label}
                       className="py-4 border-b border-palm/10 last:border-0 last:pb-0"
                     >
-                      <dt className="text-[10px] font-sans-ui tracking-[0.2em] uppercase text-palm/50">
+                      <dt className="text-[10px] font-sans-ui tracking-[0.2em] uppercase text-gold/50">
                         {b.label}
                       </dt>
-                      <dd className="mt-1.5 font-display text-lg text-palm leading-snug break-words">
+                      <dd className="mt-1.5 font-display text-lg text-gold leading-snug break-words">
                         {b.value}
                       </dd>
                     </div>
@@ -841,7 +844,7 @@ function ProductView({ product }: { product: Product }) {
                   <span className="w-9 h-9 flex items-center justify-center bg-gold/10 shrink-0">
                     <Heart className="w-4 h-4 text-gold" strokeWidth={1.5} />
                   </span>
-                  <h3 className="font-display text-2xl font-semibold text-palm">
+                  <h3 className="font-display text-2xl font-semibold text-gold">
                     Care &amp; Storage
                   </h3>
                 </div>
@@ -855,7 +858,7 @@ function ProductView({ product }: { product: Product }) {
                       >
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <LeadText text={c} className="text-sm text-palm/80 leading-relaxed" />
+                      <LeadText text={c} className="text-sm text-gold/80 leading-relaxed" />
                     </li>
                   ))}
                 </ol>

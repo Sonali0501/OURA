@@ -23,7 +23,7 @@ function StatCard({ label, value, unit, pct }: StatCardProps) {
       </p>
       <div className="mt-4 h-px bg-ivory/10 overflow-hidden">
         <div
-          className="h-full bg-gold transition-all duration-300"
+          className="h-full bg-theme-gradient transition-all duration-300"
           style={{ width: `${Math.min(pct, 100)}%` }}
         />
       </div>
@@ -91,7 +91,7 @@ export default function B2BPortal() {
   };
 
   return (
-    <section id="b2b" className="relative bg-palm text-ivory">
+    <section id="b2b" className="relative bg-theme-gradient text-ivory">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12 py-24 lg:py-36">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-start">
           {/* Impact Console */}
@@ -269,7 +269,7 @@ export default function B2BPortal() {
 
                     <button
                       type="submit"
-                      className="inline-flex items-center gap-3 h-12 px-7 bg-gold text-ivory text-[11px] font-sans-ui tracking-luxe uppercase hover:brightness-110 transition"
+                      className="inline-flex items-center gap-3 h-12 px-7 bg-[#FAF6EC] text-gold border-2 border-palm font-semibold text-[11px] font-sans-ui tracking-[0.18em] uppercase hover:bg-[#F2EBDA] transition"
                     >
                       Send message <span aria-hidden="true">→</span>
                     </button>

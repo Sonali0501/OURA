@@ -82,7 +82,7 @@ export const PRODUCTS: Product[] = [
       { label: 'Uses', value: 'Care & Kitchen' },
     ],
     img: CULINARY_IMG,
-    accent: '#D4A373',
+    accent: '#499F1D',
     available: true,
     product_tags: ['culinary', 'oil'],
 
@@ -171,7 +171,7 @@ export const PRODUCTS: Product[] = [
       { label: 'Origin', value: 'Kerala, India' },
     ],
     img: VITA_IMG,
-    accent: '#4A5D23',
+    accent: '#2A6711',
     available: false,
     product_tags: ['water'],
 
@@ -219,7 +219,7 @@ export const PRODUCTS: Product[] = [
       { label: 'Grade', value: '100% Edible' },
     ],
     img: CARE_IMG,
-    accent: '#D4A373',
+    accent: '#499F1D',
     available: false,
     product_tags: ['care', 'oil'],
 
@@ -266,7 +266,7 @@ export const PRODUCTS: Product[] = [
       { label: 'Durability', value: 'Lifetime' },
     ],
     img: SHELLS_IMG,
-    accent: '#4A5D23',
+    accent: '#2A6711',
     available: false,
     product_tags: ['shells'],
 

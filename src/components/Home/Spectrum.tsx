@@ -18,8 +18,8 @@ function ProductCard({ product }: { product: Product }) {
 
         {/* Category badge sits above the coming-soon overlay */}
         <div className="absolute top-4 left-4 z-20 flex items-center gap-2 pl-2.5 pr-3.5 py-1.5 rounded-full bg-ivory/90 backdrop-blur-sm border border-palm/10">
-          <product.icon className="w-3.5 h-3.5 text-husk shrink-0" strokeWidth={1.5} />
-          <span className="text-husk text-[10px] uppercase tracking-[0.2em] leading-none">
+          <product.icon className="w-3.5 h-3.5 text-golden shrink-0" strokeWidth={1.5} />
+          <span className="text-golden text-[10px] uppercase tracking-[0.2em] leading-none">
             {product.tag}
           </span>
         </div>
@@ -28,7 +28,7 @@ function ProductCard({ product }: { product: Product }) {
           <div className="absolute inset-0 z-10 flex flex-col gap-3 items-center justify-center p-4 pointer-events-none bg-obsidian/20">
             <EyeOffIcon color="white" />
             <div className="px-3 py-2 border border-palm/20 bg-white/85 backdrop-blur-sm">
-              <p className="font-sans-ui text-[10px] uppercase tracking-[0.45em] text-palm/90 text-center">
+              <p className="font-sans-ui text-[10px] uppercase tracking-[0.45em] text-gold/90 text-center">
                 Coming Soon
               </p>
             </div>
@@ -49,7 +49,7 @@ function ProductCard({ product }: { product: Product }) {
           <div className="mt-auto pt-4 grid grid-cols-3 gap-3 border-t border-obsidian/10">
             {product.specs.map((spec) => (
               <div key={spec.label}>
-                <p className="text-husk text-[9px] uppercase tracking-widest mb-1">{spec.label}</p>
+                <p className="text-golden text-[9px] uppercase tracking-widest mb-1">{spec.label}</p>
                 <p className="text-obsidian text-xs font-medium">{spec.value}</p>
               </div>
             ))}
@@ -70,7 +70,7 @@ function ProductCard({ product }: { product: Product }) {
 
 export default function Spectrum() {
   return (
-    <section id="spectrum" className="relative bg-parchment grain text-palm py-16 md:py-24 px-6 md:px-12 overflow-hidden">
+    <section id="spectrum" className="relative bg-parchment grain text-gold py-16 md:py-24 px-6 md:px-12 overflow-hidden">
       <div className="max-w-[1400px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -80,14 +80,14 @@ export default function Spectrum() {
           className="mb-16 md:mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6"
         >
           <div>
-            <p className="text-husk text-xs uppercase tracking-[0.3em] mb-4">Core product suite</p>
-            <h2 className="font-display text-5xl md:text-8xl font-bold text-palm leading-[1.1] md:leading-[1.1]">
+            <p className="text-golden text-xs uppercase tracking-[0.3em] mb-4">Core product suite</p>
+            <h2 className="font-display text-5xl md:text-8xl font-bold text-gold leading-[1.1] md:leading-[1.1]">
               The Spectrum
               <br />
-              of <span className="italic text-husk">Utility</span>
+              of <span className="italic text-golden">Utility</span>
             </h2>
           </div>
-          <p className="text-palm/70 text-base md:text-lg max-w-md leading-relaxed">
+          <p className="text-gold/70 text-base md:text-lg max-w-md leading-relaxed">
             Four lines, one promise — pure, cold-pressed, zero-waste heritage engineered with
             institutional precision. Each piece carries its own story and spec.
           </p>

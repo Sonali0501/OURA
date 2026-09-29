@@ -5,7 +5,7 @@ const PORTRAIT = "founder_sreejith.webp";
 
 export default function DeepDiveLink() {
   return (
-    <section className="bg-palm text-ivory">
+    <section className="bg-theme-gradient text-ivory">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12 py-16 lg:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-4">
@@ -29,7 +29,7 @@ export default function DeepDiveLink() {
               </p>
               <Link
                 to="/founder"
-                className="mt-6 inline-flex items-center gap-3 h-12 px-7 bg-gold text-ivory text-[11px] font-sans-ui tracking-luxe uppercase hover:brightness-110 transition"
+                className="mt-6 inline-flex items-center gap-3 h-12 px-7 bg-[#FAF6EC] text-gold border-2 border-palm font-semibold text-[11px] font-sans-ui tracking-[0.18em] uppercase hover:bg-[#F2EBDA] transition"
               >
                 Meet the Team <span aria-hidden="true">→</span>
               </Link>
