@@ -140,9 +140,9 @@ export default function Hero() {
         </motion.a> */}
       </div>
 
-      <span className="hidden lg:block absolute right-3 top-1/2 -translate-y-1/2 rotate-90 origin-center text-[10px] font-sans-ui tracking-luxe text-ivory/45 uppercase z-10">
+      {/* <span className="hidden lg:block absolute right-3 top-1/2 -translate-y-1/2 rotate-90 origin-center text-[10px] font-sans-ui tracking-luxe text-ivory/45 uppercase z-10">
         Index
-      </span>
+      </span> */}
 
       <div className="absolute bottom-0 inset-x-0 z-10">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-12 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 border-t border-ivory/15">
