@@ -1,22 +1,22 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { EyeOffIcon } from 'lucide-react';
+import { Check } from 'lucide-react';
 import { PRODUCTS, productPath, type Product } from '../../data/products';
 
 function ProductCard({ product }: { product: Product }) {
   const card = (
     <div className="group flex flex-col h-full bg-ivory border border-palm/10 rounded-xl overflow-hidden hover:border-gold/40 transition-colors">
       {/* Landscape image — top */}
-      <div className="relative aspect-[2/1] overflow-hidden">
+      <div className="relative aspect-[3/2] overflow-hidden">
         <img
           src={product.img}
           alt={product.name}
           className={`w-full h-full object-cover transition-transform duration-700 ${
-            product.available ? 'group-hover:scale-105' : 'blur-sm brightness-[0.45] saturate-50'
+            product.available ? 'group-hover:scale-105' : ''
           }`}
         />
 
-        {/* Category badge sits above the coming-soon overlay */}
+        {/* Category badge */}
         <div className="absolute top-4 left-4 z-20 flex items-center gap-2 pl-2.5 pr-3.5 py-1.5 rounded-full bg-ivory/90 backdrop-blur-sm border border-palm/10">
           <product.icon className="w-3.5 h-3.5 text-golden shrink-0" strokeWidth={1.5} />
           <span className="text-golden text-[10px] uppercase tracking-[0.2em] leading-none">
@@ -25,36 +25,30 @@ function ProductCard({ product }: { product: Product }) {
         </div>
 
         {!product.available && (
-          <div className="absolute inset-0 z-10 flex flex-col gap-3 items-center justify-center p-4 pointer-events-none bg-obsidian/20">
-            <EyeOffIcon color="white" />
-            <div className="px-3 py-2 border border-palm/20 bg-white/85 backdrop-blur-sm">
-              <p className="font-sans-ui text-[10px] uppercase tracking-[0.45em] text-gold/90 text-center">
-                Coming Soon
-              </p>
-            </div>
+          <div className="absolute inset-x-0 bottom-0 z-10 py-2 bg-palm pointer-events-none">
+            <p className="font-sans-ui text-[10px] font-semibold uppercase tracking-[0.3em] text-ivory text-center">
+              Coming Soon
+            </p>
           </div>
         )}
       </div>
 
       {/* Content — below */}
       <div className="flex-1 p-5 lg:p-6 flex flex-col">
-        <h3 className="font-display text-2xl md:text-3xl font-bold text-obsidian leading-tight">
+        <h3 className="font-display text-2xl font-bold text-obsidian leading-tight">
           {product.name}
         </h3>
 
         <p className="mt-2 mb-2 text-obsidian/70 text-sm leading-relaxed">{product.desc}</p>
 
-        {/* Specs are for products you can actually buy */}
-        {product.available && (
-          <div className="mt-auto pt-4 grid grid-cols-3 gap-3 border-t border-obsidian/10">
-            {product.specs.map((spec) => (
-              <div key={spec.label}>
-                <p className="text-golden text-[9px] uppercase tracking-widest mb-1">{spec.label}</p>
-                <p className="text-obsidian text-xs font-medium">{spec.value}</p>
-              </div>
-            ))}
-          </div>
-        )}
+        <ul className="mt-auto pt-4 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2.5 border-t border-obsidian/10">
+          {product.pointers.map((point) => (
+            <li key={point} className="flex items-start gap-2 text-obsidian text-xs font-medium leading-snug">
+              <Check className="w-3.5 h-3.5 mt-px shrink-0 text-obsidian" strokeWidth={2} />
+              {point}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
@@ -93,15 +87,15 @@ export default function Spectrum() {
           </p>
         </motion.div>
 
-        {/* Two landscape cards per row */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6">
+        {/* Three cards per row on desktop, two on tablet */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {PRODUCTS.map((product, i) => (
             <motion.div
               key={product.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.7, delay: (i % 2) * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.7, delay: (i % 3) * 0.1, ease: [0.22, 1, 0.36, 1] }}
             >
               <ProductCard product={product} />
             </motion.div>
