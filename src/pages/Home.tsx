@@ -5,6 +5,7 @@ import Genesis from "../components/Home/Genesis";
 import Hero from "../components/Home/Hero";
 import SoilToSip from "../components/Home/SoilToSip";
 import Spectrum from "../components/Home/Spectrum";
+import CreatorVideos from "../components/Home/CreatorVideos";
 import Testimonials from "../components/Home/Testimonials";
 import OuraLayout from "../components/layout/OuraLayout";
 
@@ -15,6 +16,7 @@ export default function Home() {
       <Genesis />
       <DeepDiveLink />
       <Spectrum />
+      <CreatorVideos />
       <SoilToSip />
       <FarmerBanner />
       <Testimonials />
