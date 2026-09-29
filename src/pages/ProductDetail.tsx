@@ -23,6 +23,7 @@ import {
   type Product,
 } from "../data/products";
 import { getReviewsByProductTags, type Review } from "../data/reviews";
+import { CULINARY_REVIEWS } from "../data/culinaryReviews";
 import { useCart } from "../context/cartContext";
 import {
   useProductVariants,
@@ -301,7 +302,11 @@ function ReviewsMarquee({ reviews }: { reviews: Review[] }) {
 
       {/* Full-bleed so cards enter and leave past the page edge */}
       <div className="marquee mt-10 group">
-        <div className="marquee-track flex gap-6 w-max group-hover:[animation-play-state:paused]">
+        {/* Duration scales with the number of cards so the speed stays the same */}
+        <div
+          className="marquee-track flex gap-6 w-max group-hover:[animation-play-state:paused]"
+          style={{ animationDuration: `${Math.max(45, base.length * 9)}s` }}
+        >
           {base.map((r, i) => (
             <ReviewCard key={`a-${i}-${r.name}`} review={r} />
           ))}
@@ -606,7 +611,10 @@ function ProductView({ product }: { product: Product }) {
   const [searchParams, setSearchParams] = useSearchParams();
   // Sizes, prices and images all come from Shopify — see hooks/useProductVariants.
   const state = useProductVariants(product);
-  const reviews = getReviewsByProductTags(product.product_tags);
+  const reviews = [
+    ...getReviewsByProductTags(product.product_tags),
+    ...(product.id === "culinary" ? CULINARY_REVIEWS : []),
+  ];
 
   // An unknown or absent ?size= falls back to the first variant Shopify lists.
   const variant =
