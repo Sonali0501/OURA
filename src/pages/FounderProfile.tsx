@@ -42,7 +42,7 @@ export default function FounderProfile() {
     <div className="bg-ivory text-gold">
       {/* Sisiram hero */}
       <section className="relative bg-theme-gradient text-ivory pt-28 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0 opacity-25">
           <img src={CANOPY} alt="" className="w-full h-full fill" />
         </div>
         <div className="relative mx-auto max-w-[1440px] px-6 lg:px-12 text-center">
@@ -170,7 +170,7 @@ export default function FounderProfile() {
           </h2>
           <div className="mt-7 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link to="/#shop" className="h-12 px-8 inline-flex items-center bg-[#FAF6EC] text-gold border-2 border-palm font-semibold text-[11px] font-sans-ui tracking-[0.18em] uppercase hover:bg-[#F2EBDA] transition">Shop the Suite</Link>
-            <a href="/#b2b" className="h-12 px-8 inline-flex items-center border border-palm/30 text-gold text-[11px] font-sans-ui tracking-[0.18em] uppercase hover:border-palm hover:bg-theme-gradient hover:text-ivory transition">Partner With Us</a>
+            <a href="/#enquiry" className="h-12 px-8 inline-flex items-center border border-palm/30 text-gold text-[11px] font-sans-ui tracking-[0.18em] uppercase hover:border-palm hover:bg-theme-gradient hover:text-ivory transition">Partner With Us</a>
           </div>
         </Reveal>
       </section> */}

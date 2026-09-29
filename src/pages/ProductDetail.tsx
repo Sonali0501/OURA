@@ -446,7 +446,7 @@ function BuyPanel({
             Notify me <span aria-hidden="true">→</span>
           </a>
           <a
-            href="/#b2b"
+            href="/#enquiry"
             className="inline-flex items-center justify-center h-12 px-7 border border-palm/30 text-gold text-[11px] font-sans-ui tracking-[0.18em] uppercase hover:bg-palm hover:text-ivory transition"
           >
             Bulk enquiry

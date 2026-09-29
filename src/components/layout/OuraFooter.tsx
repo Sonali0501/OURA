@@ -5,7 +5,7 @@ const LINKS = [
   { label: "Genesis", href: "/#genesis" },
   { label: "Spectrum", href: "/#spectrum" },
   { label: "Soil to Sip", href: "/#soil-to-sip" },
-  { label: "Partner With Us", href: "/#b2b" }
+  { label: "Partner With Us", href: "/#enquiry" }
 ];
 
 const SOCIALS = [

@@ -18,13 +18,13 @@ export default function WhatsAppButton() {
       target="_blank"
       rel="noreferrer"
       aria-label="Chat with us on WhatsApp"
-      className="group fixed bottom-5 right-5 z-50 flex items-center h-12 px-[11px] rounded-full bg-[#FAF6EC] text-gold border-2 border-palm font-semibold shadow-[0_10px_30px_rgba(42,103,17,0.35)] hover:bg-[#F2EBDA] focus-visible:bg-[#F2EBDA] transition-colors"
+      className="group fixed bottom-6 right-6 z-50 flex items-center h-16 px-[15px] rounded-full bg-[#FAF6EC] text-gold border-2 border-palm font-semibold shadow-[0_10px_30px_rgba(42,103,17,0.35)] hover:bg-[#F2EBDA] focus-visible:bg-[#F2EBDA] transition-colors"
     >
-      <WhatsAppLogo className="w-[22px] h-[22px] shrink-0" />
+      <WhatsAppLogo className="w-[30px] h-[30px] shrink-0" />
       {/* Just the logo until hovered (or reached by keyboard), then the label slides out */}
       <span
         aria-hidden="true"
-        className="max-w-0 overflow-hidden whitespace-nowrap opacity-0 text-[11px] font-sans-ui tracking-[0.18em] uppercase transition-all duration-300 ease-out group-hover:max-w-[18rem] group-hover:opacity-100 group-hover:pl-2.5 group-hover:pr-2 group-focus-visible:max-w-[18rem] group-focus-visible:opacity-100 group-focus-visible:pl-2.5 group-focus-visible:pr-2"
+        className="max-w-0 overflow-hidden whitespace-nowrap opacity-0 text-[13px] font-sans-ui tracking-[0.18em] uppercase transition-all duration-300 ease-out group-hover:max-w-[18rem] group-hover:opacity-100 group-hover:pl-3 group-hover:pr-2.5 group-focus-visible:max-w-[18rem] group-focus-visible:opacity-100 group-focus-visible:pl-3 group-focus-visible:pr-2.5"
       >
         Chat with us on WhatsApp
       </span>
