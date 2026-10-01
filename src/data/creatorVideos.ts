@@ -3,8 +3,6 @@
  *
  * `src` is a vertical MP4 in /public/igVideos. Clicking a card opens `reelUrl`
  * on Instagram. `handle` (without the @) and `caption` are optional.
- *
- * TODO: the reelUrl values are placeholders — swap in each creator's real reel link.
  */
 export type CreatorVideo = {
   src: string;

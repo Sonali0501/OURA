@@ -91,8 +91,9 @@ export default function Hero() {
         >
           <source src={HERO_VIDEO} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-gold/70 via-gold/45 to-gold/90" />
-        <div className="absolute inset-0 bg-black/30 mix-blend-multiply" />
+        {/* Matches the live site: its overlay uses the original deep green, #163A2E */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#163A2E]/55 via-[#163A2E]/30 to-[#163A2E]/85" />
+        <div className="absolute inset-0 bg-[#163A2E]/20 mix-blend-multiply" />
       </div>
 
       <div className="relative z-10 gap-3 lg:gap-6 flex min-h-screen flex-col items-center justify-center px-6 lg:pt-20 text-center">

@@ -216,7 +216,7 @@ export default function Spectrum() {
         </motion.div>
 
         {/* On sale: one wide card each, image beside the buy controls */}
-        <div className="flex flex-col gap-8 lg:gap-10">
+        <div id="shop" className="flex flex-col gap-8 lg:gap-10">
           {AVAILABLE.map((product) => (
             <motion.div
               key={product.id}
