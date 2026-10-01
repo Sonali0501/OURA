@@ -48,7 +48,7 @@ function ReelCard({
 
   return (
     <li className="snap-start shrink-0 w-[70vw] max-w-[280px] sm:w-[260px]">
-      <div className="group relative aspect-[9/16] overflow-hidden rounded-xl bg-palm/10 shadow-[0_8px_24px_rgba(42,103,17,0.12)]">
+      <div className="group relative aspect-[9/16] overflow-hidden rounded-xl bg-palm/10 shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
         <video
           ref={ref}
           // #t= nudges iOS Safari into painting the first frame as a poster
@@ -103,7 +103,7 @@ function ReelCard({
       </div>
 
       {video.caption && (
-        <p className="mt-3 text-sm text-gold/80 leading-relaxed line-clamp-2">{video.caption}</p>
+        <p className="mt-3 text-sm text-ivory/85 leading-relaxed line-clamp-2">{video.caption}</p>
       )}
     </li>
   );
@@ -188,17 +188,17 @@ export default function CreatorVideos() {
   };
 
   const arrowClass =
-    "w-11 h-11 rounded-full border border-palm/25 text-gold flex items-center justify-center hover:bg-palm hover:border-palm hover:text-ivory transition";
+    "w-11 h-11 rounded-full border border-ivory/40 text-ivory flex items-center justify-center hover:bg-ivory hover:border-ivory hover:text-gold transition";
 
   return (
-    <section id="creators" className="bg-ivory text-gold py-16 md:py-24 overflow-hidden">
+    <section id="creators" className="bg-theme-gradient text-ivory py-16 md:py-24 overflow-hidden">
       <div className="mx-auto max-w-[1400px] px-6 md:px-12">
         <Reveal>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <p className="text-gold text-xs uppercase tracking-[0.3em] mb-4">From the community</p>
+              <p className="text-ivory/80 text-xs uppercase tracking-[0.3em] mb-4">From the community</p>
               <h2
-                className="font-display font-bold leading-[1.1] text-gold"
+                className="font-display font-bold leading-[1.1] text-ivory"
                 style={{ fontSize: "clamp(2.2rem, 5vw, 4rem)" }}
               >
                 <span className="text-[0.8em]">They&apos;re talking about</span> OURA

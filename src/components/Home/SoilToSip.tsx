@@ -38,7 +38,7 @@ export default function SoilToSip() {
   const liquidFill = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
 
   return (
-    <section id="soil-to-sip" ref={ref} className="relative bg-theme-gradient text-ivory py-16 md:py-24 px-6 md:px-12 overflow-hidden">
+    <section id="soil-to-sip" ref={ref} className="relative bg-ivory text-gold py-16 md:py-24 px-6 md:px-12 overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -46,20 +46,20 @@ export default function SoilToSip() {
         transition={{ duration: 0.8 }}
         className="max-w-[1400px] mx-auto mb-20 md:mb-32"
       >
-        <p className="text-husk text-xs uppercase tracking-[0.3em] mb-4">Sustainable Sourcing</p>
-        <h2 className="font-display text-5xl md:text-8xl font-bold text-ivory leading-[0.9]">
-          From Soil to <span className="italic text-husk">Sip</span>
+        <p className="text-gold/70 text-xs uppercase tracking-[0.3em] mb-4">Sustainable Sourcing</p>
+        <h2 className="font-display text-5xl md:text-8xl font-bold text-gold leading-[0.9]">
+          From Soil to <span className="italic text-gold">Sip</span>
         </h2>
       </motion.div>
 
       {/* Stages + stem — stem only spans this block, not the zero-waste footer */}
       <div className="relative">
-        <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 -translate-x-1/2 bg-ivory/15 pointer-events-none">
+        <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 -translate-x-1/2 bg-palm/15 pointer-events-none">
           <motion.div
             style={{ height: liquidFill }}
-            className="w-full bg-gradient-to-b from-husk via-husk to-gold relative"
+            className="w-full bg-gradient-to-b from-moss via-palm to-gold relative"
           >
-            <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-husk shadow-lg" />
+            <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-palm shadow-lg" />
           </motion.div>
         </div>
 
@@ -86,7 +86,7 @@ export default function SoilToSip() {
                     transition={{ duration: 0.6 }}
                     className="w-full h-[400px] md:h-[500px] object-cover"
                   />
-                  <div className="absolute inset-0 ring-1 ring-ivory/15" />
+                  <div className="absolute inset-0 ring-1 ring-palm/15" />
                 </div>
               </div>
 
@@ -98,14 +98,14 @@ export default function SoilToSip() {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 }}
-                    className="text-husk text-xs uppercase tracking-[0.3em] mb-4"
+                    className="text-gold/70 text-xs uppercase tracking-[0.3em] mb-4"
                   >
                     {stage.label}
                   </motion.p>
-                  <h3 className="font-display text-4xl md:text-6xl font-bold text-ivory mb-6 leading-tight">
+                  <h3 className="font-display text-4xl md:text-6xl font-bold text-gold mb-6 leading-tight">
                     {stage.title}
                   </h3>
-                  <p className="text-ivory/75 text-base md:text-lg leading-relaxed max-w-md">
+                  <p className="text-gold/80 text-base md:text-lg leading-relaxed max-w-md">
                     {stage.desc}
                   </p>
                 </div>
@@ -124,9 +124,9 @@ export default function SoilToSip() {
         transition={{ duration: 0.8 }}
         className="max-w-[1400px] mx-auto mt-32 text-center"
       >
-        <div className="inline-flex items-center gap-4 px-8 py-4 border border-ivory/15">
+        <div className="inline-flex items-center gap-4 px-8 py-4 border border-palm/30">
           <span className="text-2xl">♻️</span>
-          <p className="font-display text-xl md:text-2xl text-ivory">
+          <p className="font-display text-xl md:text-2xl text-gold">
             Zero-Waste: Shells and meal repurposed into OURA Crockery — nothing discarded, everything valued.
           </p>
         </div>

@@ -91,8 +91,8 @@ export default function Hero() {
         >
           <source src={HERO_VIDEO} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-palm/45 via-palm/20 to-palm/75" />
-        <div className="absolute inset-0 bg-palm/20 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-b from-gold/70 via-gold/45 to-gold/90" />
+        <div className="absolute inset-0 bg-black/30 mix-blend-multiply" />
       </div>
 
       <div className="relative z-10 gap-3 lg:gap-6 flex min-h-screen flex-col items-center justify-center px-6 lg:pt-20 text-center">
