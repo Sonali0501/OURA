@@ -55,7 +55,7 @@ export default function OuraNav({ solid = false }: { solid?: boolean }) {
         </ul>
 
         <div className="flex items-center gap-2">
-          <a href="/#enquiry" className="hidden sm:inline-flex items-center h-10 px-5 bg-[#FAF6EC] text-gold border-2 border-palm font-semibold text-[11px] font-sans-ui tracking-[0.18em] uppercase shadow-md hover:bg-[#F2EBDA] transition">Partner With Us</a>
+          <a href="/#enquiry" className="hidden sm:inline-flex items-center h-9 px-4 bg-palm text-ivory font-semibold text-[11px] font-sans-ui tracking-[0.18em] uppercase shadow-[0_6px_18px_rgba(42,103,17,0.3)] hover:bg-gold transition-colors">Partner with us</a>
           <CartButton light={lightChrome} />
           <button onClick={() => setOpen((v) => !v)} className={`lg:hidden inline-flex items-center justify-center w-11 h-11 ${lightChrome ? "text-gold" : "text-ivory"}`} aria-label="Toggle menu">
             <span className="text-xl">{open ? "✕" : "☰"}</span>
@@ -69,7 +69,7 @@ export default function OuraNav({ solid = false }: { solid?: boolean }) {
             {LINKS.map((l) => (
               <div key={l.label} className="py-3">{renderItem(l, true)}</div>
             ))}
-            <a href="/#enquiry" onClick={() => setOpen(false)} className="mt-2 inline-flex items-center h-11 px-6 bg-[#FAF6EC] text-gold border-2 border-palm font-semibold text-[11px] font-sans-ui tracking-[0.18em] uppercase">Partner With Us</a>
+            <a href="/#enquiry" onClick={() => setOpen(false)} className="mt-2 mb-4 inline-flex items-center h-10 px-4 bg-palm text-ivory font-semibold text-[11px] font-sans-ui tracking-[0.18em] uppercase shadow-[0_6px_18px_rgba(42,103,17,0.3)]">Partner with us</a>
           </motion.div>
         )}
       </AnimatePresence>
