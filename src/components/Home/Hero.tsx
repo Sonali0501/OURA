@@ -70,7 +70,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="top" className="relative min-h-screen w-full overflow-hidden bg-palm">
+    <section id="top" className="relative min-h-screen w-full overflow-hidden bg-theme-gradient">
       <div className="absolute inset-0 overflow-hidden flex justify-center">
         <video
           ref={videoRef}
@@ -91,8 +91,9 @@ export default function Hero() {
         >
           <source src={HERO_VIDEO} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-palm/55 via-palm/30 to-palm/85" />
-        <div className="absolute inset-0 bg-palm/20 mix-blend-multiply" />
+        {/* Matches the live site: its overlay uses the original deep green, #163A2E */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#163A2E]/55 via-[#163A2E]/30 to-[#163A2E]/85" />
+        <div className="absolute inset-0 bg-[#163A2E]/20 mix-blend-multiply" />
       </div>
 
       <div className="relative z-10 gap-3 lg:gap-6 flex min-h-screen flex-col items-center justify-center px-6 lg:pt-20 text-center">
@@ -126,7 +127,7 @@ export default function Hero() {
           The Complete Coconut Story
         </motion.p>
 
-        <motion.a
+        {/* <motion.a
           href="#genesis"
           initial={reduce ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -137,17 +138,17 @@ export default function Hero() {
           <span className="relative block h-16 w-px bg-ivory/25 overflow-hidden">
             <span className="absolute inset-x-0 top-0 h-8 bg-husk animate-pulse-down" />
           </span>
-        </motion.a>
+        </motion.a> */}
       </div>
 
-      <span className="hidden lg:block absolute right-3 top-1/2 -translate-y-1/2 rotate-90 origin-center text-[10px] font-sans-ui tracking-luxe text-ivory/45 uppercase z-10">
+      {/* <span className="hidden lg:block absolute right-3 top-1/2 -translate-y-1/2 rotate-90 origin-center text-[10px] font-sans-ui tracking-luxe text-ivory/45 uppercase z-10">
         Index
-      </span>
+      </span> */}
 
       <div className="absolute bottom-0 inset-x-0 z-10">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-12 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 border-t border-ivory/15">
           <p className="text-[10px] font-sans-ui tracking-luxe text-ivory/55 uppercase text-center">
-            Sisiram Private Limited <span className="opacity-40">.</span> Kochi, India
+            Sisiram Group <span className="opacity-40">.</span> Kochi, India
           </p>
           <p className="text-[10px] font-sans-ui tracking-luxe text-ivory/55 uppercase">
             A Promise of Pure Heritage

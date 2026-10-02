@@ -4,7 +4,7 @@ import { REVIEWS } from "../../data/reviews";
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="bg-ivory text-palm grain py-16 lg:py-24">
+    <section id="testimonials" className="bg-ivory text-gold grain py-16 lg:py-24">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12">
         <Reveal>
           <div className="mb-12 md:mb-16 max-w-4xl">
@@ -12,12 +12,12 @@ export default function Testimonials() {
               Voices
             </p>
             <h2
-              className="mt-4 font-display font-semibold leading-tight text-palm"
+              className="mt-4 font-display font-semibold leading-tight text-gold"
               style={{ fontSize: "clamp(1.8rem, 4vw, 3.4rem)" }}
             >
               Loved Across India &amp; Beyond
             </h2>
-            <p className="mt-4 text-base md:text-lg text-palm/75 max-w-2xl leading-relaxed">
+            <p className="mt-4 text-base md:text-lg text-gold/75 max-w-2xl leading-relaxed">
               From Kerala to Delhi, Bangalore, Chennai, Hyderabad, Mumbai and Pune — families who keep
               OURA on their table and in their story.
             </p>
@@ -39,16 +39,16 @@ export default function Testimonials() {
                     <img src="google-logo.svg" alt="google" className="h-8 w-8" />
                 </div>
                 <Quote className="w-7 h-7 text-gold/25 mb-3" strokeWidth={1.5} />
-                <p className="text-base text-palm/80 leading-relaxed mb-6 flex-1">{r.text}</p>
+                <p className="text-base text-gold/80 leading-relaxed mb-6 flex-1">{r.text}</p>
                 <div className="flex items-center gap-3 pt-4 border-t border-palm/10">
                   <div
-                    className="w-10 h-10 rounded-full bg-palm flex items-center justify-center text-ivory font-sans-ui text-xs font-medium"
+                    className="w-10 h-10 rounded-full bg-theme-gradient flex items-center justify-center text-ivory font-sans-ui text-xs font-medium"
                   >
                     {r.initials}
                   </div>
                   <div>
-                    <p className="font-display font-medium text-palm">{r.name}</p>
-                    <p className="font-sans-ui text-[10px] tracking-luxe uppercase text-palm/55">
+                    <p className="font-display font-medium text-gold">{r.name}</p>
+                    <p className="font-sans-ui text-[10px] tracking-luxe uppercase text-gold/55">
                       {r.city}
                     </p>
                   </div>

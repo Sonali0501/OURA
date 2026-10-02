@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import CartButton from "../cart/CartButton";
+import AnnouncementBar from "./AnnouncementBar";
 
 type LinkObj = { label: string; to?: string; href?: string }
 
@@ -12,7 +13,7 @@ const LINKS = [
   { label: "Foundation", to: "/founder" },
   { label: "Spectrum", href: "/#spectrum" },
   { label: "Soil to Sip", href: "/#soil-to-sip" },
-  { label: "Roadmap", href: "/#b2b" }
+  { label: "Voices", href: "/#testimonials" }
 ];
 
 export default function OuraNav({ solid = false }: { solid?: boolean }) {
@@ -28,14 +29,14 @@ export default function OuraNav({ solid = false }: { solid?: boolean }) {
 
   // Ivory on dark hero; palm on light glass after scroll or when mobile menu is open
   const lightChrome = solid || scrolled || open;
-  const linkColor = lightChrome ? "text-palm/80 hover:text-palm" : "text-ivory/90 hover:text-ivory";
-  const logoColor = lightChrome ? "text-palm" : "text-ivory";
+  const linkColor = lightChrome ? "text-gold/80 hover:text-gold" : "text-ivory/90 hover:text-ivory";
+  const logoColor = lightChrome ? "text-gold" : "text-ivory";
 
   const renderItem = (l: LinkObj, close = false) =>
     l.to ? (
-      <Link key={l.label} to={l.to} onClick={close ? () => setOpen(false) : undefined} className={`text-[11px] font-sans-ui tracking-luxe uppercase transition-colors ${linkColor}`}>{l.label}</Link>
+      <Link key={l.label} to={l.to} onClick={close ? () => setOpen(false) : undefined} className={`text-[11px] font-sans-ui tracking-[0.18em] uppercase transition-colors ${linkColor}`}>{l.label}</Link>
     ) : (
-      <a key={l.label} href={l.href} onClick={close ? () => setOpen(false) : undefined} className={`text-[11px] font-sans-ui tracking-luxe uppercase transition-colors ${linkColor}`}>{l.label}</a>
+      <a key={l.label} href={l.href} onClick={close ? () => setOpen(false) : undefined} className={`text-[11px] font-sans-ui tracking-[0.18em] uppercase transition-colors ${linkColor}`}>{l.label}</a>
     );
 
   return (
@@ -45,6 +46,7 @@ export default function OuraNav({ solid = false }: { solid?: boolean }) {
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${lightChrome ? "glass border-b border-palm/10" : "bg-transparent"}`}
     >
+      <AnnouncementBar />
       <nav className="mx-auto max-w-[1440px] px-6 lg:px-12 h-16 flex items-center justify-between">
         <Link to="/" className={`font-display text-2xl font-bold leading-none transition-colors ${logoColor}`}>OURA</Link>
 
@@ -53,9 +55,9 @@ export default function OuraNav({ solid = false }: { solid?: boolean }) {
         </ul>
 
         <div className="flex items-center gap-2">
-          <a href="/#b2b" className="hidden sm:inline-flex items-center h-10 px-5 bg-gold text-ivory text-[11px] font-sans-ui tracking-luxe uppercase hover:brightness-110 transition">Partner With Us</a>
+          <a href="/#enquiry" className="hidden sm:inline-flex items-center h-9 px-4 bg-palm text-ivory font-semibold text-[11px] font-sans-ui tracking-[0.18em] uppercase shadow-[0_6px_18px_rgba(42,103,17,0.3)] hover:bg-gold transition-colors">Partner with us</a>
           <CartButton light={lightChrome} />
-          <button onClick={() => setOpen((v) => !v)} className={`lg:hidden inline-flex items-center justify-center w-11 h-11 ${lightChrome ? "text-palm" : "text-ivory"}`} aria-label="Toggle menu">
+          <button onClick={() => setOpen((v) => !v)} className={`lg:hidden inline-flex items-center justify-center w-11 h-11 ${lightChrome ? "text-gold" : "text-ivory"}`} aria-label="Toggle menu">
             <span className="text-xl">{open ? "✕" : "☰"}</span>
           </button>
         </div>
@@ -67,7 +69,7 @@ export default function OuraNav({ solid = false }: { solid?: boolean }) {
             {LINKS.map((l) => (
               <div key={l.label} className="py-3">{renderItem(l, true)}</div>
             ))}
-            <a href="/#b2b" onClick={() => setOpen(false)} className="mt-2 inline-flex items-center h-11 px-6 bg-gold text-ivory text-[11px] font-sans-ui tracking-luxe uppercase">Partner With Us</a>
+            <a href="/#enquiry" onClick={() => setOpen(false)} className="mt-2 mb-4 inline-flex items-center h-10 px-4 bg-palm text-ivory font-semibold text-[11px] font-sans-ui tracking-[0.18em] uppercase shadow-[0_6px_18px_rgba(42,103,17,0.3)]">Partner with us</a>
           </motion.div>
         )}
       </AnimatePresence>

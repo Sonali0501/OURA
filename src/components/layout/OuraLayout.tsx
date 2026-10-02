@@ -12,7 +12,7 @@ export default function OuraLayout({
   solidNav?: boolean;
 }) {
   return (
-      <div className="bg-ivory text-palm min-h-screen flex flex-col">
+      <div className="bg-ivory text-gold min-h-screen flex flex-col">
         <OuraNav solid={solidNav} />
         <main className="flex-1">{children}</main>
         <OuraFooter />

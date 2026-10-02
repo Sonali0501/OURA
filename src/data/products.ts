@@ -1,4 +1,4 @@
-import { Droplet, Sparkles, Utensils, type LucideIcon } from 'lucide-react';
+import { Baby, Cookie, Droplet, Sparkles, Utensils, Wheat, type LucideIcon } from 'lucide-react';
 
 /**
  * Single source of truth for the product suite.
@@ -12,18 +12,16 @@ export type Product = {
   name: string;
   tag: string;
   icon: LucideIcon;
-  pct: string;
-  purity: string;
   desc: string;
   specs: { label: string; value: string }[];
+  /** The four points listed on the Spectrum card. */
+  pointers: string[];
   img: string;
-  accent: string;
   available: boolean;
   /** Matched against each review's `product_tag` in `data/reviews.ts`. */
   product_tags: string[];
 
   /* ---- detail page ---- */
-  tagline: string;
   gallery: string[];
   /**
    * Fallback price, shown only when Shopify is unreachable or unmapped.
@@ -46,13 +44,7 @@ export type Product = {
   /** Heading of the dark highlights band. Generic line when absent. */
   highlightsTitle?: string;
   story: string[];
-  boxContents: { label: string; value: string }[];
-  /** Declared nutrition. Same for every size — one oil, one press. */
-  nutrition?: { label: string; value: string }[];
-  /** Basis line under the nutrition heading, e.g. the serving it refers to. */
-  nutritionNote?: string;
   details: { title: string; body: string }[];
-  care: string[];
   /** Shown when the product is not on sale yet (coming soon). */
   launchNote?: string;
 };
@@ -63,30 +55,34 @@ export type Product = {
  * /products/culinary (→ /products/culinary_square.png).
  */
 const CULINARY_IMG = '/products/oura_culinary.jpg';
-const SHELLS_IMG = '/products/oura_shells.jpg';
-const VITA_IMG = '/products/oura_vita.jpg';
-const CARE_IMG = '/products/oura_care.jpg';
+const SHELLS_IMG = '/products/OURA_SHELLS.jpeg';
+const VITA_IMG = '/products/OURA_VITA.jpeg';
+const SHREDS_IMG = '/products/OURA_SHREADS.jpeg';
+const CRISPS_IMG = '/products/OURA_CRISPS.jpeg';
+const LITTLES_IMG = '/products/OURA_LITTLES.jpeg';
 
 export const PRODUCTS: Product[] = [
   {
     id: 'culinary',
     name: 'Oura Culinary',
-    tag: 'Oil',
+    tag: 'COLD-PRESSED OIL',
     icon: Sparkles,
-    pct: '92%',
-    purity: '100% Purity',
-    desc: 'Double-filtered Coconut Oil prepared from premium quality copra. This pure and crystal-clear coconut oil preserves the delicate flavors of your food and brings wholesome health to your family.',
+    desc: "Double-filtered coconut oil prepared from premium quality copra. Crystal-clear purity that preserves the delicate original flavors of your family's cooking.",
     specs: [
       { label: 'Process', value: 'Cold pressed' },
       { label: 'Additives', value: 'Zero' },
       { label: 'Uses', value: 'Care & Kitchen' },
     ],
+    pointers: [
+      'Cold-pressed under 45°C',
+      'Crystal-clear & unrefined',
+      'Zero chemical additives',
+      'Rich natural aroma',
+    ],
     img: CULINARY_IMG,
-    accent: '#D4A373',
     available: true,
     product_tags: ['culinary', 'oil'],
 
-    tagline: 'Cold-pressed virgin coconut oil — kitchen grade, heritage born.',
     gallery: [CULINARY_IMG, CULINARY_IMG, CULINARY_IMG, CULINARY_IMG],
     price: 649,
     compareAt: 749,
@@ -96,38 +92,12 @@ export const PRODUCTS: Product[] = [
     highlights: [
       '100% Pure & Edible Grade: Crafted exclusively from premium quality copra with zero compromises on quality.',
       'Nutrient-Dense: Crystal-clear oil that locks in natural goodness, bringing authentic flavor to your everyday cooking.',
-      'Rooted in Heritage: Sourced directly from the lush agrarian landscapes of Aluva, Kerala.',
+      'Rooted in Heritage: Sourced directly from the lush agrarian landscapes of Kochi, Kerala.',
     ],
     story: [
       'Oura Culinary begins where every honest oil should — at the tree. Mature coconuts are hand-picked from Kerala smallholdings, sun-dried in open air, and pressed the same week so nothing has time to go stale.',
       'We press cold, never above 45°C. Heat is what strips an oil of its lauric acid, its aroma, and the faint sweetness that tells you it came from a real coconut. Skipping the heat costs us yield. It is the whole point.',
       'What reaches your kitchen is unrefined and unapologetic: cloudy when cool, clear when warm, and unmistakably Kerala on the first spoon.',
-    ],
-    boxContents: [
-      { label: 'Net volume & weight', value: '1L (910g) and 500 ml (455g) at 30°C' },
-      { label: 'Packaging', value: 'Amber glass bottle, tamper seal' },
-      {
-        label: 'Shelf life',
-        value:
-          'Best before six months from the date of manufacturing (18 months from press date)',
-      },
-      {
-        label: 'Manufacturer & marketer',
-        value:
-          'SISIRAM PRIVATE LIMITED, Pallath Aikkarakudy, Malikampeedika, Aluva, Ernakulam, Kerala - 683511',
-      },
-      { label: 'FSSAI Lic. No.', value: '21326182001009' },
-      { label: 'Consumer care / feedback', value: 'contact@ouracoconut.com' },
-    ],
-    nutritionNote: 'Value per 100g of oil, approximate',
-    nutrition: [
-      { label: 'Energy / Calories', value: '900 kcal' },
-      { label: 'Saturated Fat', value: '95.6% by wt.' },
-      { label: 'Mono Unsaturated Fatty Acid', value: '3.4% by wt.' },
-      { label: 'Poly Unsaturated Fatty Acid', value: '01.0% by wt.' },
-      { label: 'Cholesterol', value: '0 g' },
-      { label: 'Protein', value: '0 g' },
-      { label: 'Carbohydrate', value: '0 g' },
     ],
     details: [
       // {
@@ -151,31 +121,28 @@ export const PRODUCTS: Product[] = [
         body: 'Dispatched from Kochi within 2 business days. Delivery typically 3–6 business days across India. If a bottle arrives damaged, send us a photo and we will replace it, no questions asked.',
       },
     ],
-    care: [
-      'Storage: Store in a cool, dry place away from direct sunlight.',
-      'Natural Solidification: Solidifying below 24°C is natural — warm the bottle to liquefy.',
-      'Best Practice: Use a dry spoon; moisture shortens the life of any unrefined oil.',
-    ],
   },
   {
     id: 'water',
     name: 'Oura Vita',
-    tag: 'Hydration',
+    tag: 'RAW HYDRATION',
     icon: Droplet,
-    pct: '100%',
-    purity: '100% Purity',
-    desc: 'Drawn at source from tender Kerala coconuts. Untouched, unfiltered, nutritionally complete.',
+    desc: 'Drawn at source from tender Kerala coconuts. Pure, living, cold-pressed tender coconut water loaded with bio-available natural electrolytes.',
     specs: [
       { label: 'pH Level', value: '5.5–6.5' },
       { label: 'Temperature', value: '< 45°C' },
       { label: 'Origin', value: 'Kerala, India' },
     ],
+    pointers: [
+      '100% Raw & Unpasteurized',
+      'Zero added sugars',
+      'Natural isotonic hydration',
+      'Untouched living nutrition',
+    ],
     img: VITA_IMG,
-    accent: '#4A5D23',
     available: false,
     product_tags: ['water'],
 
-    tagline: 'Tender coconut water, drawn and sealed at the source.',
     gallery: [VITA_IMG],
     highlights: [
       'Drawn from tender coconuts and sealed within hours of harvest',
@@ -185,11 +152,6 @@ export const PRODUCTS: Product[] = [
     story: [
       'Oura Vita is the simplest product we make and the hardest to get right. Tender coconut water begins to change the moment it meets air, so everything depends on how little time passes between the tree and the seal.',
       'Our answer is to process at source rather than ship nuts to a distant plant — the water is drawn, chilled and sealed in Kerala, close to the grove it came from.',
-    ],
-    boxContents: [
-      { label: 'Contents', value: 'Tender coconut water' },
-      { label: 'Packaging', value: 'Under development' },
-      { label: 'Origin', value: 'Kerala, India' },
     ],
     details: [
       {
@@ -201,76 +163,96 @@ export const PRODUCTS: Product[] = [
         body: 'Oura Vita is in pilot production. Formulation and packaging are locked; we are validating cold-chain logistics before opening retail orders. Write to us to be told first when it ships.',
       },
     ],
-    care: ['Refrigerate on arrival', 'Best consumed within 48 hours of opening'],
     launchNote:
       'Oura Vita is in pilot production. Retail pricing and pack sizes will be announced at launch.',
   },
   {
-    id: 'care',
-    name: 'Oura Care',
-    tag: 'Oil',
-    icon: Sparkles,
-    pct: '92%',
-    purity: '100% Purity',
-    desc: 'Two expressions of one promise — Care for hair and skin',
-    specs: [
-      { label: 'Press Temp', value: '< 45°C' },
-      { label: 'Format', value: 'Care + Culinary' },
-      { label: 'Grade', value: '100% Edible' },
+    id: 'shreds',
+    name: 'Oura Shreds',
+    tag: 'FRESH PANTRY KERNEL',
+    icon: Wheat,
+    desc: 'Pure, raw, zero-waste Kerala coconut shreds. Processed with precision to maintain natural moisture, rich coconut milk content, and fresh taste.',
+    specs: [],
+    pointers: [
+      'Freshly grated kernel',
+      'Zero preservatives',
+      'High natural oil content',
+      'Ideal for curries & baking',
     ],
-    img: CARE_IMG,
-    accent: '#D4A373',
+    img: SHREDS_IMG,
     available: false,
-    product_tags: ['care', 'oil'],
+    product_tags: ['shreds'],
 
-    tagline: 'The same pure press, formulated for hair and skin.',
-    gallery: [CARE_IMG],
-    highlights: [
-      'Same cold-pressed base as Oura Culinary — edible grade throughout',
-      'Formulated for scalp, hair length and body',
-      'No mineral oil, no silicones, no synthetic fragrance',
+    gallery: [SHREDS_IMG],
+    highlights: [],
+    story: [],
+    details: [],
+  },
+  {
+    id: 'crisps',
+    name: 'Oura Crisps',
+    tag: 'OVEN-BAKED GOURMET',
+    icon: Cookie,
+    desc: 'Oven-baked, never fried. Delicate, toasted coconut slices crafted from mature Kerala coconuts, gently seasoned for an authentic wholesome crunch.',
+    specs: [],
+    pointers: [
+      'Oven-baked non-fried snack',
+      'Gluten-free & high fiber',
+      '100% Natural plant-based',
+      'Gourmet natural seasoning',
     ],
-    story: [
-      'Oura Care exists because the oil we press is already good enough to eat — and anything you would happily eat is a reasonable thing to put on your skin.',
-      'The line keeps that base untouched and builds around it: lighter cuts for daily hair use, richer ones for body and scalp ritual.',
+    img: CRISPS_IMG,
+    available: false,
+    product_tags: ['crisps'],
+
+    gallery: [CRISPS_IMG],
+    highlights: [],
+    story: [],
+    details: [],
+  },
+  {
+    id: 'littles',
+    name: 'Oura Littles',
+    tag: 'GENTLE BABY CARE',
+    icon: Baby,
+    desc: 'Cold-pressed virgin coconut baby massage oil enriched with pure lavender essential oil. Formulated to nourish sensitive infant skin with total purity.',
+    specs: [],
+    pointers: [
+      'Cold-pressed virgin coconut oil',
+      'Pure soothing lavender',
+      'Hypoallergenic formula',
+      'Dermatologist tested',
     ],
-    boxContents: [
-      { label: 'Contents', value: 'Cold-pressed coconut oil, care format' },
-      { label: 'Packaging', value: 'Under development' },
-      { label: 'Origin', value: 'Aluva, Kerala, India' },
-    ],
-    details: [
-      {
-        title: 'Description',
-        body: 'A hair and skin expression of the OURA press — cold-pressed below 45°C, unrefined, and edible grade. Nothing in the bottle exists to change how it feels on the shelf.',
-      },
-      {
-        title: 'Availability',
-        body: 'Oura Care is in final formulation. Reach out to be notified when the line opens.',
-      },
-    ],
-    care: ['Store away from direct sunlight', 'Warm between palms before applying'],
-    launchNote: 'Oura Care is in final formulation. Pack sizes and pricing follow at launch.',
+    img: LITTLES_IMG,
+    available: false,
+    product_tags: ['littles'],
+
+    gallery: [LITTLES_IMG],
+    highlights: [],
+    story: [],
+    details: [],
   },
   {
     id: 'shells',
     name: 'Oura Shells',
-    tag: 'Lifestyle',
+    tag: 'HANDCRAFTED KITCHENWARE',
     icon: Utensils,
-    pct: 'Zero',
-    purity: 'Zero-Waste',
-    desc: 'Zero-waste lifestyle accessories crafted from repurposed coconut shells — beautiful, durable, planet-friendly.',
+    desc: 'Artisanal coconut bowls and spoon sets hand-finished from reclaimed coconut shells. Chemical-free, durable, and 100% planet-friendly.',
     specs: [
       { label: 'Material', value: 'Repurposed Shell' },
       { label: 'Waste', value: '0% Discarded' },
       { label: 'Durability', value: 'Lifetime' },
     ],
+    pointers: [
+      'Repurposed coconut shells',
+      'Zero lacquers or toxins',
+      'Hand-carved by local artisans',
+      'Sustainable kitchenware',
+    ],
     img: SHELLS_IMG,
-    accent: '#4A5D23',
     available: false,
     product_tags: ['shells'],
 
-    tagline: 'What the press leaves behind, the artisan finishes by hand.',
     gallery: [SHELLS_IMG],
     highlights: [
       'Made from shells left over by our own oil press — nothing bought, nothing wasted',
@@ -281,11 +263,6 @@ export const PRODUCTS: Product[] = [
       'Pressing oil leaves shells. Most of the industry burns them. We hand them to artisans instead.',
       'Every bowl, spoon and dish in this line starts as a by-product of the Culinary press, which is why the range is finite — we only make as much as we press.',
     ],
-    boxContents: [
-      { label: 'Material', value: '100% repurposed coconut shell' },
-      { label: 'Finish', value: 'Hand-polished, coconut oil' },
-      { label: 'Origin', value: 'Kerala, India' },
-    ],
     details: [
       {
         title: 'Description',
@@ -295,11 +272,6 @@ export const PRODUCTS: Product[] = [
         title: 'Availability',
         body: 'The Shells line is in artisan sampling. Bulk and corporate gifting enquiries are welcome now.',
       },
-    ],
-    care: [
-      'Hand wash with mild soap; do not soak',
-      'Avoid dishwashers, microwaves and extreme heat',
-      'Re-oil occasionally with a drop of coconut oil to restore lustre',
     ],
     launchNote: 'Oura Shells is in artisan sampling. Bulk and gifting enquiries are open today.',
   },

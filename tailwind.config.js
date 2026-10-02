@@ -24,14 +24,14 @@ export default {
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
-  			palm: '#163A2E',
+  			palm: '#3B8718',
   			ivory: '#FFFFFF',
-  			gold: '#2D6A28',
-  			slateink: '#1A3A31',
-  			obsidian: '#0D1F1A',
-  			parchment: '#F7F4EF',
-  			husk: '#D4A373',
-  			moss: '#3F7D3A'
+  			gold: '#2A6711',
+  			slateink: '#2A6711',
+  			obsidian: '#2A6711',
+  			parchment: '#F0F7ED',
+  			husk: '#FFFFFF',
+  			moss: '#499F1D'
   		},
   		fontFamily: {
   			heading: ['var(--font-heading)'],

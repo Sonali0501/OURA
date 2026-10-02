@@ -7,10 +7,10 @@ const PORTRAIT = "sreejith.jpg";
 const CANOPY = "canopy.webp";
 
 const ABOUT_SISIRAM =
-  "Sisiram Private Limited is headquartered in Kochi, Kerala, with our manufacturing unit in Aluva. We are a Kerala-based house of nature-led brands, crafting nature's finest goodness — sourcing directly from agrarian communities, processing without chemical interference, and finishing by hand. Every output is a quiet act of respect: for the soil, the artisan, and the family that will finally hold it.";
+  "Sisiram Group is headquartered in Kochi, Kerala, with our manufacturing unit. We are a Kerala-based house of nature-led brands, crafting nature's finest goodness — sourcing directly from agrarian communities, processing without chemical interference, and finishing by hand. Every output is a quiet act of respect: for the soil, the artisan, and the family that will finally hold it.";
 
 const VISIONARY =
-  "OURA is Sisiram Private Limited's first visionary brand — born to institutionalize the purity of the coconut. Not merely a product line, but a promise: to carry Kerala's raw, untouched goodness from the tree to the global table, with zero waste and absolute integrity.";
+  "OURA is Sisiram Group's first visionary brand — born to institutionalize the purity of the coconut. Not merely a product line, but a promise: to carry Kerala's raw, untouched goodness from the tree to the global table, with zero waste and absolute integrity.";
 
 const CEO_BRIEF =
   "Sreejith Murali is the founder and CEO of OURA. Over a decade he directed a $3.25M VC-backed portfolio across high-growth AI, SaaS and technology ventures, scaling businesses from scratch across the GCC, EMEA and North America, and holds specializations from the University of Oxford and Harvard Business School.";
@@ -39,17 +39,17 @@ const HIGHLIGHTS = [
 
 export default function FounderProfile() {
   return (
-    <div className="bg-ivory text-palm">
+    <div className="bg-ivory text-gold">
       {/* Sisiram hero */}
-      <section className="relative bg-palm text-ivory pt-28 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
+      <section className="relative bg-theme-gradient text-ivory pt-28 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
+        <div className="absolute inset-0 opacity-25">
           <img src={CANOPY} alt="" className="w-full h-full fill" />
         </div>
         <div className="relative mx-auto max-w-[1440px] px-6 lg:px-12 text-center">
           <Reveal>
             <p className="text-husk text-[11px] font-sans-ui tracking-luxe uppercase">The House Behind OURA</p>
             <h1 className="mt-6 font-display font-bold leading-[0.92]" style={{ fontSize: "clamp(2.4rem, 6vw, 5rem)" }}>
-              Sisiram Private Limited
+              Sisiram Group
             </h1>
             <p className="mt-5 font-display italic text-ivory/85 text-xl lg:text-2xl">Crafting Nature's Finest Goodness</p>
             <p className="mt-4 text-[11px] font-sans-ui tracking-luxe text-ivory/70 uppercase">Kochi, Kerala, India</p>
@@ -65,18 +65,18 @@ export default function FounderProfile() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           <Reveal className="lg:col-span-4">
             <p className="text-gold text-[11px] font-sans-ui tracking-luxe uppercase">About Sisiram</p>
-            <h2 className="mt-4 font-display text-2xl font-semibold text-palm leading-tight">
-              Headquartered in Kochi,<br />Crafted in Aluva
+            <h2 className="mt-4 font-display text-3xl font-semibold text-gold leading-tight">
+              Headquartered and <br />Crafted in Kochi
             </h2>
           </Reveal>
           <Reveal delay={0.1} className="lg:col-span-8">
-            <p className="text-xl font-display text-palm leading-relaxed">{ABOUT_SISIRAM}</p>
+            <p className="text-xl font-display text-gold leading-relaxed">{ABOUT_SISIRAM}</p>
           </Reveal>
         </div>
       </section>
 
       {/* Our First Visionary Brand — OURA */}
-      <section className="bg-palm text-ivory">
+      <section className="bg-theme-gradient text-ivory">
         <div className="mx-auto max-w-[1100px] px-6 lg:px-12 py-16 lg:py-24 text-center">
           <Reveal>
             <p className="text-husk text-[11px] font-sans-ui tracking-luxe uppercase">Our First Visionary Brand</p>
@@ -90,7 +90,7 @@ export default function FounderProfile() {
       </section>
 
       {/* The Founder & CEO */}
-      <section className="bg-secondary text-palm">
+      <section className="bg-secondary text-gold">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-12 py-16 lg:py-24">
           <Reveal>
             <p className="text-gold text-[11px] font-sans-ui tracking-luxe uppercase">The Founder &amp; CEO</p>
@@ -106,19 +106,19 @@ export default function FounderProfile() {
                   <img src={PORTRAIT} alt="Sreejith Murali, Founder & CEO of OURA" />
                 </div>
                 <div className="mt-6 max-w-sm">
-                  <p className="font-display text-2xl font-semibold text-palm leading-snug">“{QUOTE}”</p>
-                  <p className="mt-3 text-[10px] font-sans-ui tracking-luxe uppercase text-palm/65">Sreejith Murali · Founder &amp; CEO</p>
+                  <p className="font-display text-2xl font-semibold text-gold leading-snug">“{QUOTE}”</p>
+                  <p className="mt-3 text-[10px] font-sans-ui tracking-luxe uppercase text-gold/65">Sreejith Murali · Founder &amp; CEO</p>
                 </div>
               </Reveal>
             </div>
             <div className="lg:col-span-7">
               <Reveal>
-                <p className="text-lg font-display text-palm leading-relaxed">{CEO_BRIEF}</p>
+                <p className="text-lg font-display text-gold leading-relaxed">{CEO_BRIEF}</p>
               </Reveal>
               <div className="mt-6 space-y-4">
                 {ORIGIN.map((p, i) => (
                   <Reveal key={i} delay={i * 0.08}>
-                    <p className="text-base text-palm/85 leading-relaxed">{p}</p>
+                    <p className="text-base text-gold/85 leading-relaxed">{p}</p>
                   </Reveal>
                 ))}
               </div>
@@ -126,8 +126,8 @@ export default function FounderProfile() {
                 <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
                   {STORIES.map((s) => (
                     <div key={s.k} className="border-t-2 border-palm/25 pt-4">
-                      <p className="font-display text-xl font-semibold text-palm">{s.k}</p>
-                      <p className="mt-2 text-sm text-palm/80 leading-relaxed">{s.body}</p>
+                      <p className="font-display text-xl font-semibold text-gold">{s.k}</p>
+                      <p className="mt-2 text-sm text-gold/80 leading-relaxed">{s.body}</p>
                     </div>
                   ))}
                 </div>
@@ -138,7 +138,7 @@ export default function FounderProfile() {
       </section>
 
       {/* Pedigree */}
-      <section className="bg-palm text-ivory">
+      <section className="bg-theme-gradient text-ivory">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-12 py-16 lg:py-20">
           <Reveal>
             <p className="text-husk text-[11px] font-sans-ui tracking-luxe uppercase">Executive Pedigree</p>
@@ -169,8 +169,8 @@ export default function FounderProfile() {
             Experience the Promise of Purity
           </h2>
           <div className="mt-7 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link to="/#shop" className="h-12 px-8 inline-flex items-center bg-palm text-ivory text-[11px] font-sans-ui tracking-luxe uppercase hover:bg-slateink transition">Shop the Suite</Link>
-            <a href="/#b2b" className="h-12 px-8 inline-flex items-center border border-palm/30 text-palm text-[11px] font-sans-ui tracking-luxe uppercase hover:border-palm hover:bg-palm hover:text-ivory transition">Partner With Us</a>
+            <Link to="/#shop" className="h-12 px-8 inline-flex items-center bg-[#FAF6EC] text-gold border-2 border-palm font-semibold text-[11px] font-sans-ui tracking-[0.18em] uppercase hover:bg-[#F2EBDA] transition">Shop the Suite</Link>
+            <a href="/#enquiry" className="h-12 px-8 inline-flex items-center border border-palm/30 text-gold text-[11px] font-sans-ui tracking-[0.18em] uppercase hover:border-palm hover:bg-theme-gradient hover:text-ivory transition">Partner With Us</a>
           </div>
         </Reveal>
       </section> */}

@@ -5,7 +5,7 @@ const LINKS = [
   { label: "Genesis", href: "/#genesis" },
   { label: "Spectrum", href: "/#spectrum" },
   { label: "Soil to Sip", href: "/#soil-to-sip" },
-  { label: "Partner With Us", href: "/#b2b" }
+  { label: "Partner With Us", href: "/#enquiry" }
 ];
 
 const SOCIALS = [
@@ -26,7 +26,7 @@ const SOCIALS = [
 
 export default function OuraFooter() {
   return (
-    <footer className="bg-ivory text-palm border-t border-palm/10">
+    <footer className="bg-ivory text-gold border-t border-palm/10">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12 py-16">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
           <div className="md:col-span-5">
@@ -34,7 +34,7 @@ export default function OuraFooter() {
             <p className="mt-2 text-[11px] font-sans-ui tracking-luxe uppercase text-gold">
               The Complete Coconut Story
             </p>
-            <p className="mt-5 max-w-sm text-sm text-palm/75 leading-relaxed">
+            <p className="mt-5 max-w-sm text-sm text-gold/75 leading-relaxed">
               Organic. Untouched. Raw. Authentic. A promise of pure heritage — engineered from our
               home in Kerala to yours.
             </p>
@@ -46,7 +46,7 @@ export default function OuraFooter() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={name}
-                  className="text-palm/55 hover:text-gold transition-colors"
+                  className="text-gold/55 hover:text-gold transition-colors"
                 >
                   <Icon className="w-6 h-6" strokeWidth={2} />
                 </a>
@@ -56,7 +56,7 @@ export default function OuraFooter() {
           </div>
 
           <div className="md:col-span-3">
-            <p className="text-[10px] font-sans-ui tracking-luxe uppercase text-palm/55 mb-4">
+            <p className="text-[10px] font-sans-ui tracking-luxe uppercase text-gold/55 mb-4">
               Explore
             </p>
             <ul className="space-y-3">
@@ -64,7 +64,7 @@ export default function OuraFooter() {
                 <li key={l.label}>
                   <a
                     href={l.href}
-                    className="text-sm text-palm/70 hover:text-gold transition-colors"
+                    className="text-sm text-gold/70 hover:text-gold transition-colors"
                   >
                     {l.label}
                   </a>
@@ -74,11 +74,11 @@ export default function OuraFooter() {
           </div>
 
           <div className="md:col-span-4">
-            <p className="text-[10px] font-sans-ui tracking-luxe uppercase text-palm/55 mb-4">
+            <p className="text-[10px] font-sans-ui tracking-luxe uppercase text-gold/55 mb-4">
               Contact
             </p>
-            <p className="text-sm text-palm/70">Sisiram Private Limited</p>
-            <p className="text-sm text-palm/70">Kochi, Kerala, India</p>
+            <p className="text-sm text-gold/70">Sisiram Group</p>
+            <p className="text-sm text-gold/70">Kochi, Kerala, India</p>
             <a href="mailto:ontact@ouracoconut.com" className="block mt-3 text-sm text-gold hover:underline">
               contact@ouracoconut.com
             </a>
@@ -89,8 +89,8 @@ export default function OuraFooter() {
         </div>
 
         <div className="mt-14 pt-6 border-t border-palm/10 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-[10px] font-sans-ui tracking-luxe uppercase text-palm/55">
-            © {new Date().getFullYear()} Sisiram Private Limited
+          <p className="text-[10px] font-sans-ui tracking-luxe uppercase text-gold/55">
+            © {new Date().getFullYear()} Sisiram Group
           </p>
         </div>
       </div>
