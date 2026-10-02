@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useSpring } from 'framer-motion';
 
 const GROVE_IMG = 'soli_to_sip_1.png';
 const FARMER_IMG = 'soli_to_sip_2.png';
@@ -35,7 +35,9 @@ export default function SoilToSip() {
     target: ref,
     offset: ['start start', 'end end'],
   });
-  const liquidFill = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+  // A spring eases the fill between scroll steps (mouse wheels jump in notches),
+  // and scaleY animates on the GPU instead of re-laying out a height each frame.
+  const liquidFill = useSpring(scrollYProgress, { stiffness: 90, damping: 24, restDelta: 0.001 });
 
   return (
     <section id="soil-to-sip" ref={ref} className="relative bg-ivory text-gold py-16 md:py-24 px-6 md:px-12 overflow-hidden">
@@ -56,11 +58,10 @@ export default function SoilToSip() {
       <div className="relative">
         <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 -translate-x-1/2 bg-palm/15 pointer-events-none">
           <motion.div
-            style={{ height: liquidFill }}
-            className="w-full bg-gradient-to-b from-moss via-palm to-gold relative"
-          >
-            <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-palm shadow-lg" />
-          </motion.div>
+            style={{ scaleY: liquidFill }}
+            className="h-full w-full origin-top bg-gradient-to-b from-moss via-palm to-gold will-change-transform"
+          />
+          <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-palm shadow-lg" />
         </div>
 
         <div className="max-w-[1400px] mx-auto relative">
