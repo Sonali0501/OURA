@@ -1,4 +1,13 @@
-import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
+
+/** The X (formerly Twitter) mark — lucide has none. Padded viewBox so it sits at the same visual size as the outline icons. */
+function XLogo({ className }: { className?: string; strokeWidth?: number }) {
+  return (
+    <svg viewBox="-2.5 -2.5 29 29" fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+    </svg>
+  );
+}
 
 // Root-absolute hashes so the links also resolve from /founder and /products/:id
 const LINKS = [
@@ -9,10 +18,10 @@ const LINKS = [
 ];
 
 const SOCIALS = [
-  { name: "X", href: "https://x.com/ouracoconut", icon: Twitter },
+  { name: "X", href: "https://x.com/ouracoconut", icon: XLogo },
   {
     name: "Instagram",
-    href: "https://www.instagram.com/ouracoconut?igsh=MW4zM2o4c3M5NDd1MQ==",
+    href: "https://www.instagram.com/indiaoura/",
     icon: Instagram
   },
   { name: "LinkedIn", href: "https://www.linkedin.com/company/ouraindia/", icon: Linkedin },
