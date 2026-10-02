@@ -167,49 +167,6 @@ export const PRODUCTS: Product[] = [
       'Oura Vita is in pilot production. Retail pricing and pack sizes will be announced at launch.',
   },
   {
-    id: 'shells',
-    name: 'Oura Shells',
-    tag: 'HANDCRAFTED KITCHENWARE',
-    icon: Utensils,
-    desc: 'Artisanal coconut bowls and spoon sets hand-finished from reclaimed coconut shells. Chemical-free, durable, and 100% planet-friendly.',
-    specs: [
-      { label: 'Material', value: 'Repurposed Shell' },
-      { label: 'Waste', value: '0% Discarded' },
-      { label: 'Durability', value: 'Lifetime' },
-    ],
-    pointers: [
-      'Repurposed coconut shells',
-      'Zero lacquers or toxins',
-      'Hand-carved by local artisans',
-      'Sustainable kitchenware',
-    ],
-    img: SHELLS_IMG,
-    available: false,
-    product_tags: ['shells'],
-
-    gallery: [SHELLS_IMG],
-    highlights: [
-      'Made from shells left over by our own oil press — nothing bought, nothing wasted',
-      'Hand-finished by Kerala artisans, polished with coconut oil',
-      'Fully biodegradable at end of life',
-    ],
-    story: [
-      'Pressing oil leaves shells. Most of the industry burns them. We hand them to artisans instead.',
-      'Every bowl, spoon and dish in this line starts as a by-product of the Culinary press, which is why the range is finite — we only make as much as we press.',
-    ],
-    details: [
-      {
-        title: 'Description',
-        body: 'Zero-waste tableware and bath accessories cut from the shells our own press discards, then sanded, shaped and polished by hand. Each piece carries its own grain — no two are identical.',
-      },
-      {
-        title: 'Availability',
-        body: 'The Shells line is in artisan sampling. Bulk and corporate gifting enquiries are welcome now.',
-      },
-    ],
-    launchNote: 'Oura Shells is in artisan sampling. Bulk and gifting enquiries are open today.',
-  },
-  {
     id: 'shreds',
     name: 'Oura Shreds',
     tag: 'FRESH PANTRY KERNEL',
@@ -274,6 +231,49 @@ export const PRODUCTS: Product[] = [
     highlights: [],
     story: [],
     details: [],
+  },
+  {
+    id: 'shells',
+    name: 'Oura Shells',
+    tag: 'HANDCRAFTED KITCHENWARE',
+    icon: Utensils,
+    desc: 'Artisanal coconut bowls and spoon sets hand-finished from reclaimed coconut shells. Chemical-free, durable, and 100% planet-friendly.',
+    specs: [
+      { label: 'Material', value: 'Repurposed Shell' },
+      { label: 'Waste', value: '0% Discarded' },
+      { label: 'Durability', value: 'Lifetime' },
+    ],
+    pointers: [
+      'Repurposed coconut shells',
+      'Zero lacquers or toxins',
+      'Hand-carved by local artisans',
+      'Sustainable kitchenware',
+    ],
+    img: SHELLS_IMG,
+    available: false,
+    product_tags: ['shells'],
+
+    gallery: [SHELLS_IMG],
+    highlights: [
+      'Made from shells left over by our own oil press — nothing bought, nothing wasted',
+      'Hand-finished by Kerala artisans, polished with coconut oil',
+      'Fully biodegradable at end of life',
+    ],
+    story: [
+      'Pressing oil leaves shells. Most of the industry burns them. We hand them to artisans instead.',
+      'Every bowl, spoon and dish in this line starts as a by-product of the Culinary press, which is why the range is finite — we only make as much as we press.',
+    ],
+    details: [
+      {
+        title: 'Description',
+        body: 'Zero-waste tableware and bath accessories cut from the shells our own press discards, then sanded, shaped and polished by hand. Each piece carries its own grain — no two are identical.',
+      },
+      {
+        title: 'Availability',
+        body: 'The Shells line is in artisan sampling. Bulk and corporate gifting enquiries are welcome now.',
+      },
+    ],
+    launchNote: 'Oura Shells is in artisan sampling. Bulk and gifting enquiries are open today.',
   },
 ];
 

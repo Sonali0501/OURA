@@ -18,5 +18,5 @@ export const CREATOR_VIDEOS: CreatorVideo[] = [
   { src: '/igVideos/oura_ig_4.mp4', reelUrl: 'https://www.instagram.com/p/DdgvHaGtcct' },
   { src: '/igVideos/oura_ig_5.mp4', reelUrl: 'https://www.instagram.com/p/DdyX-MuJGDD' },
   { src: '/igVideos/oura_ig_6.mp4', reelUrl: 'https://www.instagram.com/p/Dc01VSLS7AS' },
-  { src: '/igVideos/oura_ig_7.mp4', reelUrl: 'https://www.instagram.com/p/Dd6gj9ZvKPo' }
+  // { src: '/igVideos/oura_ig_7.mp4', reelUrl: 'https://www.instagram.com/p/Dd6gj9ZvKPo' }
 ];
