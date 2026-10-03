@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import Reveal from "./Reveal";
+import { useDeferredMedia } from "../../lib/deferredMedia";
 
 const PORTRAIT = "founder_sreejith.webp";
 
 export default function DeepDiveLink() {
+  // Lazy until the hero is playing, then fetched in the background before the visitor scrolls here.
+  const imgLoading = useDeferredMedia() ? "eager" : "lazy";
   return (
     <section className="bg-ivory text-gold border-y-2 border-palm">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12 py-16 lg:py-20">
@@ -12,6 +15,8 @@ export default function DeepDiveLink() {
             <div className="overflow-hidden rounded-sm">
               <img
                 src={PORTRAIT}
+                loading={imgLoading}
+                decoding="async"
                 alt="Sreejith Murali, Founder & CEO of OURA"
                 className="w-full h-auto fill"
               />

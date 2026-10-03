@@ -1,4 +1,7 @@
+import { useEffect, useRef } from "react";
 import Reveal from "./Reveal";
+import { useNearViewport } from "../../hooks/useNearViewport";
+import { useDeferredMedia } from "../../lib/deferredMedia";
 
 const BRAND_VIDEO = "/brand_video.mp4";
 const BRAND_POSTER = "/canopy.webp";
@@ -10,6 +13,23 @@ const STORY = [
 ];
 
 export default function Genesis() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  // Downloads in the background once the hero is playing (so it's ready before
+  // the visitor scrolls here), and plays when it comes into range.
+  const ready = useDeferredMedia();
+  const near = useNearViewport(videoRef);
+  const load = ready || near;
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!near || !el) return;
+    // React sets `muted` as a property, which some mobile browsers check too late for autoplay.
+    el.muted = true;
+    el.play().catch(() => {
+      /* Autoplay refused (e.g. Low Power Mode) — the poster stays up. */
+    });
+  }, [near]);
+
   return (
     <section id="genesis" className="relative bg-ivory text-gold grain">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12 py-16 lg:py-24">
@@ -26,19 +46,18 @@ export default function Genesis() {
             <Reveal>
               <div className="relative overflow-hidden rounded-sm">
                 <video
-                  autoPlay
+                  ref={videoRef}
+                  src={load ? BRAND_VIDEO : undefined}
                   loop
                   muted
                   playsInline
-                  preload="metadata"
+                  preload={load ? "auto" : "none"}
                   poster={BRAND_POSTER}
                   controls={false}
                   disablePictureInPicture
                   className="bg-video w-full aspect-[3/2] object-cover"
                   aria-label="OURA brand film"
-                >
-                  <source src={BRAND_VIDEO} type="video/mp4" />
-                </video>
+                />
               </div>
             </Reveal>
           </div>

@@ -5,6 +5,7 @@ import { Check, Loader2 } from 'lucide-react';
 import { PRODUCTS, formatMoney, productPath, type Product } from '../../data/products';
 import { useCart } from '../../context/cartContext';
 import { useProductVariants } from '../../hooks/useProductVariants';
+import { useDeferredMedia } from '../../lib/deferredMedia';
 
 /** Size picker, price and cart actions — only rendered for products on sale. */
 function CardPurchase({ product }: { product: Product }) {
@@ -120,6 +121,8 @@ function CardPurchase({ product }: { product: Product }) {
  * compact coming-soon cards next to it.
  */
 function ProductCard({ product, featured = false }: { product: Product; featured?: boolean }) {
+  // Lazy until the hero is playing, then fetched in the background before the visitor scrolls here.
+  const imgLoading = useDeferredMedia() ? "eager" : "lazy";
   const card = (
     <div className={`group flex flex-col h-full bg-ivory border border-palm/10 rounded-xl overflow-hidden shadow-[0_8px_24px_rgba(42,103,17,0.08)] hover:shadow-[0_12px_32px_rgba(42,103,17,0.14)] hover:border-gold/40 transition-[border-color,box-shadow] duration-300 ${featured ? 'lg:flex-row' : ''}`}>
       {/* Landscape image — top */}
@@ -128,12 +131,14 @@ function ProductCard({ product, featured = false }: { product: Product; featured
           <Link to={productPath(product.id)} tabIndex={-1} aria-hidden="true" className="block w-full h-full">
             <img
               src={product.img}
+              loading={imgLoading}
+              decoding="async"
               alt={product.name}
               className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${featured ? 'lg:absolute lg:inset-0' : ''}`}
             />
           </Link>
         ) : (
-          <img src={product.img} alt={product.name} className="w-full h-full object-cover" />
+          <img src={product.img} alt={product.name} loading={imgLoading} decoding="async" className="w-full h-full object-cover" />
         )}
 
         {/* Light wash so unavailable products read as not-yet-on-sale */}

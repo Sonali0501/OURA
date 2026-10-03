@@ -104,6 +104,8 @@ function ProductMiniCard({ product }: { product: Product }) {
       <div className="aspect-square overflow-hidden bg-parchment">
         <img
           src={product.img}
+          loading="lazy"
+          decoding="async"
           alt={product.name}
           className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${
             product.available ? "" : "brightness-[0.75] saturate-75"

@@ -1,6 +1,8 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Volume2, VolumeX } from "lucide-react";
 import Reveal from "./Reveal";
+import { useNearViewport } from "../../hooks/useNearViewport";
+import { useDeferredMedia } from "../../lib/deferredMedia";
 import { CREATOR_VIDEOS, type CreatorVideo } from "../../data/creatorVideos";
 
 const reelLabel = (video: CreatorVideo) =>
@@ -29,16 +31,20 @@ function InstagramLogo({ className }: { className?: string }) {
 }
 
 /**
- * One reel preview. Plays muted only while it is on screen — five full reels
- * are ~50 MB, so nothing downloads past the first frame until a card scrolls
- * into view. Clicking the card opens the reel on Instagram.
+ * One reel preview. Every reel downloads in the background once the hero is
+ * playing (or as the section approaches, if sooner), so nothing waits when the
+ * visitor arrives. Each plays muted only while on screen. Clicking the card
+ * opens the reel on Instagram.
  */
 function ReelCard({
   video,
+  load,
   soundOn,
   onToggleSound,
 }: {
   video: CreatorVideo;
+  /** Set once below-the-fold media may load; until then nothing downloads. */
+  load: boolean;
   /** Only one reel in the row may have sound — the section decides which. */
   soundOn: boolean;
   onToggleSound: () => void;
@@ -81,11 +87,11 @@ function ReelCard({
         <video
           ref={ref}
           // #t= nudges iOS Safari into painting the first frame as a poster
-          src={`${video.src}#t=0.1`}
+          src={load ? `${video.src}#t=0.1` : undefined}
           muted
           loop
           playsInline
-          preload="metadata"
+          preload={load ? "auto" : "none"}
           disablePictureInPicture
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           aria-hidden="true"
@@ -135,6 +141,11 @@ function ReelCard({
 
 export default function CreatorVideos() {
   const trackRef = useRef<HTMLUListElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  // All reels load together — in the background once the hero is playing, or as
+  // the section approaches if that comes first — never card by card on swipe.
+  const ready = useDeferredMedia();
+  const near = useNearViewport(sectionRef, "600px");
   const [soundSrc, setSoundSrc] = useState<string | null>(null);
 
   if (CREATOR_VIDEOS.length === 0) return null;
@@ -149,7 +160,7 @@ export default function CreatorVideos() {
     "w-11 h-11 rounded-full border border-ivory/40 text-ivory flex items-center justify-center hover:bg-ivory hover:border-ivory hover:text-gold transition";
 
   return (
-    <section id="creators" className="bg-theme-gradient text-ivory py-16 md:py-24 overflow-hidden">
+    <section ref={sectionRef} id="creators" className="bg-theme-gradient text-ivory py-16 md:py-24 overflow-hidden">
       <div className="mx-auto max-w-[1400px] px-6 md:px-12">
         <Reveal>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -182,6 +193,7 @@ export default function CreatorVideos() {
               <ReelCard
                 key={video.src}
                 video={video}
+                load={ready || near}
                 soundOn={soundSrc === video.src}
                 onToggleSound={() => setSoundSrc((cur) => (cur === video.src ? null : video.src))}
               />

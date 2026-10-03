@@ -1,8 +1,11 @@
 import { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion"
+import { startDeferredMedia } from "../../lib/deferredMedia";
 
-const HERO_VIDEO = "/coconut_no_thumbnail.mp4";
-const HERO_POSTER = "/hero_poster.png";
+const HERO_VIDEO = "/video1.mp4";
+/** Same clip at a lower bitrate (1 MB vs 2.2 MB) — starts sooner on phone connections. */
+const HERO_VIDEO_MOBILE = "/video1_mobile.mp4";
+const HERO_POSTER = "/hero_poster.jpg";
 
 /* Older iOS and the Android WeChat/X5 engines only honour their own vendor
    spellings of playsinline; they aren't in React's prop types. */
@@ -39,6 +42,8 @@ export default function Hero() {
         .then(() => {
           settled = true;
           cleanup();
+          // Hero is up — let the rest of the page's media start downloading.
+          startDeferredMedia();
         })
         .catch(() => {
           /* Blocked for now — the listeners below will try again. */
@@ -89,6 +94,8 @@ export default function Hero() {
           className="bg-video h-full w-auto lg:w-full max-w-none object-cover"
           aria-hidden
         >
+          {/* Browsers take the first <source> whose media query matches */}
+          <source src={HERO_VIDEO_MOBILE} type="video/mp4" media="(max-width: 767px)" />
           <source src={HERO_VIDEO} type="video/mp4" />
         </video>
         {/* Matches the live site: its overlay uses the original deep green, #163A2E */}

@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
+import { useDeferredMedia } from '../../lib/deferredMedia';
 
 const GROVE_IMG = 'soli_to_sip_1.png';
 const FARMER_IMG = 'soli_to_sip_2.png';
@@ -30,6 +31,8 @@ const STAGES = [
 ];
 
 export default function SoilToSip() {
+  // Lazy until the hero is playing, then fetched in the background before the visitor scrolls here.
+  const imgLoading = useDeferredMedia() ? "eager" : "lazy";
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -82,6 +85,8 @@ export default function SoilToSip() {
                 <div className={`relative overflow-hidden ${stage.side === 'right' ? 'md:ml-20' : 'md:mr-20'}`}>
                   <motion.img
                     src={stage.img}
+                    loading={imgLoading}
+                    decoding="async"
                     alt={stage.title}
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.6 }}
