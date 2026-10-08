@@ -18,7 +18,7 @@ export default function Testimonials() {
               Loved Across India &amp; Beyond
             </h2>
             <p className="mt-4 text-base md:text-lg text-gold/75 max-w-2xl leading-relaxed">
-              From Kerala to Delhi, Bangalore, Chennai, Hyderabad, Mumbai and Pune — families who keep
+              From Kerala to Delhi, Bangalore, Chennai, Hyderabad, Mumbai and Pune - families who keep
               OURA on their table and in their story.
             </p>
           </div>

@@ -1,6 +1,6 @@
 import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 
-/** The X (formerly Twitter) mark — lucide has none. Padded viewBox so it sits at the same visual size as the outline icons. */
+/** The X (formerly Twitter) mark - lucide has none. Padded viewBox so it sits at the same visual size as the outline icons. */
 function XLogo({ className }: { className?: string; strokeWidth?: number }) {
   return (
     <svg viewBox="-2.5 -2.5 29 29" fill="currentColor" aria-hidden="true" className={className}>
@@ -44,7 +44,7 @@ export default function OuraFooter() {
               The Complete Coconut Story
             </p>
             <p className="mt-5 max-w-sm text-sm text-gold/75 leading-relaxed">
-              Organic. Untouched. Raw. Authentic. A promise of pure heritage — engineered from our
+              Organic. Untouched. Raw. Authentic. A promise of pure heritage - engineered from our
               home in Kerala to yours.
             </p>
             <div className="mt-5 flex flex-row gap-4">

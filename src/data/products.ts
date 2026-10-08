@@ -25,7 +25,7 @@ export type Product = {
   gallery: string[];
   /**
    * Fallback price, shown only when Shopify is unreachable or unmapped.
-   * Shopify is the source of truth — see hooks/useProductPricing.
+   * Shopify is the source of truth - see hooks/useProductPricing.
    */
   price?: number;
   compareAt?: number;
@@ -95,14 +95,14 @@ export const PRODUCTS: Product[] = [
       'Rooted in Heritage: Sourced directly from the lush agrarian landscapes of Kochi, Kerala.',
     ],
     story: [
-      'Oura Culinary begins where every honest oil should — at the tree. Mature coconuts are hand-picked from Kerala smallholdings, sun-dried in open air, and pressed the same week so nothing has time to go stale.',
+      'Oura Culinary begins where every honest oil should - at the tree. Mature coconuts are hand-picked from Kerala smallholdings, sun-dried in open air, and pressed the same week so nothing has time to go stale.',
       'We press cold, never above 45°C. Heat is what strips an oil of its lauric acid, its aroma, and the faint sweetness that tells you it came from a real coconut. Skipping the heat costs us yield. It is the whole point.',
       'What reaches your kitchen is unrefined and unapologetic: cloudy when cool, clear when warm, and unmistakably Kerala on the first spoon.',
     ],
     details: [
       // {
       //   title: 'Description',
-      //   body: 'A single-ingredient virgin coconut oil, cold-pressed from fresh Kerala copra and filtered only through cloth. Nothing is added and nothing is taken away — no refining, no bleaching, no deodorising. Expect a soft coconut aroma, a clean finish, and a texture that turns solid below 24°C, which is exactly how pure oil should behave.',
+      //   body: 'A single-ingredient virgin coconut oil, cold-pressed from fresh Kerala copra and filtered only through cloth. Nothing is added and nothing is taken away - no refining, no bleaching, no deodorising. Expect a soft coconut aroma, a clean finish, and a texture that turns solid below 24°C, which is exactly how pure oil should behave.',
       // },
       {
         title: 'How to use',
@@ -114,7 +114,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         title: 'Care & Storage',
-        body: 'Store in a cool, dry place away from direct sunlight. Solidification below 24°C is natural — warm the bottle to liquefy. Use a dry spoon; moisture shortens the life of any unrefined oil.',
+        body: 'Store in a cool, dry place away from direct sunlight. Solidification below 24°C is natural - warm the bottle to liquefy. Use a dry spoon; moisture shortens the life of any unrefined oil.',
       },
       {
         title: 'Shipping',
@@ -151,12 +151,12 @@ export const PRODUCTS: Product[] = [
     ],
     story: [
       'Oura Vita is the simplest product we make and the hardest to get right. Tender coconut water begins to change the moment it meets air, so everything depends on how little time passes between the tree and the seal.',
-      'Our answer is to process at source rather than ship nuts to a distant plant — the water is drawn, chilled and sealed in Kerala, close to the grove it came from.',
+      'Our answer is to process at source rather than ship nuts to a distant plant - the water is drawn, chilled and sealed in Kerala, close to the grove it came from.',
     ],
     details: [
       {
         title: 'Description',
-        body: 'A single-ingredient tender coconut water with nothing added and nothing concentrated — the pH sits naturally between 5.5 and 6.5 and the electrolyte profile is the one the coconut wrote, not one we blended back in.',
+        body: 'A single-ingredient tender coconut water with nothing added and nothing concentrated - the pH sits naturally between 5.5 and 6.5 and the electrolyte profile is the one the coconut wrote, not one we blended back in.',
       },
       {
         title: 'Availability',
@@ -255,18 +255,18 @@ export const PRODUCTS: Product[] = [
 
     gallery: [SHELLS_IMG],
     highlights: [
-      'Made from shells left over by our own oil press — nothing bought, nothing wasted',
+      'Made from shells left over by our own oil press - nothing bought, nothing wasted',
       'Hand-finished by Kerala artisans, polished with coconut oil',
       'Fully biodegradable at end of life',
     ],
     story: [
       'Pressing oil leaves shells. Most of the industry burns them. We hand them to artisans instead.',
-      'Every bowl, spoon and dish in this line starts as a by-product of the Culinary press, which is why the range is finite — we only make as much as we press.',
+      'Every bowl, spoon and dish in this line starts as a by-product of the Culinary press, which is why the range is finite - we only make as much as we press.',
     ],
     details: [
       {
         title: 'Description',
-        body: 'Zero-waste tableware and bath accessories cut from the shells our own press discards, then sanded, shaped and polished by hand. Each piece carries its own grain — no two are identical.',
+        body: 'Zero-waste tableware and bath accessories cut from the shells our own press discards, then sanded, shaped and polished by hand. Each piece carries its own grain - no two are identical.',
       },
       {
         title: 'Availability',

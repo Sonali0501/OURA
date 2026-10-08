@@ -19,14 +19,14 @@ export type CartLine = {
 };
 
 /**
- * The size being bought, resolved by the caller — price and GID come from
+ * The size being bought, resolved by the caller - price and GID come from
  * Shopify when it answered, from data/products.ts when it didn't. Omit it for
  * a product with a single size.
  */
 export type CartSelection = {
   /** Local variant slug, e.g. '500ml'. Part of the line id in local mode. */
   variantId: string;
-  /** Line label, e.g. 'Oura Culinary — 500 ml'. */
+  /** Line label, e.g. 'Oura Culinary - 500 ml'. */
   title: string;
   img: string;
   price?: number;
@@ -51,7 +51,7 @@ export type CartValue = {
   clear: () => void;
   /** Send the buyer to Shopify checkout with the current cart. */
   checkout: () => void;
-  /** One-off purchase — its own cart, straight to checkout, cart untouched. */
+  /** One-off purchase - its own cart, straight to checkout, cart untouched. */
   buyNow: (product: Product, qty?: number, selection?: CartSelection) => Promise<void>;
   isOpen: boolean;
   openCart: () => void;

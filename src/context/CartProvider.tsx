@@ -24,7 +24,7 @@ const readStoredLines = (): CartLine[] => {
     if (!raw) return [];
     const parsed: unknown = JSON.parse(raw);
     if (!Array.isArray(parsed)) return [];
-    // Drop anything that doesn't look like a line — the shape may have moved on.
+    // Drop anything that doesn't look like a line - the shape may have moved on.
     return parsed.filter(
       (l): l is CartLine =>
         !!l &&
@@ -51,7 +51,7 @@ const writeStorage = (key: string, value: string | null) => {
     if (value === null) window.localStorage.removeItem(key);
     else window.localStorage.setItem(key, value);
   } catch {
-    // Private mode / quota — the cart just won't survive a reload.
+    // Private mode / quota - the cart just won't survive a reload.
   }
 };
 
@@ -74,7 +74,7 @@ export default function CartProvider({ children }: { children: React.ReactNode }
   const [error, setError] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 
-  /** Shopify is the source of truth once connected — mirror its response. */
+  /** Shopify is the source of truth once connected - mirror its response. */
   const applyCart = useCallback((cart: ShopifyCart) => {
     setCartId(cart.id);
     setCheckoutUrl(cart.checkoutUrl);
@@ -124,7 +124,7 @@ export default function CartProvider({ children }: { children: React.ReactNode }
     };
   }, [applyCart, dropCart]);
 
-  // Local mode only — Shopify carts are keyed by id, not mirrored wholesale.
+  // Local mode only - Shopify carts are keyed by id, not mirrored wholesale.
   useEffect(() => {
     if (isShopifyConfigured) return;
     writeStorage(LINES_KEY, JSON.stringify(lines));
@@ -228,7 +228,7 @@ export default function CartProvider({ children }: { children: React.ReactNode }
   );
 
   /**
-   * Clears our reference to the cart. Shopify carts are immutable records —
+   * Clears our reference to the cart. Shopify carts are immutable records -
    * abandoning ours is the intended way to start over.
    */
   const clear = useCallback(() => {
@@ -259,7 +259,7 @@ export default function CartProvider({ children }: { children: React.ReactNode }
 
   const value = useMemo(() => {
     const itemCount = lines.reduce((n, l) => n + l.qty, 0);
-    // Prefer Shopify's subtotal — it accounts for discounts we don't model.
+    // Prefer Shopify's subtotal - it accounts for discounts we don't model.
     const subtotal = shopifySubtotal ?? lines.reduce((n, l) => n + l.price * l.qty, 0);
     return {
       lines,

@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  /** myshop.myshopify.com — the .myshopify.com domain, not a custom domain */
+  /** myshop.myshopify.com - the .myshopify.com domain, not a custom domain */
   readonly VITE_SHOPIFY_STORE_DOMAIN?: string;
   /** Public Storefront API access token. Safe in the client bundle. */
   readonly VITE_SHOPIFY_STOREFRONT_TOKEN?: string;

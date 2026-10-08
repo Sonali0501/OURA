@@ -3,7 +3,7 @@ import { assertNoUserErrors, storefront, toAmount } from "./shopify";
 /**
  * Shopify Cart API operations.
  *
- * The Cart API replaced the deprecated Checkout API — a cart carries its own
+ * The Cart API replaced the deprecated Checkout API - a cart carries its own
  * `checkoutUrl`, which is where we send the buyer to pay. We never build a
  * checkout ourselves; Shopify hosts it.
  */
@@ -18,7 +18,7 @@ export type ShopifyCart = {
 };
 
 export type ShopifyCartLine = {
-  /** Cart line id — the handle for update/remove, not the variant id. */
+  /** Cart line id - the handle for update/remove, not the variant id. */
   id: string;
   variantId: string;
   productId: string;
@@ -114,7 +114,7 @@ function normalize(cart: RawCart): ShopifyCart {
         // Variant title is "Default Title" for single-variant products
         name:
           v.title && v.title !== "Default Title"
-            ? `${v.product.title} — ${v.title}`
+            ? `${v.product.title} - ${v.title}`
             : v.product.title,
         img: v.image?.url ?? v.product.featuredImage?.url ?? "",
         price: toAmount(v.price.amount),

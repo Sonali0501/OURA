@@ -7,34 +7,34 @@ const PORTRAIT = "sreejith.jpg";
 const CANOPY = "canopy.webp";
 
 const ABOUT_SISIRAM =
-  "Sisiram Group is headquartered in Kochi, Kerala, with our manufacturing unit. We are a Kerala-based house of nature-led brands, crafting nature's finest goodness — sourcing directly from agrarian communities, processing without chemical interference, and finishing by hand. Every output is a quiet act of respect: for the soil, the artisan, and the family that will finally hold it.";
+  "Sisiram Group is headquartered in Kochi, Kerala, with our manufacturing unit. We are a Kerala-based house of nature-led brands, crafting nature's finest goodness - sourcing directly from agrarian communities, processing without chemical interference, and finishing by hand. Every output is a quiet act of respect: for the soil, the artisan, and the family that will finally hold it.";
 
 const VISIONARY =
-  "OURA is Sisiram Group's first visionary brand — born to institutionalize the purity of the coconut. Not merely a product line, but a promise: to carry Kerala's raw, untouched goodness from the tree to the global table, with zero waste and absolute integrity.";
+  "OURA is Sisiram Group's first visionary brand - born to institutionalize the purity of the coconut. Not merely a product line, but a promise: to carry Kerala's raw, untouched goodness from the tree to the global table, with zero waste and absolute integrity.";
 
 const CEO_BRIEF =
   "Sreejith Murali is the founder and CEO of OURA. Over a decade he directed a $3.25M VC-backed portfolio across high-growth AI, SaaS and technology ventures, scaling businesses from scratch across the GCC, EMEA and North America, and holds specializations from the University of Oxford and Harvard Business School.";
 
 const ORIGIN = [
-  "In Kerala, the coconut tree is not a plant — it is a pulse. It shades our homes, feeds our children, and holds the memory of generations. To grow up beneath its canopy is to learn, very early, that the finest things in life are quiet, patient, and entirely natural.",
-  "For ten years, Sreejith built a career in institutional execution across global technology ventures — mastering strategy and scale from the GCC to North America. Yet the further the world of machines carried him, the louder the call of the soil became. He realized that true modern luxury isn't found in industrial complexity; it is found in returning to the source.",
-  "So he came home. OURA was born at that exact convergence — Kerala's raw botanical heritage married to Harvard-grade strategy and Oxford-vetted operational discipline. The mission was never merely to manufacture; it was to translate nature's language, cold-pressing the coconut into sustainable, zero-waste essentials that carry the soul of Kerala to the global table."
+  "In Kerala, the coconut tree is not a plant - it is a pulse. It shades our homes, feeds our children, and holds the memory of generations. To grow up beneath its canopy is to learn, very early, that the finest things in life are quiet, patient, and entirely natural.",
+  "For ten years, Sreejith built a career in institutional execution across global technology ventures - mastering strategy and scale from the GCC to North America. Yet the further the world of machines carried him, the louder the call of the soil became. He realized that true modern luxury isn't found in industrial complexity; it is found in returning to the source.",
+  "So he came home. OURA was born at that exact convergence - Kerala's raw botanical heritage married to Harvard-grade strategy and Oxford-vetted operational discipline. The mission was never merely to manufacture; it was to translate nature's language, cold-pressing the coconut into sustainable, zero-waste essentials that carry the soul of Kerala to the global table."
 ];
 
 const QUOTE =
   "We don't manufacture purity. We simply refuse to take it away.";
 
 const STORIES = [
-  { k: "The Pulse", body: "A childhood beneath Kerala's coconut canopy — learning that nature speaks in quiet resilience and absolute purity." },
-  { k: "The Pivot", body: "A decade directing global tech ventures — and the growing conviction that real luxury means returning to the source." },
+  { k: "The Pulse", body: "A childhood beneath Kerala's coconut canopy - learning that nature speaks in quiet resilience and absolute purity." },
+  { k: "The Pivot", body: "A decade directing global tech ventures - and the growing conviction that real luxury means returning to the source." },
   { k: "The Promise", body: "OURA: heritage married to institutional discipline, carrying purity from Kerala to the world." }
 ];
 
 const HIGHLIGHTS = [
   { metric: "$3.25M", label: "VC-backed portfolio directed with full P&L ownership" },
   { metric: "$0 → $5M", label: "Regional operations scaled across GCC, EMEA & NAMER" },
-  { metric: "Oxford", label: "AI Foundations for Business — Saïd Business School" },
-  { metric: "Harvard", label: "Innovation & Strategy — Harvard Business School" }
+  { metric: "Oxford", label: "AI Foundations for Business - Saïd Business School" },
+  { metric: "Harvard", label: "Innovation & Strategy - Harvard Business School" }
 ];
 
 export default function FounderProfile() {
@@ -75,7 +75,7 @@ export default function FounderProfile() {
         </div>
       </section>
 
-      {/* Our First Visionary Brand — OURA */}
+      {/* Our First Visionary Brand - OURA */}
       <section className="bg-theme-gradient text-ivory">
         <div className="mx-auto max-w-[1100px] px-6 lg:px-12 py-16 lg:py-24 text-center">
           <Reveal>

@@ -13,11 +13,9 @@ export type CreatorVideo = {
 };
 
 export const CREATOR_VIDEOS: CreatorVideo[] = [
-  { src: '/igVideos/preview/oura_ig_1.mp4', reelUrl: 'https://www.instagram.com/p/DdbhE0Kyvli' },
   { src: '/igVideos/preview/oura_ig_2.mp4', reelUrl: 'https://www.instagram.com/p/DdoUH54hdlK' },
-  { src: '/igVideos/preview/oura_ig_3.mp4', reelUrl: 'https://www.instagram.com/p/DclbQVRv0Uk' },
   { src: '/igVideos/preview/oura_ig_4.mp4', reelUrl: 'https://www.instagram.com/p/DdgvHaGtcct' },
   { src: '/igVideos/preview/oura_ig_5.mp4', reelUrl: 'https://www.instagram.com/p/DdyX-MuJGDD' },
   { src: '/igVideos/preview/oura_ig_6.mp4', reelUrl: 'https://www.instagram.com/p/Dc01VSLS7AS' },
-  // { src: '/igVideos/preview/oura_ig_7.mp4', reelUrl: 'https://www.instagram.com/p/Dd6gj9ZvKPo' }
+  { src: '/igVideos/preview/oura_ig_8.mp4', reelUrl: 'https://www.instagram.com/p/Dd3xq1KPxnx' },
 ];

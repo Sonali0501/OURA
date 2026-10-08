@@ -1,7 +1,7 @@
 /**
  * Minimal Shopify Storefront API client.
  *
- * The Storefront token is a public credential — it is meant to ship in the
+ * The Storefront token is a public credential - it is meant to ship in the
  * browser bundle and is scoped to unauthenticated read/checkout operations.
  * The Admin API token is a different thing entirely and must never appear here.
  */
@@ -31,7 +31,7 @@ export async function storefront<T>(
 ): Promise<T> {
   if (!isShopifyConfigured) {
     throw new ShopifyError(
-      "Shopify is not configured — set VITE_SHOPIFY_STORE_DOMAIN and VITE_SHOPIFY_STOREFRONT_TOKEN."
+      "Shopify is not configured - set VITE_SHOPIFY_STORE_DOMAIN and VITE_SHOPIFY_STOREFRONT_TOKEN."
     );
   }
 
@@ -68,7 +68,7 @@ export async function storefront<T>(
 
 /**
  * Shopify returns user-facing validation failures in a `userErrors` array
- * rather than as GraphQL errors — sold out, invalid variant, and so on.
+ * rather than as GraphQL errors - sold out, invalid variant, and so on.
  */
 export function assertNoUserErrors(errors?: { message: string }[]) {
   if (errors?.length) throw new ShopifyError(errors[0].message);

@@ -1,10 +1,10 @@
 import type { Review } from "./reviews";
 
 /**
- * Verified Oura Culinary reviews, shown only on the Culinary product page —
+ * Verified Oura Culinary reviews, shown only on the Culinary product page -
  * the home page Testimonials wall reads `REVIEWS` in data/reviews.ts, not these.
  *
- * Source: "OURA Coconut — Customer Reviews & Testimonials Collection" (36 reviews).
+ * Source: "OURA Coconut - Customer Reviews & Testimonials Collection" (36 reviews).
  */
 
 export const CULINARY_REVIEWS: Review[] = [

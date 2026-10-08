@@ -1,34 +1,13 @@
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Volume2, VolumeX } from "lucide-react";
 import Reveal from "./Reveal";
+import InstagramLogo from "./InstagramLogo";
 import { useNearViewport } from "../../hooks/useNearViewport";
 import { useDeferredMedia } from "../../lib/deferredMedia";
 import { CREATOR_VIDEOS, type CreatorVideo } from "../../data/creatorVideos";
 
 const reelLabel = (video: CreatorVideo) =>
   video.handle ? `Reel by @${video.handle}` : "Creator reel about OURA";
-
-/** Instagram glyph in its brand gradient. */
-function InstagramLogo({ className }: { className?: string }) {
-  const id = useId();
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className}>
-      <defs>
-        <radialGradient id={id} cx="30%" cy="107%" r="150%">
-          <stop offset="0%" stopColor="#fdf497" />
-          <stop offset="5%" stopColor="#fdf497" />
-          <stop offset="45%" stopColor="#fd5949" />
-          <stop offset="60%" stopColor="#d6249f" />
-          <stop offset="90%" stopColor="#285AEB" />
-        </radialGradient>
-      </defs>
-      <path
-        fill={`url(#${id})`}
-        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"
-      />
-    </svg>
-  );
-}
 
 /**
  * One reel preview. Every reel downloads in the background once the hero is
@@ -45,7 +24,7 @@ function ReelCard({
   video: CreatorVideo;
   /** Set once below-the-fold media may load; until then nothing downloads. */
   load: boolean;
-  /** Only one reel in the row may have sound — the section decides which. */
+  /** Only one reel in the row may have sound - the section decides which. */
   soundOn: boolean;
   onToggleSound: () => void;
 }) {
@@ -67,7 +46,7 @@ function ReelCard({
     if (!el) return;
     if (visible) {
       el.play().catch(() => {
-        /* Autoplay refused (e.g. Low Power Mode) — the first frame stays up. */
+        /* Autoplay refused (e.g. Low Power Mode) - the first frame stays up. */
       });
     } else {
       el.pause();
@@ -102,7 +81,7 @@ function ReelCard({
           href={video.reelUrl}
           target="_blank"
           rel="noreferrer"
-          aria-label={`${reelLabel(video)} — watch on Instagram`}
+          aria-label={`${reelLabel(video)} - watch on Instagram`}
           className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-colors"
         />
 
@@ -112,7 +91,7 @@ function ReelCard({
           onClick={onToggleSound}
           aria-label={soundOn ? "Mute reel" : "Unmute reel"}
           className={`absolute top-3 left-3 z-10 w-9 h-9 rounded-full bg-black/40 backdrop-blur-sm text-ivory flex items-center justify-center hover:bg-black/60 focus-visible:opacity-100 transition ${
-            // Hover-reveal only where hovering exists — touch screens always show it
+            // Hover-reveal only where hovering exists - touch screens always show it
             soundOn ? "opacity-100" : "[@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:opacity-100"
           }`}
         >
@@ -142,11 +121,24 @@ function ReelCard({
 export default function CreatorVideos() {
   const trackRef = useRef<HTMLUListElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  // All reels load together — in the background once the hero is playing, or as
-  // the section approaches if that comes first — never card by card on swipe.
+  // All reels load together - in the background once the hero is playing, or as
+  // the section approaches if that comes first - never card by card on swipe.
   const ready = useDeferredMedia();
   const near = useNearViewport(sectionRef, "600px");
   const [soundSrc, setSoundSrc] = useState<string | null>(null);
+  // Whether the reels are wider than the row. If they all fit, the row is
+  // centred and the arrows are hidden; re-checked whenever the row resizes.
+  const [overflows, setOverflows] = useState(true);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const measure = () => setOverflows(track.scrollWidth > track.clientWidth + 1);
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(track);
+    return () => observer.disconnect();
+  }, []);
 
   if (CREATOR_VIDEOS.length === 0) return null;
 
@@ -173,7 +165,7 @@ export default function CreatorVideos() {
                 <span className="text-[0.8em]">They&apos;re talking about</span> OURA
               </h2>
             </div>
-            <div className="hidden md:flex items-center gap-3">
+            <div className={`${overflows ? "md:flex" : ""} hidden items-center gap-3`}>
               <button type="button" onClick={() => scrollBy(-1)} aria-label="Previous reels" className={arrowClass}>
                 <ChevronLeft className="w-5 h-5" strokeWidth={1.5} />
               </button>
@@ -187,7 +179,9 @@ export default function CreatorVideos() {
         <Reveal delay={0.1}>
           <ul
             ref={trackRef}
-            className="mt-10 md:mt-14 flex gap-5 md:gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-2"
+            className={`mt-10 md:mt-14 flex gap-5 md:gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-2 ${
+              overflows ? "" : "justify-center"
+            }`}
           >
             {CREATOR_VIDEOS.map((video) => (
               <ReelCard

@@ -7,9 +7,9 @@ const BRAND_VIDEO = "/brand_video.mp4";
 const BRAND_POSTER = "/canopy.webp";
 
 const STORY = [
-  "In Kerala, the coconut tree is not a plant — it is a pulse. It shades our homes, feeds our children, and holds the memory of generations. To grow up beneath its canopy is to learn, very early, that the finest things in life are quiet, patient, and entirely natural.",
-  "OURA began as a simple question: what if the purity we grew up with — the untouched, the raw, the real — could be shared with the world without losing a single drop of its soul? No shortcuts. No synthetic disguise. Just the coconut, honored completely.",
-  "So we return to the source. We cold-press, we reclaim, we hand-finish — turning every part of the coconut into something useful and beautiful, with zero waste. From a glass of living water to a bowl on your table, OURA is Kerala's heritage, carried whole, from our home to yours."
+  "In Kerala, the coconut tree is not a plant - it is a pulse. It shades our homes, feeds our children, and holds the memory of generations. To grow up beneath its canopy is to learn, very early, that the finest things in life are quiet, patient, and entirely natural.",
+  "OURA began as a simple question: what if the purity we grew up with - the untouched, the raw, the real - could be shared with the world without losing a single drop of its soul? No shortcuts. No synthetic disguise. Just the coconut, honored completely.",
+  "So we return to the source. We cold-press, we reclaim, we hand-finish - turning every part of the coconut into something useful and beautiful, with zero waste. From a glass of living water to a bowl on your table, OURA is Kerala's heritage, carried whole, from our home to yours."
 ];
 
 export default function Genesis() {
@@ -26,7 +26,7 @@ export default function Genesis() {
     // React sets `muted` as a property, which some mobile browsers check too late for autoplay.
     el.muted = true;
     el.play().catch(() => {
-      /* Autoplay refused (e.g. Low Power Mode) — the poster stays up. */
+      /* Autoplay refused (e.g. Low Power Mode) - the poster stays up. */
     });
   }, [near]);
 

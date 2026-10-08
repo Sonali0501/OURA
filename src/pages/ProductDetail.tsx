@@ -327,9 +327,9 @@ function ReviewsMarquee({ reviews }: { reviews: Review[] }) {
 /* Buy panel                                                           */
 /* ------------------------------------------------------------------ */
 
-/** Cart and enquiry label — the size only earns a mention if there is a choice. */
+/** Cart and enquiry label - the size only earns a mention if there is a choice. */
 const lineTitle = (product: Product, variant: DisplayVariant, hasChoice: boolean) =>
-  hasChoice ? `${product.name} — ${variant.label}` : product.name;
+  hasChoice ? `${product.name} - ${variant.label}` : product.name;
 
 function VariantSelector({
   state,
@@ -340,7 +340,7 @@ function VariantSelector({
   selected: DisplayVariant;
   onSelect: (variant: DisplayVariant) => void;
 }) {
-  // Sizes aren't known until Shopify answers — hold the space, don't guess.
+  // Sizes aren't known until Shopify answers - hold the space, don't guess.
   if (state.loading) {
     return (
       <div className="mt-8" aria-hidden="true">
@@ -361,7 +361,7 @@ function VariantSelector({
         {state.optionName}
       </legend>
 
-      {/* Segmented toggle — the whole track is one control, the choice slides across it */}
+      {/* Segmented toggle - the whole track is one control, the choice slides across it */}
       <div
         role="radiogroup"
         aria-label={state.optionName}
@@ -467,7 +467,7 @@ function BuyPanel({
 
   return (
     <div className="mt-8">
-      {/* Price — a placeholder while loading, never a number we may replace */}
+      {/* Price - a placeholder while loading, never a number we may replace */}
       {state.loading ? (
         <div className="h-10 w-32 bg-palm/10 animate-pulse" aria-label="Loading price" />
       ) : (
@@ -488,7 +488,7 @@ function BuyPanel({
         Inclusive of all taxes
       </p>
 
-      {/* Size — whatever options Shopify carries for this product */}
+      {/* Size - whatever options Shopify carries for this product */}
       <VariantSelector state={state} selected={variant} onSelect={onSelectVariant} />
 
       {/* Quantity */}
@@ -515,7 +515,7 @@ function BuyPanel({
         </div>
       </div>
 
-      {/* CTAs — Add to Cart syncs the Shopify cart, Buy Now skips to checkout */}
+      {/* CTAs - Add to Cart syncs the Shopify cart, Buy Now skips to checkout */}
       <div className="mt-6 w-full flex flex-col sm:flex-row gap-3">
         <button
           type="button"
@@ -569,11 +569,11 @@ export default function ProductDetail() {
     );
   }
 
-  // key: a different product starts clean — fresh variant fetch, fresh gallery.
+  // key: a different product starts clean - fresh variant fetch, fresh gallery.
   return <ProductView key={product.id} product={product} />;
 }
 
-/** Declared nutrition — one press, so it reads the same at every size. */
+/** Declared nutrition - one press, so it reads the same at every size. */
 // function NutritionCard({ product }: { product: Product }) {
 //   const rows = product.nutrition ?? [];
 
@@ -611,7 +611,7 @@ export default function ProductDetail() {
 function ProductView({ product }: { product: Product }) {
   // The chosen size lives in the URL, so a link shares the exact bottle.
   const [searchParams, setSearchParams] = useSearchParams();
-  // Sizes, prices and images all come from Shopify — see hooks/useProductVariants.
+  // Sizes, prices and images all come from Shopify - see hooks/useProductVariants.
   const state = useProductVariants(product);
   const reviews = [
     ...getReviewsByProductTags(product.product_tags),
@@ -622,7 +622,7 @@ function ProductView({ product }: { product: Product }) {
   const variant =
     state.variants.find((v) => v.id === searchParams.get("size")) ?? state.variants[0];
 
-  // All copy is authored once on the product — see data/products.ts. Only the
+  // All copy is authored once on the product - see data/products.ts. Only the
   // sizes, prices and images vary, and those come from Shopify.
   // const hasNutrition = Boolean(product.nutrition?.length);
 

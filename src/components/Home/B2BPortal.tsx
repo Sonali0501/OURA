@@ -95,7 +95,7 @@ export default function B2BPortal() {
       .join("\n");
 
     const mailto = `mailto:contact@ouracoconut.com?subject=${encodeURIComponent(
-      "Bulk Order Enquiry — OURA"
+      "Bulk Order Enquiry - OURA"
     )}&body=${encodeURIComponent(body)}`;
 
     window.location.href = mailto;
@@ -131,7 +131,7 @@ export default function B2BPortal() {
           <div className="flex flex-col gap-10 lg:gap-12">
             <div>
               <Reveal>
-                {/* Heading left, intro right — same header layout as the Spectrum section */}
+                {/* Heading left, intro right - same header layout as the Spectrum section */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                   <div>
                     <p className="text-gold/70 text-[11px] font-sans-ui tracking-luxe uppercase">

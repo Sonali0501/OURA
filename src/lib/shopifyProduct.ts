@@ -3,14 +3,14 @@ import { storefront, toAmount } from "./shopify";
 /**
  * Live product pricing from the Storefront API.
  *
- * Shopify is the authority on price and stock — it is what the cart and
+ * Shopify is the authority on price and stock - it is what the cart and
  * checkout charge. The numbers in data/products.ts are only a fallback for
  * when Shopify is unreachable or not yet connected, so the page is never
  * priceless.
  */
 
 export type ShopifyVariant = {
-  /** ProductVariant GID — what the Cart API wants as `merchandiseId`. */
+  /** ProductVariant GID - what the Cart API wants as `merchandiseId`. */
   id: string;
   /** Variant title, e.g. '1 Litre' ("Default Title" on single-variant products). */
   title: string;

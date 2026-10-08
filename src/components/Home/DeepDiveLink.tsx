@@ -29,7 +29,7 @@ export default function DeepDiveLink() {
                 Take a Deep Dive
               </h2>
               <p className="mt-3 max-w-xl text-gold/80">
-                Meet the leadership behind OURA — the Kerala roots, the decade in global work, and the
+                Meet the leadership behind OURA - the Kerala roots, the decade in global work, and the
                 moment that turned heritage into a promise of purity.
               </p>
               <Link

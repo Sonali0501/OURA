@@ -7,7 +7,7 @@ import { useCart } from '../../context/cartContext';
 import { useProductVariants } from '../../hooks/useProductVariants';
 import { useDeferredMedia } from '../../lib/deferredMedia';
 
-/** Size picker, price and cart actions — only rendered for products on sale. */
+/** Size picker, price and cart actions - only rendered for products on sale. */
 function CardPurchase({ product }: { product: Product }) {
   const state = useProductVariants(product);
   const { addItem, buyNow, openCart, isSyncing } = useCart();
@@ -19,7 +19,7 @@ function CardPurchase({ product }: { product: Product }) {
 
   const selection = {
     variantId: variant.id,
-    title: state.hasChoice ? `${product.name} — ${variant.label}` : product.name,
+    title: state.hasChoice ? `${product.name} - ${variant.label}` : product.name,
     img: variant.images[0] ?? product.img,
     price: variant.price,
     shopifyVariantId: variant.shopifyVariantId,
@@ -37,7 +37,7 @@ function CardPurchase({ product }: { product: Product }) {
   return (
     <div className="mt-5 pt-5 border-t border-obsidian/10">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        {/* Price — placeholder until Shopify answers, never a number we may replace */}
+        {/* Price - placeholder until Shopify answers, never a number we may replace */}
         {state.loading ? (
           <div className="h-7 w-20 bg-palm/10 animate-pulse" aria-label="Loading price" />
         ) : (
@@ -116,7 +116,7 @@ function CardPurchase({ product }: { product: Product }) {
 }
 
 /**
- * `featured` is the wide, side-by-side card used for products on sale — it
+ * `featured` is the wide, side-by-side card used for products on sale - it
  * carries the buy controls, so it gets its own row instead of stretching the
  * compact coming-soon cards next to it.
  */
@@ -125,7 +125,7 @@ function ProductCard({ product, featured = false }: { product: Product; featured
   const imgLoading = useDeferredMedia() ? "eager" : "lazy";
   const card = (
     <div className={`group flex flex-col h-full bg-ivory border border-palm/10 rounded-xl overflow-hidden shadow-[0_8px_24px_rgba(42,103,17,0.08)] hover:shadow-[0_12px_32px_rgba(42,103,17,0.14)] hover:border-gold/40 transition-[border-color,box-shadow] duration-300 ${featured ? 'lg:flex-row' : ''}`}>
-      {/* Landscape image — top */}
+      {/* Landscape image - top */}
       <div className={`relative aspect-[3/2] overflow-hidden ${featured ? 'lg:aspect-auto lg:w-1/2 lg:min-h-[440px]' : ''}`}>
         {product.available ? (
           <Link to={productPath(product.id)} tabIndex={-1} aria-hidden="true" className="block w-full h-full">
@@ -155,7 +155,7 @@ function ProductCard({ product, featured = false }: { product: Product; featured
         )}
       </div>
 
-      {/* Content — below */}
+      {/* Content - below */}
       <div className={`flex-1 flex flex-col ${featured ? 'p-5 lg:p-10' : 'p-5 lg:p-6'}`}>
         {/* Category */}
         <div className="mb-3 flex items-center gap-2">
@@ -167,7 +167,7 @@ function ProductCard({ product, featured = false }: { product: Product; featured
 
         <h3 className={`font-display font-bold text-obsidian leading-tight ${featured ? 'text-2xl lg:text-4xl' : 'text-2xl'}`}>
           {product.available ? (
-            <Link to={productPath(product.id)} className="hover:underline underline-offset-4">
+            <Link to={productPath(product.id)}>
               {product.name}
             </Link>
           ) : (
@@ -215,7 +215,7 @@ export default function Spectrum() {
             </h2>
           </div>
           <p className="text-gold/70 text-base md:text-lg max-w-md leading-relaxed">
-            Four lines, one promise — pure, cold-pressed, zero-waste heritage engineered with
+            Four lines, one promise - pure, cold-pressed, zero-waste heritage engineered with
             institutional precision. Each piece carries its own story and spec.
           </p>
         </motion.div>

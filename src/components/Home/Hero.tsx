@@ -3,7 +3,7 @@ import { motion, useReducedMotion } from "framer-motion"
 import { startDeferredMedia } from "../../lib/deferredMedia";
 
 const HERO_VIDEO = "/video1.mp4";
-/** Same clip at a lower bitrate (1 MB vs 2.2 MB) — starts sooner on phone connections. */
+/** Same clip at a lower bitrate (1 MB vs 2.2 MB) - starts sooner on phone connections. */
 const HERO_VIDEO_MOBILE = "/video1_mobile.mp4";
 const HERO_POSTER = "/hero_poster.jpg";
 
@@ -20,7 +20,7 @@ export default function Hero() {
 
   // React sets `muted` as a DOM property after the element exists, so the
   // attribute can be missing at the moment the browser first decides whether
-  // autoplay is allowed — Safari and some Chromium builds then refuse and put
+  // autoplay is allowed - Safari and some Chromium builds then refuse and put
   // a play button over the poster. Force it muted ourselves, ask to play, and
   // if the browser still says no (iOS Low Power Mode is the usual culprit),
   // retry the next time the tab is shown or the visitor touches the page.
@@ -42,11 +42,11 @@ export default function Hero() {
         .then(() => {
           settled = true;
           cleanup();
-          // Hero is up — let the rest of the page's media start downloading.
+          // Hero is up - let the rest of the page's media start downloading.
           startDeferredMedia();
         })
         .catch(() => {
-          /* Blocked for now — the listeners below will try again. */
+          /* Blocked for now - the listeners below will try again. */
         });
     };
 

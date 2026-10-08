@@ -1,7 +1,7 @@
 import { useSyncExternalStore } from "react";
 
 /**
- * One switch for "the first screen is done — fetch everything else now".
+ * One switch for "the first screen is done - fetch everything else now".
  *
  * Heavy media below the fold (the Genesis film, creator reels, section images)
  * waits for this so the hero video gets the connection to itself, then loads

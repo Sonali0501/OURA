@@ -87,7 +87,7 @@
     backdrop-filter: blur(20px) saturate(140%);
     -webkit-backdrop-filter: blur(20px) saturate(140%);
   }
-  /* Theme surface — lighter toward the centre, darker toward the edges */
+  /* Theme surface - lighter toward the centre, darker toward the edges */
   .bg-theme-gradient {
     background-color: #3b8718;
     background-image: radial-gradient(ellipse at center, #499f1d 0%, #3b8718 55%, #2a6711 100%);
@@ -134,7 +134,7 @@
   animation: pulse-down 2.4s ease-in-out infinite;
 }
 
-/* Range slider — Impact Console */
+/* Range slider - Impact Console */
 .oura-range {
   -webkit-appearance: none;
   appearance: none;
@@ -171,7 +171,7 @@
   .marquee::-webkit-scrollbar { display: none; }
   * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
-/* Decorative background video — never chrome, never interactive.
+/* Decorative background video - never chrome, never interactive.
    Safari/iOS paint a start-playback button over the poster whenever autoplay
    is refused (low power mode, data saver), and some Chromium builds keep the
    PiP / download affordances around even without `controls`. Strip the lot. */

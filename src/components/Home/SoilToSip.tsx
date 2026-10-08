@@ -8,23 +8,23 @@ const LAB_IMG = 'soli_to_sip_3.png';
 
 const STAGES = [
   {
-    label: '01 — The Soil',
+    label: '01 - The Soil',
     title: 'Volcanic Earth',
-    desc: 'Micro-macro photography of Kerala\'s volcanic earth — the mineral-rich foundation that gives OURA its nutritional density.',
+    desc: 'Micro-macro photography of Kerala\'s volcanic earth - the mineral-rich foundation that gives OURA its nutritional density.',
     img: GROVE_IMG,
     side: 'left',
   },
   {
-    label: '02 — The Harvest',
+    label: '02 - The Harvest',
     title: 'Farmer Partnership',
-    desc: 'Direct sourcing from Kerala farmers with 15% better payouts than market rates — building loyalty and quality at the source.',
+    desc: 'Direct sourcing from Kerala farmers with 15% better payouts than market rates - building loyalty and quality at the source.',
     img: FARMER_IMG,
     side: 'right',
   },
   {
-    label: '03 — The Lab',
+    label: '03 - The Lab',
     title: '6° Cold-Pressing',
-    desc: 'Processed under 45°C to preserve raw nutritional integrity. Shells and meal repurposed into OURA Crockery — nothing discarded.',
+    desc: 'Processed under 45°C to preserve raw nutritional integrity. Shells and meal repurposed into OURA Crockery - nothing discarded.',
     img: LAB_IMG,
     side: 'left',
   },
@@ -43,21 +43,21 @@ export default function SoilToSip() {
   const liquidFill = useSpring(scrollYProgress, { stiffness: 90, damping: 24, restDelta: 0.001 });
 
   return (
-    <section id="soil-to-sip" ref={ref} className="relative bg-ivory text-gold py-16 md:py-24 px-6 md:px-12 overflow-hidden">
+    <section id="soil-to-sip" ref={ref} className="relative bg-ivory text-gold py-14 md:py-20 px-6 md:px-12 overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.8 }}
-        className="max-w-[1400px] mx-auto mb-20 md:mb-32"
+        className="max-w-[1400px] mx-auto mb-12 md:mb-20"
       >
         <p className="text-gold/70 text-xs uppercase tracking-[0.3em] mb-4">Sustainable Sourcing</p>
-        <h2 className="font-display text-5xl md:text-8xl font-bold text-gold leading-[0.9]">
+        <h2 className="font-display text-5xl md:text-7xl font-bold text-gold leading-[0.95]">
           From Soil to <span className="italic text-gold">Sip</span>
         </h2>
       </motion.div>
 
-      {/* Stages + stem — stem only spans this block, not the zero-waste footer */}
+      {/* Stages + stem - stem only spans this block, not the zero-waste footer */}
       <div className="relative">
         <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 -translate-x-1/2 bg-palm/15 pointer-events-none">
           <motion.div
@@ -68,7 +68,7 @@ export default function SoilToSip() {
         </div>
 
         <div className="max-w-[1400px] mx-auto relative">
-          <div className="space-y-16 md:space-y-24">
+          <div className="space-y-12 md:space-y-16">
           {STAGES.map((stage, i) => (
             <motion.div
               key={i}
@@ -76,7 +76,7 @@ export default function SoilToSip() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-150px' }}
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className={`flex flex-col md:flex-row items-center gap-8 md:gap-16 ${
+              className={`flex flex-col md:flex-row items-center gap-6 md:gap-12 ${
                 stage.side === 'right' ? 'md:flex-row-reverse' : ''
               }`}
             >
@@ -90,7 +90,7 @@ export default function SoilToSip() {
                     alt={stage.title}
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.6 }}
-                    className="w-full h-[400px] md:h-[500px] object-cover"
+                    className="w-full h-[280px] md:h-[360px] object-cover"
                   />
                   <div className="absolute inset-0 ring-1 ring-palm/15" />
                 </div>
@@ -108,7 +108,7 @@ export default function SoilToSip() {
                   >
                     {stage.label}
                   </motion.p>
-                  <h3 className="font-display text-4xl md:text-6xl font-bold text-gold mb-6 leading-tight">
+                  <h3 className="font-display text-3xl md:text-5xl font-bold text-gold mb-4 leading-tight">
                     {stage.title}
                   </h3>
                   <p className="text-gold/80 text-base md:text-lg leading-relaxed max-w-md">
@@ -128,12 +128,12 @@ export default function SoilToSip() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="max-w-[1400px] mx-auto mt-32 text-center"
+        className="max-w-[1400px] mx-auto mt-16 md:mt-20 text-center"
       >
         <div className="inline-flex items-center gap-4 px-8 py-4 border border-palm/30">
           <span className="text-2xl">♻️</span>
           <p className="font-display text-xl md:text-2xl text-gold">
-            Zero-Waste: Shells and meal repurposed into OURA Crockery — nothing discarded, everything valued.
+            Zero-Waste: Shells and meal repurposed into OURA Crockery - nothing discarded, everything valued.
           </p>
         </div>
       </motion.div>

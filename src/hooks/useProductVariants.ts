@@ -7,7 +7,7 @@ import { fetchProduct, type ShopifyProduct, type ShopifyVariant } from "../lib/s
  * The sizes of a product, as Shopify defines them.
  *
  * Shopify is the source of truth for the whole variant: its name, its price
- * and its images. Nothing about a size is authored in data/products.ts — add
+ * and its images. Nothing about a size is authored in data/products.ts - add
  * a variant in the admin and it appears here. The local product only supplies
  * the fallback shown when Shopify is unreachable or not yet connected.
  */
@@ -21,7 +21,7 @@ export type DisplayVariant = {
   compareAt: number | null;
   currency: string;
   availableForSale: boolean;
-  /** Gallery for this size — its own image first, then the product's others. */
+  /** Gallery for this size - its own image first, then the product's others. */
   images: string[];
   /** ProductVariant GID, absent only on the local fallback. */
   shopifyVariantId?: string;
@@ -29,13 +29,13 @@ export type DisplayVariant = {
 
 export type VariantsState = {
   variants: DisplayVariant[];
-  /** True while Shopify is answering — the sizes aren't known yet. */
+  /** True while Shopify is answering - the sizes aren't known yet. */
   loading: boolean;
   /** True when these came from data/products.ts because Shopify didn't answer. */
   isFallback: boolean;
   /** Shopify's option name, e.g. 'Size'. Labels the selector. */
   optionName: string;
-  /** False for a product with a single, unnamed variant — nothing to choose. */
+  /** False for a product with a single, unnamed variant - nothing to choose. */
   hasChoice: boolean;
 };
 
@@ -101,7 +101,7 @@ function toDisplay(product: ShopifyProduct, local: Product): DisplayVariant[] {
  *
  * Fetches once per product id. Falls back to a single variant built from
  * data/products.ts if Shopify isn't configured, the product isn't mapped, or
- * the request fails — so the page always renders, and never shows a price we
+ * the request fails - so the page always renders, and never shows a price we
  * know to be wrong while loading.
  */
 export function useProductVariants(product: Product): VariantsState {

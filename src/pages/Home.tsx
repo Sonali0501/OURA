@@ -7,6 +7,7 @@ import SoilToSip from "../components/Home/SoilToSip";
 import Spectrum from "../components/Home/Spectrum";
 import CreatorVideos from "../components/Home/CreatorVideos";
 import Testimonials from "../components/Home/Testimonials";
+import CookWithOura from "../components/Home/CookWithOura";
 import OuraLayout from "../components/layout/OuraLayout";
 
 export default function Home() {
@@ -15,12 +16,13 @@ export default function Home() {
       <Hero />
       <Genesis />
       <DeepDiveLink />
-      <Spectrum />
       <CreatorVideos />
-      <SoilToSip />
-      <FarmerBanner />
+      <Spectrum />
       <Testimonials />
+      <CookWithOura />
+      <SoilToSip />
       <B2BPortal />
+      <FarmerBanner />
     </OuraLayout>
   );
 }

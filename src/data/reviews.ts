@@ -3,7 +3,7 @@
  * The home page Testimonials wall renders all of them; a product detail page
  * renders the subset whose `product_tag` appears in that product's `product_tags`.
  *
- * A review with no `product_tag` is brand-level — it shows on the home wall only.
+ * A review with no `product_tag` is brand-level - it shows on the home wall only.
  */
 
 export type Review = {
@@ -18,7 +18,7 @@ export const REVIEWS: Review[] = [
   {
     name: "Aravind Krishnan",
     city: "Kochi, Kerala",
-    text: "The cold-pressed oil has become a staple in my mother's kitchen. It tastes exactly like the oil she remembers from her childhood — pure, fragrant, and honest.",
+    text: "The cold-pressed oil has become a staple in my mother's kitchen. It tastes exactly like the oil she remembers from her childhood - pure, fragrant, and honest.",
     initials: "AK",
     product_tag: "culinary",
   },
@@ -32,7 +32,7 @@ export const REVIEWS: Review[] = [
   {
     name: "Vishnu Pillai",
     city: "Indiranagar, Bangalore",
-    text: "As someone who grew up around coconut palms, OURA is the first brand that actually honors the source. No shortcuts, no pretense — just purity.",
+    text: "As someone who grew up around coconut palms, OURA is the first brand that actually honors the source. No shortcuts, no pretense - just purity.",
     initials: "VP",
     product_tag: "culinary",
   },

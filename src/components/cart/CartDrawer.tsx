@@ -175,7 +175,7 @@ export default function CartDrawer() {
 
                 {!checkoutUrl && !isSyncing && (
                   <p className="mt-3 text-[10px] font-sans-ui tracking-luxe uppercase text-gold/45 text-center">
-                    Checkout unavailable — store not connected
+                    Checkout unavailable - store not connected
                   </p>
                 )}
                 <button

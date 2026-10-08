@@ -21,7 +21,7 @@ const markSeen = () => {
   try {
     sessionStorage.setItem(SEEN_KEY, "1");
   } catch {
-    /* Blocked storage — the offer may simply show again. */
+    /* Blocked storage - the offer may simply show again. */
   }
 };
 
@@ -58,7 +58,7 @@ export default function WelcomeOffer() {
   }, [open]);
 
   // Close, then bring the first product card into view. Navigates within the
-  // app (no reload) and waits for the scroll lock to lift — and, from another
+  // app (no reload) and waits for the scroll lock to lift - and, from another
   // page, for the home page to render.
   const continueShopping = () => {
     setOpen(false);
@@ -75,7 +75,7 @@ export default function WelcomeOffer() {
       setCopied(true);
       window.setTimeout(() => setCopied(false), 2000);
     } catch {
-      /* Clipboard unavailable — the code stays on screen to copy by hand. */
+      /* Clipboard unavailable - the code stays on screen to copy by hand. */
     }
   };
 
