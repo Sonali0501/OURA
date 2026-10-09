@@ -47,7 +47,7 @@ function CardPurchase({ product }: { product: Product }) {
                 {formatMoney(variant.price, variant.currency)}
               </span>
               {variant.compareAt && (
-                <span className="text-sm text-gold/45 line-through">
+                <span className="text-base font-medium text-gold/70 line-through decoration-gold/70">
                   {formatMoney(variant.compareAt, variant.currency)}
                 </span>
               )}
@@ -139,6 +139,18 @@ function ProductCard({ product, featured = false }: { product: Product; featured
           </Link>
         ) : (
           <img src={product.img} alt={product.name} loading={imgLoading} decoding="async" className="w-full h-full object-cover" />
+        )}
+
+        {/* Corner ribbon on products that are on sale; clicks fall through to the image link */}
+        {product.available && (
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute top-5 -left-12 z-10 w-44 -rotate-45 bg-palm py-1.5 text-center shadow-[0_4px_12px_rgba(0,0,0,0.25)]"
+          >
+            <span className="font-sans-ui text-[10px] font-semibold uppercase tracking-[0.25em] text-ivory">
+              Shop Now
+            </span>
+          </div>
         )}
 
         {/* Light wash so unavailable products read as not-yet-on-sale */}

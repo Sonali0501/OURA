@@ -477,7 +477,7 @@ function BuyPanel({
               {formatMoney(price, currency)}
             </span>
             {compareAt && (
-              <span className="text-lg text-gold/45 line-through">
+              <span className="text-xl font-medium text-gold/70 line-through decoration-gold/70">
                 {formatMoney(compareAt, currency)}
               </span>
             )}

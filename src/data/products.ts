@@ -84,8 +84,8 @@ export const PRODUCTS: Product[] = [
     product_tags: ['culinary', 'oil'],
 
     gallery: [CULINARY_IMG, CULINARY_IMG, CULINARY_IMG, CULINARY_IMG],
-    price: 649,
-    compareAt: 749,
+    price: 439,
+    compareAt: 499,
     shopify_product_id: 'gid://shopify/Product/8710327795885',
     shopifyVariantId: 'gid://shopify/ProductVariant/47250512740525',
     highlightsTitle: 'Why Choose Oura Culinary?',

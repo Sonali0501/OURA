@@ -42,4 +42,11 @@ export const COOK_VIDEOS: CookVideo[] = [
     title: 'Straight from the heart of Kerala authentic OURA Coconut Oil',
     subtitle: '30g Protein in Vrat Meal Bowl✨ And get 10% off with the code- ANKITA10 Straight from the heart of Kerala authentic OURA Coconut Oil has arrived in Hyderabad 🥥 ✨Made from pure, fresh coconuts, it adds a rich, traditional aroma and next level flavour to every dish.',
   },
+  {
+    src: '/cookingVideos/preview/oura_cook_2.mp4',
+    reelUrl: 'https://www.instagram.com/p/Dd6gj9ZvKPo',
+    handle: 'lnajaabiii',
+    title: 'Afgani Omelette Ft. OURA 🥥',
+    subtitle: 'Afgani Omelette🫠🤎!! Oura is available at Calicut now!!!',
+  },
 ];
