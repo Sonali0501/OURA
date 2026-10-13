@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Reveal from "../components/Home/Reveal";
 import OuraFooter from "../components/layout/OuraFooter";
@@ -38,6 +39,34 @@ const HIGHLIGHTS = [
 ];
 
 export default function FounderProfile() {
+  // index.html points canonical/og:url at the homepage; give /founder its own so it is indexed as a distinct page.
+  useEffect(() => {
+    const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    const ogUrl = document.querySelector<HTMLMetaElement>('meta[property="og:url"]');
+    const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+    const prev = {
+      title: document.title,
+      canonical: canonical?.href,
+      ogUrl: ogUrl?.content,
+      description: description?.content,
+    };
+
+    document.title = "Sisiram Group & Founder Sreejith Murali | The House Behind OURA";
+    canonical?.setAttribute("href", "https://www.ouracoconut.com/founder");
+    ogUrl?.setAttribute("content", "https://www.ouracoconut.com/founder");
+    description?.setAttribute(
+      "content",
+      "Meet Sisiram Group, the Kochi-based parent company of OURA, and founder Sreejith Murali - crafting cold-pressed Kerala coconut essentials with zero waste."
+    );
+
+    return () => {
+      document.title = prev.title;
+      if (prev.canonical) canonical?.setAttribute("href", prev.canonical);
+      if (prev.ogUrl) ogUrl?.setAttribute("content", prev.ogUrl);
+      if (prev.description) description?.setAttribute("content", prev.description);
+    };
+  }, []);
+
   return (
     <div className="bg-ivory text-gold">
       {/* Sisiram hero */}
@@ -52,7 +81,19 @@ export default function FounderProfile() {
               Sisiram Group
             </h1>
             <p className="mt-5 font-display italic text-ivory/85 text-xl lg:text-2xl">Crafting Nature's Finest Goodness</p>
-            <p className="mt-4 text-[11px] font-sans-ui tracking-luxe text-ivory/70 uppercase">Kochi, Kerala, India</p>
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[11px] font-sans-ui tracking-luxe uppercase">
+              <span className="text-ivory/70">Kochi, Kerala, India</span>
+              {/**<span aria-hidden="true" className="h-3 w-px bg-ivory/40" />
+              <a
+                href="https://sisiramgroup.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-1.5 text-[11px] font-semibold text-ivory underline decoration-ivory underline-offset-[4px] hover:decoration-ivory/40 hover:underline-offset-[9px] transition-all"
+              >
+                sisiramgroup.com
+                <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+              </a> */}
+            </div>
             <Link to="/" className="mt-8 inline-flex items-center gap-2 text-[11px] font-sans-ui tracking-luxe uppercase text-ivory/75 hover:text-husk transition">
               <span aria-hidden="true">←</span> Back to the story
             </Link>
@@ -71,6 +112,15 @@ export default function FounderProfile() {
           </Reveal>
           <Reveal delay={0.1} className="lg:col-span-8">
             <p className="text-xl font-display text-gold leading-relaxed">{ABOUT_SISIRAM}</p>
+            <a
+              href="https://sisiramgroup.com/"
+              target="_blank"
+              rel="noopener"
+              className="group mt-8 h-12 px-8 inline-flex items-center gap-3 bg-palm text-ivory font-semibold text-[11px] font-sans-ui tracking-[0.18em] uppercase shadow-[0_6px_18px_rgba(42,103,17,0.3)] hover:bg-gold transition-colors"
+            >
+              Explore Sisiram Group
+              <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+            </a>
           </Reveal>
         </div>
       </section>
