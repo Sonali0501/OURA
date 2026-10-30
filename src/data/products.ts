@@ -47,14 +47,18 @@ export type Product = {
   details: { title: string; body: string }[];
   /** Shown when the product is not on sale yet (coming soon). */
   launchNote?: string;
+  /** Browser tab / search result title. `<name> | OURA` when absent. */
+  seoTitle?: string;
 };
 
 /**
  * Image paths must be root-absolute (leading slash). A bare filename resolves
  * against the current URL, so it would 404 on nested routes like
- * /products/culinary (→ /products/culinary_square.png).
+ * /products/pure (→ /products/oura_pure_500ml.png).
  */
-const CULINARY_IMG = '/products/oura_culinary.jpg';
+const PURE_IMG = '/products/oura_pure.png';
+const PURE_500ML_IMG = '/products/oura_pure_500ml.png';
+const PURE_1L_IMG = '/products/oura_pure_1L.png';
 const SHELLS_IMG = '/products/OURA_SHELLS.jpeg';
 const VITA_IMG = '/products/OURA_VITA.jpeg';
 const SHREDS_IMG = '/products/OURA_SHREADS.jpeg';
@@ -63,39 +67,40 @@ const LITTLES_IMG = '/products/OURA_LITTLES.jpeg';
 
 export const PRODUCTS: Product[] = [
   {
-    id: 'culinary',
-    name: 'Oura Culinary',
+    id: 'pure',
+    name: 'Oura Pure',
+    seoTitle: 'OURA Pure Cold-Pressed Coconut Oil | Edible Grade, Kerala',
     tag: 'COLD-PRESSED OIL',
     icon: Sparkles,
-    desc: "Double-filtered coconut oil prepared from premium quality copra. Crystal-clear purity that preserves the delicate original flavors of your family's cooking.",
+    desc: 'Cold-pressed coconut oil prepared from premium grade copra. This pure and nutrient-rich coconut oil is excellent for cooking, hair, and skin care, bringing wholesome wellness to your daily routine.',
     specs: [
       { label: 'Process', value: 'Cold pressed' },
       { label: 'Additives', value: 'Zero' },
-      { label: 'Uses', value: 'Care & Kitchen' },
+      { label: 'Uses', value: 'Cooking, Hair & Skin' },
     ],
     pointers: [
-      'Cold-pressed under 45°C',
-      'Crystal-clear & unrefined',
-      'Zero chemical additives',
-      'Rich natural aroma',
+      'Cold-pressed from premium grade copra',
+      'Pure & edible grade',
+      'For cooking, hair & skin care',
+      '100% vegetarian',
     ],
-    img: CULINARY_IMG,
+    img: PURE_IMG,
     available: true,
-    product_tags: ['culinary', 'oil'],
+    product_tags: ['pure', 'oil'],
 
-    gallery: [CULINARY_IMG, CULINARY_IMG, CULINARY_IMG, CULINARY_IMG],
+    gallery: [PURE_500ML_IMG, PURE_1L_IMG],
     price: 439,
     compareAt: 499,
     shopify_product_id: 'gid://shopify/Product/8710327795885',
     shopifyVariantId: 'gid://shopify/ProductVariant/47250512740525',
-    highlightsTitle: 'Why Choose Oura Culinary?',
+    highlightsTitle: 'Why Choose Oura Pure?',
     highlights: [
-      '100% Pure & Edible Grade: Crafted exclusively from premium quality copra with zero compromises on quality.',
-      'Nutrient-Dense: Crystal-clear oil that locks in natural goodness, bringing authentic flavor to your everyday cooking.',
+      '100% Pure & Edible Grade: Crafted exclusively from premium grade copra with zero compromises on quality.',
+      'Nutrient-Rich: Excellent for cooking, hair, and skin care, bringing wholesome wellness to your daily routine.',
       'Rooted in Heritage: Sourced directly from the lush agrarian landscapes of Kochi, Kerala.',
     ],
     story: [
-      'Oura Culinary begins where every honest oil should - at the tree. Mature coconuts are hand-picked from Kerala smallholdings, sun-dried in open air, and pressed the same week so nothing has time to go stale.',
+      'Oura Pure begins where every honest oil should - at the tree. Mature coconuts are hand-picked from Kerala smallholdings, sun-dried in open air, and pressed the same week so nothing has time to go stale.',
       'We press cold, never above 45°C. Heat is what strips an oil of its lauric acid, its aroma, and the faint sweetness that tells you it came from a real coconut. Skipping the heat costs us yield. It is the whole point.',
       'What reaches your kitchen is unrefined and unapologetic: cloudy when cool, clear when warm, and unmistakably Kerala on the first spoon.',
     ],
@@ -110,11 +115,11 @@ export const PRODUCTS: Product[] = [
       },
       {
         title: 'Ingredients',
-        body: '100% cold-pressed virgin coconut oil (Cocos nucifera). That is the entire list. No preservatives, no fragrance, no carrier oils.',
+        body: 'Pure cold-pressed coconut oil (edible grade).',
       },
       {
         title: 'Care & Storage',
-        body: 'Store in a cool, dry place away from direct sunlight. Solidification below 24°C is natural - warm the bottle to liquefy. Use a dry spoon; moisture shortens the life of any unrefined oil.',
+        body: 'Best before six months from the date of manufacturing. Store in a cool, dry place away from direct sunlight. Solidification below 24°C is natural - warm the bottle to liquefy. Use a dry spoon; moisture shortens the life of any unrefined oil.',
       },
       {
         title: 'Shipping',
@@ -261,7 +266,7 @@ export const PRODUCTS: Product[] = [
     ],
     story: [
       'Pressing oil leaves shells. Most of the industry burns them. We hand them to artisans instead.',
-      'Every bowl, spoon and dish in this line starts as a by-product of the Culinary press, which is why the range is finite - we only make as much as we press.',
+      'Every bowl, spoon and dish in this line starts as a by-product of the Pure press, which is why the range is finite - we only make as much as we press.',
     ],
     details: [
       {

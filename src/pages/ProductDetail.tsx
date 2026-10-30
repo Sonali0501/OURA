@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -615,7 +615,7 @@ function ProductView({ product }: { product: Product }) {
   const state = useProductVariants(product);
   const reviews = [
     ...getReviewsByProductTags(product.product_tags),
-    ...(product.id === "culinary" ? CULINARY_REVIEWS : []),
+    ...(product.id === "pure" ? CULINARY_REVIEWS : []),
   ];
 
   // An unknown or absent ?size= falls back to the first variant Shopify lists.
@@ -626,6 +626,32 @@ function ProductView({ product }: { product: Product }) {
   // sizes, prices and images vary, and those come from Shopify.
   // const hasNutrition = Boolean(product.nutrition?.length);
 
+  // index.html points canonical/og:url at the homepage; give each product its own so it is indexed as a distinct page.
+  useEffect(() => {
+    const url = `https://www.ouracoconut.com${productPath(product.id)}`;
+    const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    const ogUrl = document.querySelector<HTMLMetaElement>('meta[property="og:url"]');
+    const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+    const prev = {
+      title: document.title,
+      canonical: canonical?.href,
+      ogUrl: ogUrl?.content,
+      description: description?.content,
+    };
+
+    document.title = product.seoTitle ?? `${product.name} | OURA`;
+    canonical?.setAttribute("href", url);
+    ogUrl?.setAttribute("content", url);
+    description?.setAttribute("content", product.desc);
+
+    return () => {
+      document.title = prev.title;
+      if (prev.canonical) canonical?.setAttribute("href", prev.canonical);
+      if (prev.ogUrl) ogUrl?.setAttribute("content", prev.ogUrl);
+      if (prev.description) description?.setAttribute("content", prev.description);
+    };
+  }, [product]);
+
   const selectVariant = (next: DisplayVariant) => {
     const params = new URLSearchParams(searchParams);
     params.set("size", next.id);
@@ -635,6 +661,31 @@ function ProductView({ product }: { product: Product }) {
 
   return (
     <OuraLayout solidNav>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            name: product.name,
+            description: product.desc,
+            image: `https://www.ouracoconut.com${product.img}`,
+            url: `https://www.ouracoconut.com${productPath(product.id)}`,
+            brand: { "@type": "Brand", name: "OURA" },
+            manufacturer: { "@id": "https://www.ouracoconut.com/#organization" },
+            ...(variant.price !== undefined && {
+              offers: {
+                "@type": "Offer",
+                price: variant.price,
+                priceCurrency: variant.currency,
+                availability: variant.availableForSale
+                  ? "https://schema.org/InStock"
+                  : "https://schema.org/OutOfStock",
+              },
+            }),
+          }),
+        }}
+      />
       {/* Breadcrumb */}
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12 pt-32 lg:pt-36">
         <nav aria-label="Breadcrumb" className="text-[10px] font-sans-ui tracking-luxe uppercase text-gold/50">

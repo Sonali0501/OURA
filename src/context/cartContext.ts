@@ -26,7 +26,7 @@ export type CartLine = {
 export type CartSelection = {
   /** Local variant slug, e.g. '500ml'. Part of the line id in local mode. */
   variantId: string;
-  /** Line label, e.g. 'Oura Culinary - 500 ml'. */
+  /** Line label, e.g. 'Oura Pure - 500 ml'. */
   title: string;
   img: string;
   price?: number;
